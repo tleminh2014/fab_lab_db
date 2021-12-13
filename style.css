@@ -1,0 +1,194 @@
+/* webpage */
+body {
+    background-color:lightblue;
+}
+
+/* signin.html */
+/* aligning elements to the center of page */
+.box {
+    position:relative;
+    top: 30px;
+    width: 60%; /* width of the elements*/
+    margin: auto; /* horizontal alignment */
+    /* border: 3px solid green; */
+}
+/* title: welcome to fab lab */
+h1 {
+    align-content: center; /* center elements */
+    justify-content: center;
+    display: flex;
+    font-size: 80px;
+}
+/* button: check in */
+#checkin {
+    display: flex;
+    margin: auto;
+    justify-content: center; /* center text inside button shape */
+    font-size: 50px;
+    width: 35%;
+    border-radius: 20px;
+    padding: 10px;
+    position: relative;
+    top: 160px;
+}
+#checkin:hover, #signup:hover, #fauloginbutton:hover {
+    background-color: lightgrey;
+    border: none;
+}
+/* elements underneath check in button */
+.bottom {
+    position: relative;
+    display: flex;
+    top: 340px;
+    width:50%;
+    /* border-top: 3px solid black; */
+    margin: auto;
+    justify-content: center; /*horizontal alignment*/
+    align-items: center;
+    padding: 5px 0px;
+}
+#signup { /* sign up button */
+    margin-left: 20px;
+}
+
+/* signin.html */
+.signin {
+    margin: auto;
+    position: relative;
+    /* border: 3px solid black; */
+    width: 50%;
+    justify-content: center;
+    top: 40px;
+}
+.signin-title { /* sign in title */
+    font-size: 50px;
+    border-bottom: 2px solid black;
+    width: 40%;
+    margin: auto;
+}
+.existingaccount { /* elements underneath sign in title */
+    position: relative;
+    margin: auto;
+    width: 50%;
+    /* border: 3px solid black; */
+    top: 15px;
+}
+.signinfau label{
+    /* border: 3px solid black; */
+    justify-content: center;
+    margin: auto;
+    width: 30%;
+    display: flex;
+}
+.inputboxes { /* signin email and pass input boxes alignment*/
+    /* border: 3px solid black; */
+    width: 70%;
+    margin:auto;
+    display: block;
+}
+.inputboxes input { /* signin email and pass input boxes styling */
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+.existingaccount p, #fauloginbutton {
+    justify-content: center;
+    display: flex;
+}
+#fauloginbutton { /* fau login button */
+    width: 30%;
+    margin: auto;
+}
+.inputboxes button { /* sign in button */
+    margin: auto;
+    display: flex;
+    width: 40%;
+    padding: 5px;
+    justify-content: center;
+    align-items: center;
+}
+.inputboxes button:hover {
+    background-color: lightgrey;
+}
+
+/* createaccount.html */
+.registertitle { /* register title */
+    font-size: 40px;
+    border-bottom: 2px solid black;
+    width: 40%;
+    margin: auto;
+}
+.instructions { /* "please fill in..." */
+    margin:auto; 
+    width: 35%;
+    top: 30px;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    /* border-bottom: 2px solid black; */
+}
+.formcontainer {
+    /* border: 3px solid black; */
+    position: relative;
+    width:50%;
+    margin: auto;
+    top: 50px;
+}
+.namedetails { /* first and last name */
+    margin:auto; 
+    max-width: 52%;
+    top: 20px;
+    column-gap: 1%; /* spacing between the input boxes */
+    display: flex;
+    position: relative;
+    justify-content: center;
+    /* border: 2px solid black; */
+}
+.namedetails input { /* first and last name styling */
+    padding: 5px;
+}
+.details { /* email, password, etc. */
+    margin:auto; 
+    max-width: 52%;
+    top: 8px;
+    position: relative;
+    /* border: 2px solid black; */
+}
+.details input { /* email, password, etc. styling */
+    margin-bottom: 10px;
+    padding: 5px;
+    width: 100%;
+}
+.fau-new-account, .registerbuttongroup {
+    /* border: 2px solid black; */
+    width: 55%;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    column-gap: 3%;
+}
+.registerbuttongroup button{
+    width: 46%;
+    padding: 5px;
+    margin-top: 15px;
+}
+
+/* calendar */
+.md-calendar-booking .mbsc-calendar-text {
+    text-align: center;
+}
+
+.md-calendar-booking .booking-datetime .mbsc-datepicker-tab-calendar {
+    flex: 1 1 0;
+    min-width: 300px;
+}
+
+.md-calendar-booking .mbsc-timegrid-item {
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+}
+
+.md-calendar-booking .mbsc-timegrid-container {
+    top: 30px;
+}

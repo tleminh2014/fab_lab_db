@@ -1,4 +1,7 @@
-<!-- this is where the new accounts should be created and put into the database -->
+<?php
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>

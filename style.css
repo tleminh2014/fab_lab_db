@@ -1,194 +1,156 @@
 /* webpage */
 body {
     background-color:lightblue;
+    /* position:relative; */
 }
 
-/* signin.html */
-/* aligning elements to the center of page */
-.box {
-    position:relative;
-    top: 30px;
-    width: 60%; /* width of the elements*/
-    margin: auto; /* horizontal alignment */
-    /* border: 3px solid green; */
-}
-/* title: welcome to fab lab */
-h1 {
-    align-content: center; /* center elements */
-    justify-content: center;
-    display: flex;
-    font-size: 80px;
-}
-/* button: check in */
-#checkin {
-    display: flex;
-    margin: auto;
-    justify-content: center; /* center text inside button shape */
-    font-size: 50px;
-    width: 35%;
-    border-radius: 20px;
-    padding: 10px;
-    position: relative;
-    top: 160px;
-}
-#checkin:hover, #signup:hover, #fauloginbutton:hover {
-    background-color: lightgrey;
-    border: none;
-}
-/* elements underneath check in button */
-.bottom {
-    position: relative;
-    display: flex;
-    top: 340px;
-    width:50%;
-    /* border-top: 3px solid black; */
-    margin: auto;
-    justify-content: center; /*horizontal alignment*/
-    align-items: center;
-    padding: 5px 0px;
-}
-#signup { /* sign up button */
-    margin-left: 20px;
-}
-
-/* signin.html */
-.signin {
-    margin: auto;
-    position: relative;
-    /* border: 3px solid black; */
+/* index.html */
+.box, .signupform, .checkinoptions, .signin1box { /* signin box */
+    /* border: 1px solid red; */
     width: 50%;
-    justify-content: center;
-    top: 40px;
-}
-.signin-title { /* sign in title */
-    font-size: 50px;
-    border-bottom: 2px solid black;
-    width: 40%;
     margin: auto;
-}
-.existingaccount { /* elements underneath sign in title */
+    top: 100px;
+    height: 50vh;
     position: relative;
-    margin: auto;
-    width: 50%;
-    /* border: 3px solid black; */
-    top: 15px;
-}
-.signinfau label{
-    /* border: 3px solid black; */
-    justify-content: center;
-    margin: auto;
-    width: 30%;
-    display: flex;
-}
-.inputboxes { /* signin email and pass input boxes alignment*/
-    /* border: 3px solid black; */
-    width: 70%;
-    margin:auto;
-    display: block;
-}
-.inputboxes input { /* signin email and pass input boxes styling */
-    width: 100%;
-    padding: 5px;
-    margin-bottom: 5px;
-}
-.existingaccount p, #fauloginbutton {
-    justify-content: center;
-    display: flex;
-}
-#fauloginbutton { /* fau login button */
-    width: 30%;
-    margin: auto;
-}
-.inputboxes button { /* sign in button */
-    margin: auto;
-    display: flex;
-    width: 40%;
-    padding: 5px;
-    justify-content: center;
-    align-items: center;
-}
-.inputboxes button:hover {
-    background-color: lightgrey;
-}
-
-/* createaccount.html */
-.registertitle { /* register title */
-    font-size: 40px;
-    border-bottom: 2px solid black;
-    width: 40%;
-    margin: auto;
-}
-.instructions { /* "please fill in..." */
-    margin:auto; 
-    width: 35%;
-    top: 30px;
-    display: flex;
-    position: relative;
-    justify-content: center;
-    /* border-bottom: 2px solid black; */
-}
-.formcontainer {
-    /* border: 3px solid black; */
-    position: relative;
-    width:50%;
-    margin: auto;
-    top: 50px;
-}
-.namedetails { /* first and last name */
-    margin:auto; 
-    max-width: 52%;
-    top: 20px;
-    column-gap: 1%; /* spacing between the input boxes */
-    display: flex;
-    position: relative;
-    justify-content: center;
-    /* border: 2px solid black; */
-}
-.namedetails input { /* first and last name styling */
-    padding: 5px;
-}
-.details { /* email, password, etc. */
-    margin:auto; 
-    max-width: 52%;
-    top: 8px;
-    position: relative;
-    /* border: 2px solid black; */
-}
-.details input { /* email, password, etc. styling */
-    margin-bottom: 10px;
-    padding: 5px;
-    width: 100%;
-}
-.fau-new-account, .registerbuttongroup {
-    /* border: 2px solid black; */
-    width: 55%;
-    margin: auto;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    column-gap: 3%;
-}
-.registerbuttongroup button{
-    width: 46%;
-    padding: 5px;
-    margin-top: 15px;
-}
-
-/* calendar */
-.md-calendar-booking .mbsc-calendar-text {
     text-align: center;
 }
-
-.md-calendar-booking .booking-datetime .mbsc-datepicker-tab-calendar {
-    flex: 1 1 0;
-    min-width: 300px;
+.b1 { /* button box */
+    /* border: 1px solid black; */
+    position: relative;
+    top: 90px;
+}
+.signinbutton { /* check in button */
+    border: transparent;
+    width: 20%;
+    padding: 20px 0px;
+    border-radius:15px;
+    font-size: 32px;
+    font-weight: 500;
+}
+.bottom { /* sign up box */
+    /* border: 1px solid white; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    top: 200px;
+    vertical-align: middle;
+}
+.bottom button, .signupformbuttons button { /* sign up button */
+    border: transparent;
+    margin-left: 10px;
+    padding: 5px 20px;
+    border-radius:10px;
+    font-weight: 500;
+    font-size: 20px;
+}
+.bottom label {
+    font-size: 20px;
+}
+.signinbutton:hover {
+    background-color: grey;
 }
 
-.md-calendar-booking .mbsc-timegrid-item {
-    margin-top: 1.5em;
-    margin-bottom: 1.5em;
+/* createacc.php */
+/* - sign up box -> index.html */
+.signupheader, .signinheader, .signin1header { /* sign up header */
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    border-bottom: 3px solid white;
+    width: 50%;
+    margin: auto;
+    padding-bottom: 10px;
+}
+.inst, .signininst { /* form instructions */
+    margin: 15px;
+}
+.signup-form { /* sign up form */
+    /* border: 1px solid green; */
+    height: auto;
+}
+.newuser { /* input fields */
+    /* border: 1px solid orange; */
+    padding: 5px 0px;
+    width: 40%;
+    margin: auto;
+}
+.newuser input, .existuser input { /* input fields */
+    width: 100%;
+    padding: 3px 0px 3px 6px;
+    border-radius: 5px;
+}
+.newuserocc { /* occupation */
+    /* border: 1px solid red; */
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.newuserocc p { /* occupation */
+    font-weight: bold;
+}
+.radiooptions { /* occupation radio options*/
+    /* border: 1px solid black; */
+    text-align: left;
+    margin-left: 20px;
+}
+.fausignup { /* fau sign up */
+    /* border: 1px solid black; */
+    margin-top: 10px;
+}
+.leadsignin { /* already have an account */
+    /* border: 1px solid purple; */
+    margin: 20px 0px 10px 0px;
+}
+.signupformbuttons { /* sign up form buttons */
+    /* border: 1px solid blue; */
+    margin: 30px 0px 10px 0px;
+}
+.fausignup button, .leadsignin button, .leadsignup button { /* button: fau sign up, log in */
+    border: transparent;
+    margin-left: 10px;
+    padding: 5px 20px;
+    border-radius:10px;
+    font-weight: 500;
 }
 
-.md-calendar-booking .mbsc-timegrid-container {
-    top: 30px;
+/* login.php */
+/* .checkinoptions -> index.html 
+    - .signinheader, .leadsignup button, .signininst -> createacc.php */
+.leadsignup { /* dont have an account? */
+    margin-top: 50px;
 }
+.signin1, .signin2, .signin3, .signin1form { /* 3 sign in options */
+    margin: 20px;
+}
+.signin1 button, .signin2 button, .signin3 label { /* 3 buttons design */
+    border: transparent;
+    padding: 10px 20px;
+    border-radius:10px;
+    font-weight: 500;
+    font-size: 20px;
+    background-color: whitesmoke;
+}
+
+/* signin.php */
+/* .signin1box -> index.html
+    - .signin1header -> createacc.php 
+    - .signin1form -> login.php */
+/* .signin1form {
+    border: 3px solid red;
+} */
+
+.existuser { /* sign in input field */
+    /* border: 1px solid purple; */
+    margin: 5px;
+}
+.signinformbuttons button { /* sign in form buttons */
+    /* border: 1px solid orange; */
+    border: transparent;
+    padding: 5px 20px;
+    border-radius:10px;
+    font-weight: 500;
+    font-size: 20px;
+    margin: 30px 0px;
+}
+

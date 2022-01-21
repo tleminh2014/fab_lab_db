@@ -25,10 +25,10 @@
     <!-- navigation bar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Fab Lab</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+          <a class="navbar-brand" href="/fablabtest/index.html">Fab Lab</a>
+          <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
-          </button>
+          </button> -->
           <!-- <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
@@ -48,21 +48,38 @@
           </div>
         </div>
     </nav>
+        
     
-    <div class="box" id="box1">
-        <!-- welcome message -->
-        <h1>Welcome to Fab Lab!</h1>
-
-        <!-- check in button --> 
-        <!-- <button type="submit" href="signin.html" class="btn btn-light">Check In</button> -->
-        <a class="btn btn-light" href="signin.html" role="button" id="checkin">Check In</a>
-
-        <div class="bottom">
-            <h5>New to Fab Lab?</h5>
-            <!-- <button class="1btn btn-light" type="submit">Sign Up</button> -->
-            <a class="btn btn-light" href="createaccount.html" role="button" id="signup">Sign Up</a>
-        </div>
+    <div class="signin1box">
+      <h1 class="signin1header">Sign In</h1>
+      <div class="signin1form">
+        <form action="signin.inc.php" method="post">
+          <div class="existuser">
+            <input type="email" name="email" placeholder="Email">
+          </div>
+          <div class="existuser">
+            <input type="password" name="password" placeholder="Password">
+          </div>
+          <div class="signinformbuttons">
+            <button type="cancel" formaction="/fablabtest/login.php" name="cancel">Cancel</button>
+            <button type="submit">Log In</button>
+          </div>
+        </form>
+        
+      </div>
     </div>
+  
+
+   
+    
+
+
+
+
+
+
+
+
 
     <!-- Optional JavaScript; choose one of the two! -->
     <!-- Option 1: Bootstrap Bundle with Popper -->

@@ -1,0 +1,113 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fab Lab</title>
+
+  <link rel="stylesheet" href="css/font.css">
+  <link rel="stylesheet" href="css/main.css">
+
+  <script src="js/vendor/modernizr.js"></script>
+</head>
+<body class="">
+
+  <header class="site-header">
+    <h1 class="title">Fab Lab Equipment Site</h1>
+    <nav class="site-nav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+      </ul>
+    </nav>
+    <button type="button" class="btn-menu"><span>Menu</span></button>
+    <a class="home-button" href="/register.html">Sign-Up Here!</a>
+  </header>
+
+  <section class="home-sign-up">
+    <div class="row column">
+      
+
+
+      <h2 class="section-title">Sign Up</h2>
+
+      <p class="content">Fab Lab is coming soon!</p>
+
+  
+    </div>
+  </section>
+
+  
+  <h4>Equipment</h4>
+  <form>
+    <div id="entries">
+
+    </div>
+  </form>
+
+  <h4>Add equipment:</h4>
+  <form>
+    <label for="equipmenttype">Equipment Type</label>
+    <textarea id="equipmenttype"></textarea>
+    <label for="accesslevel">Access Level</label>
+    <textarea id="accesslevel"></textarea>
+    <button id="submitButton">Submit</button>
+
+  </form>
+
+
+  <footer class="site-footer">
+    <div class="row column">
+      <nav class="footer-nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="row column">
+      <div class="footer-legal">
+        &copy;Fab Lab FAU<br>
+        All Rights Reserved
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/vendor/jquery-3.1.0.js"></script>
+  <script src="js/vendor/bootstrap.min.js"></script>
+  <script src="js/vendor.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/main.js"></script>
+  <script type="text/javascript">
+    
+    $(document).ready(function(){
+      $.ajax({
+        method: 'GET',
+        url: _config.api.invokeUrl + '/equipment',
+        success: function(data){
+          $('#entries').html('');
+  
+          data.Items.forEach(function(equipmentItem){
+            $('#entries').append('<p>' + equipmentItem.accesslevel + ' - ' + equipmentItem.equipmenttype + '</p>');
+          })
+        }
+      });
+  
+    });
+
+    $('#submitButton').on('click', function(){
+      $.ajax({
+        method: 'POST',
+        url: _config.api.invokeUrl + '/equipment',
+        data: JSON.stringify({"equipmenttype": $('#equipmenttype').val(), "accesslevel": $('#accesslevel').val()}),
+        contentType: "application/json",
+        success: function(data){
+          location.reload();
+        }
+      });
+      return false;
+    });
+  
+  </script>
+</body>
+</html>

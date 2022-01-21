@@ -104,12 +104,7 @@ textarea {
 body{
   width: 100vw;
   height: 100vh;
-
-  background-image: url(../images/background.png);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center bottom;
-
+  background-color:lightcoral;
   font-family: "fairplex-wide";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -194,7 +189,7 @@ input[type=text], input[type=password], input[type=email] {
     margin: 10px 0 30px;
     display: inline-block;
     border: none;
-    border-bottom: 2px solid white;
+    border-bottom: 2px solid black;
     box-sizing: border-box;
     background: transparent;
     outline: none;
@@ -202,7 +197,7 @@ input[type=text], input[type=password], input[type=email] {
     font-family: "fairplex-wide";
     font-size: 24px;
     opacity: 1;
-    color: white;
+    color: black;
     font-weight: 400;
 
     -webkit-transition: border-bottom 0.4s ease-in-out;
@@ -277,7 +272,7 @@ input[type=submit]:hover {
 /* Typography */
 
 h1{
-  color: white;
+  color:maroon;
   font-size: 48px;
   font-weight: 700;
   letter-spacing: 1px;

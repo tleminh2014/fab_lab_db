@@ -8,6 +8,7 @@
 
   <link rel="stylesheet" href="css/font.css">
   <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="style.css">
 
   <script src="js/vendor/modernizr.js"></script>
 </head>
@@ -39,10 +40,16 @@
 
   
   <h4>Equipment</h4>
-  <form>
-    <div id="entries">
+    <input type="text" id="equipInput" onkeyup="equipFunction()" placeholder="Search for equipment type..">
 
-    </div>
+  <table id="equipTable">
+    <tr class="header">
+      <th style="width: 20%;">Equipment ID</th>
+      <th style="width: 40%;">Equipment Type</th>
+      <th style="width: 20%;">Available?</th>
+      <th style="width: 20%;">Reserve</th>
+    </tr>
+  </table>
   </form>
 
   <h4>Add equipment:</h4>
@@ -78,36 +85,8 @@
   <script src="js/vendor.js"></script>
   <script src="js/config.js"></script>
   <script src="js/main.js"></script>
-  <script type="text/javascript">
-    
-    $(document).ready(function(){
-      $.ajax({
-        method: 'GET',
-        url: _config.api.invokeUrl + '/equipment',
-        success: function(data){
-          $('#entries').html('');
+  <script type="text/javascript" src="js/loadequipTable.js"></script>
+  <script src="js/equipSearch.js"></script>
   
-          data.Items.forEach(function(equipmentItem){
-            $('#entries').append('<p>' + equipmentItem.accesslevel + ' - ' + equipmentItem.equipmenttype + '</p>');
-          })
-        }
-      });
-  
-    });
-
-    $('#submitButton').on('click', function(){
-      $.ajax({
-        method: 'POST',
-        url: _config.api.invokeUrl + '/equipment',
-        data: JSON.stringify({"equipmenttype": $('#equipmenttype').val(), "accesslevel": $('#accesslevel').val()}),
-        contentType: "application/json",
-        success: function(data){
-          location.reload();
-        }
-      });
-      return false;
-    });
-  
-  </script>
 </body>
 </html>

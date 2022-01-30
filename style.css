@@ -153,4 +153,39 @@ body {
     font-size: 20px;
     margin: 30px 0px;
 }
+::placeholder{
+    color: grey;
+}
+#equipInput {
+  background-image: url('/images/search.png');
+  background-position: 10px 12px; /* Position the search icon */
+  background-size: 1.3em;
+  background-repeat: no-repeat; /* Do not repeat the icon image */
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px; 
+  border: 1px solid rgb(255, 255, 255); 
+  margin-bottom: 12px;
+   
+}
 
+#equipTable {
+    border-collapse: collapse; /* Collapse borders */
+    width: 100%; /* Full-width */
+    border: 1px solid #ddd; /* Add a grey border */
+    font-size: 18px; /* Increase font-size */
+  }
+
+#equipTable th, #equipTable td {
+    text-align: left; 
+    padding: 12px; 
+}
+
+#equipTable tr {
+    border: 1px solid rgb(253, 253, 253);
+}
+
+#equipTable tr.header, #equipTable tr:hover {
+    
+    background-color: #c2b9b9;
+}

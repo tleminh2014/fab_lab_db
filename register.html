@@ -11,15 +11,20 @@
         <meta name="viewport" content="width=device-width">
 
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
         <link rel="stylesheet" href="css/font.css">
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/index.css">
         <link rel="stylesheet" href="/css/message.css">
+
+
+        <!-- Bootstrap -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
         <link rel="stylesheet" href="style.css">
 
     </head>
-    <body>
+    <body style="background-color: lightblue;">
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
@@ -34,17 +39,57 @@
     
 
         
+        <!-- navigation bar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/fab_lab_db/">Fab Lab</a>
+            </div>
+        </nav>
 
-
-        <section class="form-wrap">
-            <h1>Register</h1>
+        <!-- registration form -->
+        <section class="form-wrap" style="margin-top: 30px;">
+            <h1 class="regist_header" style="letter-spacing: 5px; text-transform: uppercase; border-bottom: 3px solid white; width: 50%; margin: auto;
+            padding-bottom: 7px;">Register</h1>
+            <p class="regist_inst" style="text-align:center; padding-top:15px;font-weight: 500;">Please fill in the following fields:</p>
             <form id="registrationForm">
-              <input type="email" id="emailInputRegister" placeholder="Email" pattern=".*" required>
-              <input type="password" id="passwordInputRegister" placeholder="Password" pattern=".*" required>
-              <input type="password" id="password2InputRegister" placeholder="Confirm Password" pattern=".*" required>
+                <div class="newuser" style="display:flex; width: 80%; margin:auto;">
+                    <input type="text" name="firstname" placeholder="First Name">
+                    <input style="margin-left: 5px;" type="text" name="lastname" placeholder="Last Name">
+                </div>
 
-              <input type="submit" value="Submit">
+                <div class="newuserocc" style=" margin-top: 20px; margin-bottom:10px; display: flex; font-size: 20px; font-weight: 500; justify-content: center; ">
+                    <label for="" style="float:left; display:block;">Occupation:</label>
+                    <div class="radiooptions" style="margin-left: 20px; margin-right: 10px; vertical-align: center; ">
+                        <!-- <input type="radio" id="Business/Organization" name="occupation" value="Business/Organization"> -->
+                        <label for="Business/Organization"><input style="justify-content: center; align-items: center; cursor: pointer;" type="radio" 
+                            id="Business/Organization" name="occupation" value="Business/Organization">Business/Organization</label><br>
+                        <!-- <input type="radio" id="Guest" name="occupation" value="Guest"> -->
+                        <label for="Guest"><input type="radio" id="Guest" name="occupation" value="Guest" style="justify-content: center;
+                            align-items: center; cursor: pointer;">Guest</label>
+                    </div>
+                </div>
+                <div style="width: 70%; margin: auto; padding: 20px 0px;">
+                    <!-- <input type="number" name="phonenumber" placeholder="Number" size="10"> -->
+                    <input type="email" id="emailInputRegister" placeholder="Email" pattern=".*" required>
+                    <input type="password" id="passwordInputRegister" placeholder="Password" pattern=".*" required>
+                    <input type="password" id="password2InputRegister" placeholder="Confirm Password" pattern=".*" required>
+                </div>
+
+                <!-- <button type="cancel" formaction="/fab_lab_db/index.html" name="cancel">Cancel</button> -->
+                <input type="submit" value="Submit" style="margin-top: 15px;">
             </form>
+
+            <div class="fausignupsection" style="text-align:center;">
+                <label for="" style="font-weight: 500;">Are you a FAU student or faculty member?</label>
+                <a href=""><button class="fausignup" style="border: transparent; margin-left: 10px; padding: 5px 20px; border-radius:10px;
+                    font-weight: 500;">FAU Sign Up</button></a>
+            </div>
+
+            <div class="leadsigninsection" style="text-align: center; margin: 10px 0px;">
+                <label for="" style="font-weight: 500;">Already have an account with us?</label>
+                <a href="/fab_lab_db/signin.html"><button class="loginacc" formaction="/fab_lab_db/signin.html" style="border: transparent; margin-left: 10px;
+                    padding: 5px 20px; border-radius:10px; font-weight: 500;">Log In</button></a>
+            </div>
         </section>
 
         <script src="js/vendor/jquery-3.1.0.js"></script>
@@ -55,3 +100,4 @@
         <script src="js/cognito-auth.js"></script>
     </body>
 </html>
+

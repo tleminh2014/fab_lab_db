@@ -25,13 +25,10 @@ var fablab = window.fablab || {};
         AWSCognito.config.region = _config.cognito.region;
     }
 
-    fablab.signOut = function signOut() {
-        userPool.getCurrentUser().signOut();
-    };
-
+    
     fablab.authToken = new Promise(function fetchCurrentAuthToken(resolve, reject) {
         var cognitoUser = userPool.getCurrentUser();
-
+        
         if (cognitoUser) {
             cognitoUser.getSession(function sessionCallback(err, session) {
                 if (err) {
@@ -47,41 +44,54 @@ var fablab = window.fablab || {};
         }
     });
 
-
+    
     /*
-     * Cognito User Pool functions
-     */
-
-    function register(email, password, onSuccess, onFailure) {
-        var dataEmail = {
-            Name: 'email',
-            Value: email
+    * Cognito User Pool functions
+    */
+   
+   function register(email, password, onSuccess, onFailure) {
+       var dataEmail = {
+           Name: 'email',
+           Value: email
         };
         var attributeEmail = new AmazonCognitoIdentity.CognitoUserAttribute(dataEmail);
-
-        userPool.signUp(toUsername(email), password, [attributeEmail], null,
-            function signUpCallback(err, result) {
+        
+        // userPool.signUp(toUsername(email), password, [attributeEmail], null,
+        userPool.signUp(email, password, [attributeEmail], null,
+        function signUpCallback(err, result) {
                 if (!err) {
                     onSuccess(result);
                 } else {
                     onFailure(err);
                 }
             }
-        );
+            );
     }
-
+    
     function signin(email, password, onSuccess, onFailure) {
         var authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails({
-            Username: toUsername(email),
+            // Username: toUsername(email),
+            Username: email,
             Password: password
         });
-
+        
         var cognitoUser = createCognitoUser(email);
         cognitoUser.authenticateUser(authenticationDetails, {
             onSuccess: onSuccess,
             onFailure: onFailure
         });
     }
+    
+    function signOut() {
+        // userPool.getCurrentUser().signOut();
+        const cognitoUser = userPool.getCurrentUser();
+        if (cognitoUser !== null) {
+            cognitoUser.signOut();
+        }
+
+
+        
+    };
 
     function verify(email, code, onSuccess, onFailure) {
         createCognitoUser(email).confirmRegistration(code, true, function confirmCallback(err, result) {
@@ -95,7 +105,8 @@ var fablab = window.fablab || {};
 
     function createCognitoUser(email) {
         return new AmazonCognitoIdentity.CognitoUser({
-            Username: toUsername(email),
+            // Username: toUsername(email),
+            Username: email,
             Pool: userPool
         });
     }
@@ -112,6 +123,8 @@ var fablab = window.fablab || {};
         $('#signinForm').submit(handleSignin);
         $('#registrationForm').submit(handleRegister);
         $('#verifyForm').submit(handleVerify);
+        $('#signOut').click(handleSignout);
+    
     });
 
     function handleSignin(event) {
@@ -121,13 +134,27 @@ var fablab = window.fablab || {};
         signin(email, password,
             function signinSuccess() {
                 console.log('Successfully Logged In');
-                window.location.href = 'index.html';
+                window.location.href = 'testtable.html';
             },
             function signinError(err) {
                 alert(err);
             }
         );
     }
+
+    function handleSignout(){
+        var cognitoUser = getCurrentUser();
+
+        if(cognitoUser !== null) {
+            signOut(function signoutSuccess() {
+                    console.log('Successfully Logged Out');
+                    // window.location.href = 'signin.html';
+                },
+                function signoutError(err) {
+                    alert(err);
+                });
+            }
+        }
 
     function handleRegister(event) {
         var email = $('#emailInputRegister').val();
@@ -162,7 +189,6 @@ var fablab = window.fablab || {};
             function verifySuccess(result) {
                 console.log('call result: ' + result);
                 console.log('Successfully verified');
-                alert('Verification successful. You will now be redirected to the login page.');
                 window.location.href = signinUrl;
             },
             function verifyError(err) {

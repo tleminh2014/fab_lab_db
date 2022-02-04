@@ -268,12 +268,14 @@
      font-style: italic;
    }
    
-   .fausignup:hover, .loginacc:hover {
+   .fausignup:hover, .loginacc:hover { /* button hover in register.html */
     background-color: #dddddd;
     color: black;
    }
    
-
+   .signinopt:hover {
+    background-color: lightgrey;
+   }
    
    
    /* Typography */

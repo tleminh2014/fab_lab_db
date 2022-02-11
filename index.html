@@ -10,9 +10,15 @@
 
     <!-- my CSS file -->
     <link rel="stylesheet" href="style.css">
+    <style>
+      a.nav-link:hover {
+        background-color: lightgrey;
+        border-radius: 20px;
+      }
+    </style>
     
     <!-- icon library -->
-    <!-- none for this file -->
+    <script src="https://kit.fontawesome.com/67c6af2bf9.js" crossorigin="anonymous"></script>
     
     <!-- title tab -->
     <title>Fab Lab</title>
@@ -22,6 +28,13 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
           <a class="navbar-brand" href="/fab_lab_db/">Fab Lab</a>
+          <div>
+            <ul class="nav justify-content-end">
+              <li class="nav-item">
+                <a class="nav-link" href="/fab_lab_db/signin.html" style="font-weight:500; color:black;">Log In<i class="fas fa-sign-in-alt" style="padding-left: 10px;"></i></a>
+              </li>
+            </ul>
+          </div>
         </div>
     </nav>
     
@@ -30,7 +43,7 @@
         <div><h1>Welcome to Fab Lab!</h1></div>
 
         <!-- check in button --> 
-        <div class="b1"><a href="/fab_lab_db/signin.html"><button class="signinbutton">Check In</button></a></div>
+        <div class="b1"><a href="/fab_lab_db/checkin.html"><button class="signinbutton">Check In</button></a></div>
 
         <div class="bottom">
             <!-- sign up / create account -->

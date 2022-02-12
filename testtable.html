@@ -12,27 +12,32 @@
 
   <script src="js/vendor/modernizr.js"></script>
 </head>
-<body>
+<body class="">
 
-  <div class="info panel panel-default">
-    <div class="panel-heading">
-        <div class="dropdown pull-right">
-            <li><a id="signOut" href="signin.html">Sign Out</a></li>
-        </div>
-    </div>
-  </div>
+  <header class="site-header">
+    <h1 class="title">Fab Lab Equipment Site</h1>
+    <nav class="site-nav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+      </ul>
+    </nav>
+    <button type="button" class="btn-menu"><span>Menu</span></button>
+    <a class="home-button" href="/register.html">Sign-Up Here!</a>
+  </header>
+
   <section class="home-sign-up">
     <div class="row column">
       
 
 
-      <h2 id="welcomeheader"></h2>
+      <h2 class="section-title">Sign Up</h2>
 
       <p class="content">Fab Lab is coming soon!</p>
 
   
     </div>
   </section>
+
   
   <h4>Equipment</h4>
     <input type="text" id="equipInput" onkeyup="equipFunction()" placeholder="Search for equipment type..">
@@ -77,13 +82,10 @@
 
   <script src="js/vendor/jquery-3.1.0.js"></script>
   <script src="js/vendor/bootstrap.min.js"></script>
-  <script src="js/vendor/aws-cognito-sdk.min.js"></script>
-  <script src="js/vendor/amazon-cognito-identity.min.js"></script>
-  <script src="https://js.arcgis.com/4.3/"></script>
+  <script src="js/vendor.js"></script>
   <script src="js/config.js"></script>
-  <script src="js/cognito-auth.js"></script>
   <script src="js/main.js"></script>
-  <script src="js/loadequipTable.js"></script>
+  <script type="text/javascript" src="js/loadequipTable.js"></script>
   <script src="js/equipSearch.js"></script>
   
 </body>

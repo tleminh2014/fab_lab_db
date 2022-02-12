@@ -11,6 +11,30 @@ $(document).ready(function(){
       }
     });
 
+
+    userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
+  
+  $(function onDocReady() {
+      $.ajax({
+        method: 'GET',
+        url: _config.api.invokeUrl + '/equipment',
+        success: function(data){
+          $('#entries').html('');
+  
+          data.Items.forEach(function(equipmentItem){
+            var availability;
+            if (equipmentItem.available) {
+              availability = '<span style="color:green">Available</span>';
+            } else {availability = '<span style="color:red">Unavailable</span>';}
+            $('#equipTable').append('<tr> <td>' + equipmentItem.accesslevel + '</td>' + '<td>' + equipmentItem.equipmenttype + '</td>'+ '<td>' + availability + '</span></td></tr>');
+          })
+        }
+      });
+  
+      var cognitoUser = userPool.getCurrentUser();
+      var username = cognitoUser.username;
+      username = username.split("@").shift();
+      $("#welcomeheader").html('Welcome ' + username);      
   });
 
   $('#submitButton').on('click', function(){

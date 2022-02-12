@@ -39,7 +39,11 @@ var fablab = window.fablab || {};
           $('#entries').html('');
   
           data.Items.forEach(function(equipmentItem){
-            $('#equipTable').append('<tr> <td>' + equipmentItem.accesslevel + '</td>' + '<td>' + equipmentItem.equipmenttype + '</td></tr>');
+            var availability;
+            if (equipmentItem.available) {
+              availability = '<span style="color:green">Available</span>';
+            } else {availability = '<span style="color:red">Unavailable</span>';}
+            $('#equipTable').append('<tr> <td>' + equipmentItem.accesslevel + '</td>' + '<td>' + equipmentItem.equipmenttype + '</td>'+ '<td>' + availability + '</span></td></tr>');
           })
         }
       });

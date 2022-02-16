@@ -30,17 +30,16 @@ var fablab = window.fablab || {};
   }
 
     userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
-  
+
   $(function onDocReady() {
-     
-  
+
+
       var cognitoUser = userPool.getCurrentUser();
       var username = cognitoUser.username;
       username = username.split("@").shift();
       $("#welcomeheader").html('Welcome ' + username);      
   });
-    
-  
+
+
 
 }(jQuery));
-

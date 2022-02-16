@@ -14,24 +14,21 @@
 </head>
 <body class="">
 
-  <header class="site-header">
-    <h1 class="title">Fab Lab Equipment Site</h1>
-    <nav class="site-nav">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-      </ul>
-    </nav>
-    <button type="button" class="btn-menu"><span>Menu</span></button>
-    <a class="home-button" href="/register.html">Sign-Up Here!</a>
-  </header>
+  <div class="info panel panel-default">
+    <div class="panel-heading">
+        <div class="dropdown pull-right">
+            <!-- <li><a id="signOut" href="signin.html">Sign Out</a></li> -->
+            <button id="signOut">Sign Out</button>
+        </div>
+    </div>
+  </div>
 
   <section class="home-sign-up">
     <div class="row column">
       
 
 
-      <h2 class="section-title">Sign Up</h2>
-
+      <h2 id="welcomeheader"></h2>
       <p class="content">Fab Lab is coming soon!</p>
 
   
@@ -44,17 +41,21 @@
 
   <table id="equipTable">
     <tr class="header">
-      <th style="width: 20%;">Equipment ID</th>
-      <th style="width: 40%;">Equipment Type</th>
-      <th style="width: 20%;">Available?</th>
-      <th style="width: 20%;">Reserve</th>
+      <th style="width: 10%;">Equipment ID</th>
+      <th style="width: 10%;">Access Level</th>
+      <th style="width: 10%;">Date Maintenance</th>
+      <th style="width: 10%;">Date Rented</th>
+      <th style="width: 10%;">Date Returned</th>
+      <th style="width: 10%;">Equipment Type</th>
+      <th style="width: 10%;">Available?</th>
+      <th style="width: 10%;">Reserve</th>
     </tr>
   </table>
   </form>
 
   <h4>Add equipment:</h4>
   <form>
-    <label for="equipmenttype">Equipment Type</label>
+    <label for="equipmenttype">Equipment ID</label>
     <textarea id="equipmenttype"></textarea>
     <label for="accesslevel">Access Level</label>
     <textarea id="accesslevel"></textarea>
@@ -82,10 +83,13 @@
 
   <script src="js/vendor/jquery-3.1.0.js"></script>
   <script src="js/vendor/bootstrap.min.js"></script>
-  <script src="js/vendor.js"></script>
+  <script src="js/vendor/aws-cognito-sdk.min.js"></script>
+  <script src="js/vendor/amazon-cognito-identity.min.js"></script>
+  <script src="https://js.arcgis.com/4.3/"></script>
   <script src="js/config.js"></script>
+  <script src="js/cognito-auth.js"></script>
   <script src="js/main.js"></script>
-  <script type="text/javascript" src="js/loadequipTable.js"></script>
+  <script src="js/loadequipTable.js"></script>
   <script src="js/equipSearch.js"></script>
   
 </body>

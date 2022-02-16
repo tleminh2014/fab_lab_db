@@ -10,9 +10,22 @@
 
     <!-- my CSS file -->
     <link rel="stylesheet" href="index.css">
+    <style>
+      .button1 { /* css style for the 3 buttons */
+        border-color: transparent;margin: 0px 20px;padding: 50px;
+          border-radius: 10px;font-weight: 600;font-size: 36px;
+      }
+      .button1:hover { /* 3 buttons :hover */
+        background-color: lightgrey;
+      }
+      a.nav-link:hover { /* nav. bar links :hover */
+        background-color: lightgrey;
+        border-radius: 20px;
+      }
+    </style>
     
     <!-- icon library -->
-    
+    <!-- none for this file -->
     
     <!-- title tab -->
     <title>Fab Lab</title>
@@ -21,31 +34,34 @@
 
     <!-- navigation bar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="/fab_lab_db/">Fab Lab</a>
-            <div>
-                <ul class="nav justify-content-end">
-                    <li class="nav-item">
-                      <a class="nav-link" href="#">Logout</a>
-                    </li>
-                  </ul>
-            </div>
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">Fab Lab</a>
+        <div>
+          <ul class="nav justify-content-end">
+            <li class="nav-item">
+              <a class="nav-link" href="logout.html" style="font-weight:500; color:black;">Logout</a>
+            </li>
+          </ul>
         </div>
+      </div>
     </nav>
 
     <!-- user dashboard -->
     <!-- greet user -->
+    <!-- the _John_Smith_ should show the user's name or their username (whether it will be email or username) -->
     <h1 style="text-align: center; width: auto; margin-top: 50px;">Welcome, _John_Smith_!</h1>
 
     <!-- features -->
     <section class="userdashboard" style="margin-top: 150px;">
       <div class="userdashboard_buttons" style="text-align: center;margin:auto;">
-        <a href="/fab_lab_db/useraccount.html"><button class="button1" style="border-color: transparent;margin: 0px 20px;padding: 50px;
-          border-radius: 10px;font-weight: 600;font-size: 36px;">View Account</button></a>
-        <a href="/fab_lab_db/equipmenttable.html"><button class="button1" style="border-color: transparent;margin: 0px 20px;padding: 50px;
-          border-radius: 10px;font-weight: 600;font-size: 36px;">Equipment</button></a>
-        <a href=""><button class="button1" style="border-color: transparent;margin: 0px 20px;padding: 50px;
-          border-radius: 10px;font-weight: 600;font-size: 36px;">Make Appointment</button></a>
+        <!-- button 1: view user account -->
+        <a href="useraccount.html"><button class="button1">View Account</button></a>
+        
+        <!-- button 2: equipment table -->
+        <a href="equipmenttable.html"><button class="button1">Equipment</button></a>
+        
+        <!-- button 3: appointment (needs a page/link) -->
+        <a href=""><button class="button1">Make Appointment</button></a>
       </div>
     </section>
 

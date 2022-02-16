@@ -25,9 +25,7 @@ var fablab = window.fablab || {};
         AWSCognito.config.region = _config.cognito.region;
     }
 
-    fablab.signOut = function signOut() {
-        userPool.getCurrentUser().signOut();
-    };
+  
 
     fablab.authToken = new Promise(function fetchCurrentAuthToken(resolve, reject) {
         var cognitoUser = userPool.getCurrentUser();
@@ -52,14 +50,33 @@ var fablab = window.fablab || {};
      * Cognito User Pool functions
      */
 
-    function register(email, password, onSuccess, onFailure) {
+    function register(occupation, given_name, family_name, email, password, onSuccess, onFailure) {
+
+        var dataoccupation = {
+            Name: 'custom:occupation',
+            Value: occupation
+        };
+        
+        var datagiven_name = {
+            Name: 'given_name',
+            Value: given_name
+        };
+
+        var datafamily_name = {
+            Name: 'family_name',
+            Value: family_name
+        };
         var dataEmail = {
             Name: 'email',
             Value: email
         };
+        
+        var attributeOccupation = new AmazonCognitoIdentity.CognitoUserAttribute(dataoccupation);
+        var attributeGivenName = new AmazonCognitoIdentity.CognitoUserAttribute(datagiven_name);
+        var attributeFamilyName = new AmazonCognitoIdentity.CognitoUserAttribute(datafamily_name);
         var attributeEmail = new AmazonCognitoIdentity.CognitoUserAttribute(dataEmail);
 
-        userPool.signUp(toUsername(email), password, [attributeEmail], null,
+        userPool.signUp(toUsername(email), password, [attributeOccupation, attributeEmail, attributeGivenName, attributeFamilyName], null,
             function signUpCallback(err, result) {
                 if (!err) {
                     onSuccess(result);
@@ -72,7 +89,8 @@ var fablab = window.fablab || {};
 
     function signin(email, password, onSuccess, onFailure) {
         var authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails({
-            Username: toUsername(email),
+            // Username: toUsername(email),
+            Username: email,
             Password: password
         });
 
@@ -82,6 +100,15 @@ var fablab = window.fablab || {};
             onFailure: onFailure
         });
     }
+
+    // function signOut() {
+    //     // userPool.getCurrentUser().signOut();
+    //     const cognitoUser = userPool.getCurrentUser();
+    //     if (cognitoUser !== null) {
+    //         cognitoUser.signOut();
+    //     }
+
+    // };
 
     function verify(email, code, onSuccess, onFailure) {
         createCognitoUser(email).confirmRegistration(code, true, function confirmCallback(err, result) {
@@ -95,7 +122,8 @@ var fablab = window.fablab || {};
 
     function createCognitoUser(email) {
         return new AmazonCognitoIdentity.CognitoUser({
-            Username: toUsername(email),
+            // Username: toUsername(email),
+            Username: email,
             Pool: userPool
         });
     }
@@ -112,6 +140,7 @@ var fablab = window.fablab || {};
         $('#signinForm').submit(handleSignin);
         $('#registrationForm').submit(handleRegister);
         $('#verifyForm').submit(handleVerify);
+        $('#signOut').click(handleSignout);
     });
 
     function handleSignin(event) {
@@ -121,7 +150,7 @@ var fablab = window.fablab || {};
         signin(email, password,
             function signinSuccess() {
                 console.log('Successfully Logged In');
-                window.location.href = 'index.html';
+                window.location.href = 'testtable.html';            
             },
             function signinError(err) {
                 alert(err);
@@ -129,7 +158,19 @@ var fablab = window.fablab || {};
         );
     }
 
+    function handleSignout(){
+        var cognitoUser = userPool.getCurrentUser();
+
+        if(cognitoUser !== null) {
+            cognitoUser.signOut();
+            window.location.href = 'signin.html'; 
+        }
+    }
+    
     function handleRegister(event) {
+        var occupation = $('input[name=occupation]:checked').val();
+        var given_name = $('#givennameInputRegister').val();
+        var family_name = $('#familynameInputRegister').val();
         var email = $('#emailInputRegister').val();
         var password = $('#passwordInputRegister').val();
         var password2 = $('#password2InputRegister').val();
@@ -148,7 +189,7 @@ var fablab = window.fablab || {};
         event.preventDefault();
 
         if (password === password2) {
-            register(email, password, onSuccess, onFailure);
+            register(occupation, given_name, family_name, email, password, onSuccess, onFailure);
         } else {
             alert('Passwords do not match');
         }

@@ -44,7 +44,7 @@ var fablab = window.fablab || {};
               availability = '<span style="color:green">Available</span>';
             } else {availability = '<span style="color:red">Unavailable</span>';}
             $('#equipTable').append('<tr> <td>' + equipmentItem.equipment_ID + '</td>' + '<td>' + equipmentItem.access_level_req + '</td>' 
-                + '<td>' + equipmentItem.access_level_req + '</td>'+ '<td>' + equipmentItem.date_rented +'</td>'+ '<td>' + equipmentItem.date_rented 
+                + '<td>' + equipmentItem.date_rented +'</td>'+ '<td>' + equipmentItem.date_rented 
                 +'</td>'+ '<td>' + equipmentItem.date_returned + '</td>'+ '<td>' + equipmentItem.equipment_type + '</td>'+ '<td>' + availability + '</span></td></tr>');
           })
         }

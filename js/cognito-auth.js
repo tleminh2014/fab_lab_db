@@ -89,8 +89,8 @@ var fablab = window.fablab || {};
 
     function signin(email, password, onSuccess, onFailure) {
         var authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails({
-            // Username: toUsername(email),
-            Username: email,
+            Username: toUsername(email),
+            // Username: email,
             Password: password
         });
 
@@ -122,14 +122,14 @@ var fablab = window.fablab || {};
 
     function createCognitoUser(email) {
         return new AmazonCognitoIdentity.CognitoUser({
-            // Username: toUsername(email),
-            Username: email,
+            Username: toUsername(email),
+            // Username: email,
             Pool: userPool
         });
     }
 
     function toUsername(email) {
-        return email.replace('@', '-at-');
+        return email.split("@").shift();
     }
 
     /*

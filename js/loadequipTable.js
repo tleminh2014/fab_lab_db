@@ -121,7 +121,7 @@ var fablab = window.fablab || {};
     // $('.checkout').click(handleCheckout);        
     var cognitoUser = userPool.getCurrentUser();
     var username = cognitoUser.username;
-    username = username.split("@").shift();
+    // username = username.split("@").shift();
     $("#welcomeheader").html('Welcome ' + username);      
   });
 

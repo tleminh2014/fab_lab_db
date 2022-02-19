@@ -48,17 +48,16 @@
       <th style="width: 10%;">Date Returned</th>
       <th style="width: 10%;">Equipment Type</th>
       <th style="width: 10%;">Available?</th>
-      <th style="width: 10%;">Reserve</th>
+      <th style="width: 10%;">Checkout</th>
     </tr>
   </table>
   </form>
 
   <h4>Add equipment:</h4>
   <form>
-    <label for="equipmenttype">Equipment ID</label>
-    <textarea id="equipmenttype"></textarea>
-    <label for="accesslevel">Access Level</label>
-    <textarea id="accesslevel"></textarea>
+    <input type="text" id="equipmentid" placeholder="Equipment ID" pattern=".*" required>
+    <input type="text" id="accesslevel" placeholder="Access Level Required" pattern=".*" required>
+    <input type="text" id="equipmenttype" placeholder="Equipment Type" pattern=".*" required>
     <button id="submitButton">Submit</button>
 
   </form>

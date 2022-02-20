@@ -120,19 +120,13 @@ var fablab = window.fablab || {};
       
     // $('.checkout').click(handleCheckout);        
     var cognitoUser = userPool.getCurrentUser();
+    console.log(cognitoUser.user);
     var username = cognitoUser.username;
     // username = username.split("@").shift();
     $("#welcomeheader").html('Welcome ' + username);      
   });
 
-  // function handleCheckout(event) {
-  //   event.preventDefault();
-  //   var equipmentitem = $(this).data('value');
-  //   requestCheckout(equipmentitem.equipment_ID);
-  //   // requestLog(equipmentItem.equipment_ID);
-  //   // location.reload();
-  //   console.log('equipmentid checked out: ', equipmentitem.equipment_ID);
-  // }
+
 
   $(document).on('click', '.checkout', function () {
     var equipmentitem = $(this).data('value');

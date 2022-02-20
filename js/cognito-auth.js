@@ -129,7 +129,8 @@ var fablab = window.fablab || {};
     }
 
     function toUsername(email) {
-        return email.split("@").shift();
+        // return email.split("@").shift();
+        return email.replace("@", "-at-");
     }
 
     /*

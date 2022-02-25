@@ -109,8 +109,8 @@ var fablab = window.fablab || {};
 
           // console.log(equipmentItem);
           $('#equipTable').append('<tr> <td>' + equipmentItem.equipment_ID + '</td>' + '<td>' + equipmentItem.access_level_req + '</td>' 
-            + '<td>' + equipmentItem.date_maintenance +'</td>'+ '<td>' + equipmentItem.date_rented 
-            +'</td>'+ '<td>' + equipmentItem.date_returned + '</td>'+ '<td>' + equipmentItem.equipment_type + '</td>'+ '<td>' + availability + '</td>'+ '<td>' + checkout + '</td></tr>'
+            // + '<td>' + equipmentItem.date_maintenance +'</td>'+ '<td>' + equipmentItem.date_rented +'</td>'+ '<td>' + equipmentItem.date_returned 
+            + '</td>'+ '<td>' + equipmentItem.equipment_type + '</td>'+ '<td>' + availability + '</td>'+ '<td>' + checkout + '</td></tr>'
           );
     
           // i++;
@@ -120,9 +120,9 @@ var fablab = window.fablab || {};
       
     // $('.checkout').click(handleCheckout);        
     var cognitoUser = userPool.getCurrentUser();
-    console.log(cognitoUser.user);
+    console.log(cognitoUser);
     var username = cognitoUser.username;
-    // username = username.split("@").shift();
+    username = username.split("-at-").shift();
     $("#welcomeheader").html('Welcome ' + username);      
   });
 

@@ -87,6 +87,12 @@ var fablab = window.fablab || {};
         );
     }
 
+    parseJwt = function(token) {
+        var base64Url = token.split('.')[1];
+        var base64 = base64Url.replace('-', '+').replace('_', '/');
+        return JSON.parse(window.atob(base64));
+    }
+
     function signin(email, password, onSuccess, onFailure) {
         var authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails({
             Username: toUsername(email),
@@ -149,9 +155,17 @@ var fablab = window.fablab || {};
         var password = $('#passwordInputSignin').val();
         event.preventDefault();
         signin(email, password,
-            function signinSuccess() {
-                console.log('Successfully Logged In');
-                window.location.href = 'testtable.html';            
+            function signinSuccess(result) {
+                var returnData;
+                token = result.getIdToken().getJwtToken();
+                returnData = parseJwt(token);
+                var group = returnData['cognito:groups'][0];
+
+                if (group == 'AdminGroup') {
+                    window.location.href = 'testtable.html';  
+                } else {
+                    window.location.href = 'user.html';  
+                }
             },
             function signinError(err) {
                 alert(err);

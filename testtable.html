@@ -12,7 +12,7 @@
 
   <script src="js/vendor/modernizr.js"></script>
 </head>
-<body class="">
+<body>
 
   <div class="info panel panel-default">
     <div class="panel-heading">
@@ -42,26 +42,26 @@
   <table id="equipTable">
     <tr class="header">
       <th style="width: 10%;">Equipment ID</th>
-      <th style="width: 10%;">Access Level</th>
-      <th style="width: 10%;">Date Maintenance</th>
+      <th style="width: 10%;">Access Level Required</th>
+      <!-- <th style="width: 10%;">Date Maintenance</th>
       <th style="width: 10%;">Date Rented</th>
-      <th style="width: 10%;">Date Returned</th>
+      <th style="width: 10%;">Date Returned</th> -->
       <th style="width: 10%;">Equipment Type</th>
       <th style="width: 10%;">Available?</th>
-      <th style="width: 10%;">Reserve</th>
+      <th style="width: 10%;">Checkout</th>
     </tr>
   </table>
-  </form>
-
-  <h4>Add equipment:</h4>
+  
+ 
+  <p class="text-center">Add equipment:</p>
   <form>
-    <label for="equipmenttype">Equipment ID</label>
-    <textarea id="equipmenttype"></textarea>
-    <label for="accesslevel">Access Level</label>
-    <textarea id="accesslevel"></textarea>
+    <input type="text" id="equipmentid" placeholder="Equipment ID" pattern=".*" required>
+    <input type="text" id="accesslevel" placeholder="Access Level Required" pattern=".*" required>
+    <input type="text" id="equipmenttype" placeholder="Equipment Type" pattern=".*" required>
     <button id="submitButton">Submit</button>
 
   </form>
+
 
 
   <footer class="site-footer">

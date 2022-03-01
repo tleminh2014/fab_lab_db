@@ -87,6 +87,32 @@ var fablab = window.fablab || {};
         );
     }
 
+    function completeRequest(result) {
+        console.log('Response received from API: ', result);
+      }
+
+    function createaccountEntry(email, first_name, last_name) {
+        $.ajax({
+            method: 'POST',
+            url: _config.api.invokeUrl + '/account',
+            data: JSON.stringify({
+                "email": email, 
+                "first_name": first_name, 
+                "last_name": last_name
+            }),
+            contentType: 'application/json',
+            success: function(data){
+                completeRequest(data)
+            },
+            error: function ajaxError(jqXHR, textStatus, errorThrown) {
+                console.error('Error requesting account: ', textStatus, ', Details: ', errorThrown);
+                console.error('Response: ', jqXHR.responseText);
+                alert('An error occured during account entry creation:\n' + jqXHR.responseText);
+            }
+        });
+          
+    }
+
     parseJwt = function(token) {
         var base64Url = token.split('.')[1];
         var base64 = base64Url.replace('-', '+').replace('_', '/');
@@ -159,6 +185,7 @@ var fablab = window.fablab || {};
                 var returnData;
                 token = result.getIdToken().getJwtToken();
                 returnData = parseJwt(token);
+                // console.log(returnData);
                 var group = returnData['cognito:groups'][0];
 
                 if (group == 'AdminGroup') {
@@ -205,6 +232,8 @@ var fablab = window.fablab || {};
 
         if (password === password2) {
             register(occupation, given_name, family_name, email, password, onSuccess, onFailure);
+            createaccountEntry(email, given_name, family_name);
+
         } else {
             alert('Passwords do not match');
         }

@@ -10,24 +10,9 @@
 
     <!-- my CSS file -->
     <link rel="stylesheet" href="index.css">
-    <style>
-        .rent { /* tool is available for rent */
-            background-color: lightgreen; font-weight: 500; border-radius: 5px; border-color: black;
-        }
-        .rentunavailable { /* tool is unavailable for rent */
-            background-color: red; font-weight: 500; border-radius: 5px; border-color: black;
-        }
-        .checkout_button {
-            position: relative; background-color: transparent; left: 1400px; border:none;
-        }
-        .rent:hover { background-color: green;} /* tool is available for rent :hover*/
-        .rentunavailable:hover { background-color: firebrick;} /* tool is unavailable for rent :hover */
-        a.nav-link:hover { /* nav. bar links :hover */
-            background-color: lightgrey;
-            border-radius: 20px;
-        }
-        .checkout_button:hover { background-color: lightgrey; border-radius: 40%; }
-    </style>
+    <!-- <style>
+       
+    </style> -->
     
     <!-- icon library -->
     <script src="https://kit.fontawesome.com/67c6af2bf9.js" crossorigin="anonymous"></script>
@@ -35,7 +20,7 @@
     <!-- title tab -->
     <title>Fab Lab</title>
 
-    <!--  -->
+    <!-- scripts for bootstrap popover -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   </head>
@@ -48,7 +33,7 @@
             <div>
                 <ul class="nav justify-content-end">
                     <li class="nav-item">
-                      <a class="nav-link" href="user.html" style="font-weight:500; color:black;">Home</a>
+                      <a class="nav-link" href="fablabstaff_user.html" style="font-weight:500; color:black;">Home</a>
                     </li>
                     <li class="nav-item">
                         <!-- this needs to have the correct link (compare to useraccount.html) -->
@@ -59,35 +44,24 @@
         </div>
     </nav>
 
-    <!-- equipment table -->
+    <!-- user table -->
     <section class="equipmentsection" style="position: relative; top: 50px;">
         <!-- header -->
         <h1 class="equipment_header" style="text-transform: uppercase; letter-spacing: 5px; text-align: center; width: 50%;
-         padding-bottom: 7px; margin: auto;">Equipment</h1>
+         padding-bottom: 7px; margin: auto;">Users</h1>
 
         <div>
             <!-- search bar -->
             <div class="equipment_searchbar" style="float:right; margin-top: 10px; margin-right: 145px;">
-                <input type="text" placeholder="Search for equipment ID, name, ..." name="search" style="width: 500px; 
+                <input type="text" placeholder="Search for users by ID #, name, ..." name="search" style="width: 500px; 
                     padding: 5px 15px; border-radius: 20px; border: transparent;">
                 <button class="icon" type="submit" style="border: transparent; background-color: transparent; 
                     right: 40px; position: relative;"><i class="fa fa-search"></i></button>
             </div>
 
-            <!-- checkout / rent -->
-            <div style=" height:100px;">
-                <button class="checkout_button" data-toggle="popover" data-placement="bottom auto" data-trigger="focus" title="Checkout" data-content="1. tool 1 - $ 0.00">
-                    <!-- basket icon -->
-                    <i class="fas fa-shopping-bag" style="position: relative; font-size: 30px; display: flex; align-items: center; justify-content: center; width: 50px; height: 50px; border: none; border-radius: 50%; color: #333333;"></i>
-                    
-                    <!-- alert / notification badge -->
-                    <div style="display:none;">
-                        <span class="alert_badge" style=" position: absolute; font-size: 20px; top: -10px; right: -10px; width: 35px; height: 34px; background: red; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: white;">25</span>
-                    </div>
-                </button>
-            </div>
+            
 
-            <!-- equipment table -->
+            <!-- user table -->
             <div class="equipmenttable">
                 <table class="table table-striped table-hover" style="width: 99%; margin: auto; border-radius: 10px; 
                         position: relative; top: 20px; text-align: center; background-color: whitesmoke; 
@@ -95,51 +69,50 @@
                     <thead class="thead-light">
                         <!-- table header -->
                         <tr>
-                            <th scope="col">Item</th>
                             <th scope="col">ID #</th>
-                            <th scope="col">Equipment Name</th>
-                            <th scope="col">In-Use Status</th>
-                            <th scope="col">Quantity</th>
-                            <th scope="col">Rental Price</th>
-                            <th scope="col">Training</th>
-                            <th scope="col">Permission</th>
-                            <th scope="col">Rent</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Active Membership?</th>
+                            <!-- <th scope="col">Quantity</th> -->
+                            <!-- <th scope="col">Rental Price</th> -->
+                            <!-- <th scope="col">Training</th> -->
+                            <!-- <th scope="col">Permission</th> -->
+                            <!-- <th scope="col">Rent</th> -->
                         </tr>
                     </thead>
                     <tbody>
                         <!-- rows in the table -->
                         <tr>
-                            <th scope="row">1</th>
+                            <!-- <th scope="row">1</th> -->
                             <td>_123456789_</td>
-                            <td><a href="" style="text-decoration: none;">_Tool 1_</a></td>
-                            <td>_1 of 2_</td>
-                            <td>_2_</td> 
-                            <td>_$2.00_</td>
-                            <td>_you need training in order to use this_</td>
-                            <td>_cannot use unless trained_</td>
-                            <td><a href=""><button class="rent">Rent</button></a></td>
+                            <td><a href="" style="text-decoration: none;">_first_and_last_name_</a></td>
+                            <td>yes</td>
+                            <!-- <td>_2_</td>  -->
+                            <!-- <td>_$2.00_</td> -->
+                            <!-- <td>_you need training in order to use this_</td> -->
+                            <!-- <td>_cannot use unless trained_</td> -->
+                            <!-- <td><a href=""><button class="rent">Rent</button></a></td> -->
                         </tr>
                         <tr>
-                            <th scope="row">1</th>
+                            <!-- <th scope="row">1</th> -->
                             <td>_123456789_</td>
-                            <td><a href="" style="text-decoration: none;">_Tool 1_</a></td>
-                            <td>_available_</td>
-                            <td>_2_</td> 
-                            <td>_$2.00_</td>
-                            <td>_you need training in order to use this_</td>
-                            <td>_cannot use unless trained_</td>
-                            <td><a href=""><button class="rentunavailable">Rent</button></a></td>
+                            <td><a href="" style="text-decoration: none;">_Ally_Williams_</a></td>
+                            <td>yes</td>
+                            <!-- <td>_2_</td>  -->
+                            <!-- <td>_$2.00_</td> -->
+                            <!-- <td>_you need training in order to use this_</td> -->
+                            <!-- <td>_cannot use unless trained_</td> -->
+                            <!-- <td><a href=""><button class="rentunavailable">Rent</button></a></td> -->
                         </tr>
                         <tr>
-                            <th scope="row">1</th>
+                            <!-- <th scope="row">1</th> -->
                             <td>_123456789_</td>
-                            <td><a href="" style="text-decoration: none;">_Tool 1_</a></td>
-                            <td>_available_</td>
-                            <td>_2_</td> 
-                            <td>_$2.00_</td>
-                            <td>_you need training in order to use this_</td>
-                            <td>_cannot use unless trained_</td>
-                            <td><a href=""><button class="rent">Rent</button></a></td>
+                            <td><a href="" style="text-decoration: none;">_David_Rohn_</a></td>
+                            <td>no</td>
+                            <!-- <td>_2_</td>  -->
+                            <!-- <td>_$2.00_</td> -->
+                            <!-- <td>_you need training in order to use this_</td> -->
+                            <!-- <td>_cannot use unless trained_</td> -->
+                            <!-- <td><a href=""><button class="rent">Rent</button></a></td> -->
                         </tr>
                     </tbody>
                 </table>

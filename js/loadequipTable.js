@@ -205,7 +205,7 @@ var fablab = window.fablab || {};
     $.ajax({
       method: 'POST',
       url: _config.api.invokeUrl + '/equipment',
-      data: JSON.stringify({"equipment_ID": $('#equipmentid').val(), "accesslevel": $('#accesslevel').val(), "equipmenttype": $('#equipmenttype').val()}),
+      data: JSON.stringify({"equipment_ID": parseInt($('#equipmentid').val()), "access_level_req": $('#accesslevel').val(), "equipment_type": $('#equipmenttype').val()}),
       contentType: "application/json",
       success: function(data){
         location.reload();

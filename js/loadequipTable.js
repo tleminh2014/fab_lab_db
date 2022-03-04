@@ -7,6 +7,13 @@ var fablab = window.fablab || {};
   fablab.authToken.then(function setAuthToken(token) {
     if (token) {
       authToken = token;
+      returnData = parseJwt(token);
+      // console.log(returnData);
+      var group = returnData['cognito:groups'][0];
+      if (group !== 'AdminGroup') {
+        alert('You do not have access to this page');  
+        window.location.href = 'user.html';  
+      }
     } else {
       window.location.href = '/signin.html';
     }
@@ -33,6 +40,12 @@ var fablab = window.fablab || {};
   var cognitoUser = userPool.getCurrentUser();
   console.log(cognitoUser);
   var username = cognitoUser.username;
+
+  parseJwt = function(token) {
+    var base64Url = token.split('.')[1];
+    var base64 = base64Url.replace('-', '+').replace('_', '/');
+    return JSON.parse(window.atob(base64));
+}
 
   function requestCheckout(equipment_ID) {
     $.ajax({

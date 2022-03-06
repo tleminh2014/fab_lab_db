@@ -6,7 +6,6 @@ body {
 
 /* index.html */
 .box, .signupform, .checkinoptions, .signin1box { /* signin box */
-    /* border: 1px solid red; */
     width: 50%;
     margin: auto;
     top: 100px;
@@ -15,7 +14,6 @@ body {
     text-align: center;
 }
 .b1 { /* button box */
-    /* border: 1px solid black; */
     position: relative;
     top: 90px;
 }
@@ -28,7 +26,6 @@ body {
     font-weight: 500;
 }
 .bottom { /* sign up box */
-    /* border: 1px solid white; */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -156,6 +153,8 @@ body {
 ::placeholder{
     color: grey;
 }
+
+/* fablabstaff_equipmentdb.html */
 #equipInput {
   background-image: url('/images/search.png');
   background-position: 10px 12px; /* Position the search icon */
@@ -163,29 +162,40 @@ body {
   background-repeat: no-repeat; /* Do not repeat the icon image */
   width: 100%;
   font-size: 16px;
-  padding: 12px 20px 12px 40px; 
+  /* padding: 12px 20px 12px 40px;  */
   border: 1px solid rgb(255, 255, 255); 
   margin-bottom: 12px;
-   
 }
-
 #equipTable {
     border-collapse: collapse; /* Collapse borders */
     width: 100%; /* Full-width */
     border: 1px solid #ddd; /* Add a grey border */
     font-size: 18px; /* Increase font-size */
+    
   }
-
-#equipTable th, #equipTable td {
-    text-align: left; 
-    padding: 12px; 
+#equipTable td {
+    padding: 12px 0px;
+    background-color:none;
 }
-
 #equipTable tr {
     border: 1px solid rgb(253, 253, 253);
 }
-
 #equipTable tr.header, #equipTable tr:hover {
     
     background-color: #c2b9b9;
+}
+#equipTable button {
+    padding: 4px 15px;
+    border: transparent;
+    background-color: rgb(255, 238, 184);
+    border-radius: 20px;
+    font-weight: 500;
+}
+#equipTable button:hover { background-color: lightgrey; }
+.clicked{
+    position: fixed;
+    top: 500px;/*whatever number of pixels you want the div to be from the top of the page*/
+  }
+.move {
+    transition: top 3s;
 }

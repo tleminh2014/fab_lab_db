@@ -1,68 +1,200 @@
 <!doctype html>
 <html class="no-js" lang="">
 <head>
+  <!-- required meta tags -->
   <meta charset="utf-8">
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- tab title -->
   <title>Fab Lab</title>
 
+  <!-- css files -->
   <link rel="stylesheet" href="css/font.css">
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="style.css">
+  <!-- bootstrap css -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <!-- raven's CSS file -->
+  <style>
+    .editdb_button { /* CSS: (buttons) "edit database", "update database" */
+      font-weight: 500; margin-top: 10px; padding: 5px 15px; border-radius: 20px; border: 1px solid gray;
+    }
+    #button1 { /* CSS: (button) "edit database" */
+      background-color: whitesmoke; 
+    }
+    #button2 { /* CSS: (button) "update database" */
+      background-color: lightgoldenrodyellow; display: none;
+    }
+    .rent { background-color: lightgreen; font-weight: 500; border-radius: 5px; border-color: black; }
+    .rentunavailable { /* tool is unavailable for rent */
+        background-color: red; font-weight: 500; border-radius: 5px; border-color: black;
+    }
+    #button1:hover { background-color: lightgrey; }
+    #button2:hover { background-color: gold; }
+    .rent:hover { background-color: green;}
+    .rentunavailable:hover { background-color: firebrick;} /* tool is unavailable for rent :hover */
+    #signOut:hover { /* nav. bar links :hover */
+        background-color: lightgrey;
+        border-radius: 20px;
+    }
+    #signOut { background-color: transparent; padding: 8px 15px; border: transparent; }
+    .hidd { display: none; } /* this is to hide elements that will appear when clicking on 'update database' */
+    a.nav-link:hover { /* nav. bar links :hover */
+          background-color: lightgrey; border-radius: 20px; }
+  </style>
 
+  <!-- icon library -->
+  <script src="https://kit.fontawesome.com/67c6af2bf9.js" crossorigin="anonymous"></script>
+
+  <!-- script files -->
   <script src="js/vendor/modernizr.js"></script>
-</head>
-<body>
+  <!-- javascript / jquery files (added by raven)-->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
 
-  <div class="info panel panel-default">
-    <div class="panel-heading">
-        <div class="dropdown pull-right">
-            <!-- <li><a id="signOut" href="signin.html">Sign Out</a></li> -->
-            <button id="signOut">Sign Out</button>
+  <!-- jQuery code -->
+  <script>
+    $(document).ready(function(){
+      // when edit database is clicked, the buttons in the rent column will change
+      $("#button1").click(function(){
+        $(".sho").hide();
+        $(".hidd").show();
+      });
+      // same effect for when update database is clicked
+      $("#button2").click(function(){
+        $(".hidd").hide();
+        $(".sho").show();
+      });
+    });
+  </script>
+</head>
+<body style="background-color: lightblue;">
+
+  <!-- navigation bar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">Fab Lab</a>
+        <div>
+            <ul class="nav justify-content-end">
+                <li class="nav-item">
+                    <!-- since this is the interface for FAB LAB STAFF, they will need a different user dashboard link -->
+                    <a class="nav-link" href="fablabstaff_user.html" style="font-weight:500; color:black;">Home</a>
+                </li>
+                <li class="nav-item">
+                  <!-- user can sign out of account by clicking this button -->
+                  <button id="signOut" style="font-weight:500; color:black; ">Sign Out</button>
+                </li>
+            </ul>
         </div>
     </div>
-  </div>
+  </nav>
 
-  <section class="home-sign-up">
-    <div class="row column">
-      
+  <!-- equipment table -->
+  <section class="equipmentsection" style="position: relative; top: 50px;">
+    <!-- header -->
+    <h1 class="equipment_header" style="text-transform: uppercase; letter-spacing: 5px; text-align: center; width: 50%;
+     padding-bottom: 7px; margin: auto;">Equipment</h1>
 
+    <div style="position: relative;">
+      <!-- search bar -->
+        <div class="equipment_searchbar" style="float:right; margin-top: 15px; position: relative; right: 490px;">
+          <input type="text" placeholder="Search for equipment type ..." name="search" id="equipInput" onkeyup="equipFunction()"
+          style="width: 550px; border-radius: 30px; padding: 10px 0px 10px 40px;">
+        </div>
 
-      <h2 id="welcomeheader"></h2>
-      <p class="content">Fab Lab is coming soon!</p>
+        <!-- editing the database functionality buttons --> 
+        <div style="position: relative; width: 13%; left: 1330px;">
+          <button onclick="switchButtons('button1','first')" id="button1" class="editdb_button">Edit Database</button>
+          <button onclick="switchButtons('button2','second')" id="button2" class="editdb_button">Update Database</button>
+        </div>
 
-  
+        <!-- FAB LAB STAFF USER: can add equipment to the table -->
+        <div style="border: 1px solid blue; width: 70%; margin: auto; text-align: center; top: 250px;">
+          <p class="text-center">Add equipment:</p>
+          <form>
+            <input type="text" id="equipmentid" placeholder="Equipment ID" pattern=".*" required>
+            <input type="text" id="accesslevel" placeholder="Access Level Required" pattern=".*" required>
+            <input type="text" id="equipmenttype" placeholder="Equipment Type" pattern=".*" required>
+            <button id="submitButton">Submit</button>
+          </form>
+        </div>
+
+        <!-- equipment table -->
+        <div class="equipmenttable" style="width: 99%; margin: auto; border-radius: 10px; 
+        position: relative; top: 20px; text-align: center; background-color: whitesmoke;">
+            <table id="equipTable" class="table table-striped table-hover" > <!-- add table-sm to make it more compact -->
+                <thead class="thead-light">
+                    <!-- table header -->
+                    <tr class="header">
+                      <th style="width: 15%;">Equipment ID #</th>
+                      <th style="width: 20%;">Access Level Required</th>
+                      <!-- <th style="width: 10%;">Date Maintenance</th>
+                      <th style="width: 10%;">Date Rented</th>
+                      <th style="width: 10%;">Date Returned</th> -->
+                      <th style="width: 20%;">Equipment Type</th>
+                      <!-- <th scope="col">Equipment Name</th> --> <!-- do we not need this? -->
+                      <th style="width: 10%;">Quantity</th>
+                      <th style="width: 10%;">Available?</th>
+                      <th style="width: 10%;">Rental Price</th>
+                      <th style="width: 20%;">Training</th>
+                      <th style="width: 20%;">Permission</th>
+                      <th style="width: 10%;">Checkout</th>
+
+                        <!-- dont delete this yet -->
+                        <!-- <th scope="col" id="first" class="sho">Rent</th> -->
+                        <!-- <th scope="col" id="second" class="hidd">Available for Rent?</th> -->
+                    </tr>
+                </thead>
+            </table>
+        </div>
     </div>
-  </section>
-
-  
-  <h4>Equipment</h4>
-    <input type="text" id="equipInput" onkeyup="equipFunction()" placeholder="Search for equipment type..">
-
-  <table id="equipTable">
-    <tr class="header">
-      <th style="width: 10%;">Equipment ID</th>
-      <th style="width: 10%;">Access Level Required</th>
-      <!-- <th style="width: 10%;">Date Maintenance</th>
-      <th style="width: 10%;">Date Rented</th>
-      <th style="width: 10%;">Date Returned</th> -->
-      <th style="width: 10%;">Equipment Type</th>
-      <th style="width: 10%;">Available?</th>
-      <th style="width: 10%;">Checkout</th>
-    </tr>
-  </table>
-  
- 
-  <p class="text-center">Add equipment:</p>
-  <form>
-    <input type="text" id="equipmentid" placeholder="Equipment ID" pattern=".*" required>
-    <input type="text" id="accesslevel" placeholder="Access Level Required" pattern=".*" required>
-    <input type="text" id="equipmenttype" placeholder="Equipment Type" pattern=".*" required>
-    <button id="submitButton">Submit</button>
-
-  </form>
+</section>
 
 
+<script>
+  // function: switchButtons
+  // - when the fab lab staff user clicks on "edit database", the table will be switched to "editing"
+  //    mode, where the table and its content will be changed, indicating that the table can be edited.
+  //    once the user is done, they will click on "update database" to finalize the changes
+  function switchButtons(buttonId, elementID) {
+    var hideb, showb; // variables for the 2 buttons
+    // if first button is clicked, hide it and show the second button
+    if (buttonId == 'button1') {
+      showb = 'button2';
+      hideb = 'button1';
+    } else { // otherwise, show the first button
+      showb = 'button1';
+      hideb = 'button2';
+    }
+    // then set the display property for the buttons to either show or hide
+    document.getElementById(hideb).style.display = 'none'; //step 2 :additional feature hide button
+    document.getElementById(showb).style.display = 'block'; //step 3:additional feature show button
+
+    // function call to hide the table contents
+    hideheader(elementID);
+  }
+
+  // function: hideheader()
+  // similar functionality as the previous function
+  function hideheader(elementID) {
+      var hidec, showc; // variables for the contents
+      // if first button is clicked, hide the original content and show the hidden content
+      if (elementID == 'first') {
+        showc = 'second';
+        hidec = 'first';
+      } else { // otherwise, show the original content
+        showc = 'first';
+        hidec = 'second';
+      }
+      // then set the display property for the content to either show or hide
+      document.getElementById(hidec).style.display = 'none';
+      document.getElementById(showc).style.display = 'block';
+  } 
+</script>
+<br><br><br>
+    
 
   <footer class="site-footer">
     <div class="row column">

@@ -9,110 +9,176 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     <!-- my CSS file -->
-    <link rel="stylesheet" href="style.css">
-    
+    <link rel="stylesheet" href="index.css">
+    <style>
+        .useracc_button { /* user account button css */
+            margin-left: 20px;border-color: transparent;padding: 3px 15px;
+            border-radius: 10px;font-weight: 600;
+        }
+        .useracc_button:hover { /* 3 buttons :hover */
+            background-color: lightgrey;
+        }
+        a.nav-link:hover { /* nav. bar links :hover */
+            background-color: lightgrey;
+            border-radius: 20px;
+        }
+    </style>
+
     <!-- icon library -->
-    
+    <!-- none for this file -->
     
     <!-- title tab -->
     <title>Fab Lab</title>
   </head>
-  <body>
+  <body style="background-color: lightblue;">
     <!-- navigation bar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Fab Lab</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <!-- <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link disabled">Disabled</a>
-              </li>
-            </ul> -->
-            <!-- <form class="d-flex">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form> -->
-          </div>
+            <a class="navbar-brand" href="index.html">Fab Lab</a>
+            <div>
+                <ul class="nav justify-content-end">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" style="font-weight:500; color:black;">Edit</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" style="font-weight:500; color:black;">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <!-- i need to change this link to logout.html -->
+                        <a class="nav-link" id="signOut" href="signin.html" style="font-weight:500; color:black;">Logout</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
-        
-    <form action="account.php" method="post">
-        <div class="formcontainer">
-            <h1 class="registertitle">Register Form</h1>
-            <p class="instructions">Please fill in the following fields:</p>
-            <br>
-            <div class="namedetails">
-                <!-- <label for="fname">First name: </label> -->
-                <input type="text" placeholder="First name" name="fname" id="fname" required>
+
+    <!-- page header -->
+    <div class="header" style="text-align: center; width: auto; margin-top: 50px;"><h1 class="pageheader">Account Information</h1></div>
+
+    <!-- page sections -->
+    <!-- one big section -->
+    <section class="userinformation">
+        <!-- left and right side sections -->
+        <div class="twosections" style="display: flex; top: 60px; position: relative; justify-content: center;">
+            <!-- left section; -->
+            <div class="useridentification">
+                <div class="photoid" style="width: 300px;height: 300px;background-color: red;font-weight: 700;font-size: 20px;">Photo ID</div>
+                <div class="userid" style="width: 300px;text-align: center;padding: 20px; font-size: 20px; font-weight: 700;">
+                    <p class="user_header">Name: _John_Smith_</p>
+                    <p class="user_header">ID: #_123456789_</p>
+                </div>
+            </div>
             
-                <!-- <label for="lname">Last name: </label> -->
-                <input type="text" placeholder="Last name" name="lname" id="lname" required>
-            </div>
-            <br>
-            <div class="details">
-                <!-- <label for="email">Email address: </label> -->
-                <input type="email" placeholder="Email" name="email" id="email" required><br>
-            
-                <!-- <label for="password">Password: </label> -->
-                <input type="password" placeholder="Password" name="password" id="password" required><br>
+            <!-- right section; -->
+            <div class="rightsection" style="margin-left: 100px;">
+                <div class="section1" style="display: flex;">
+                    <!-- right section: (left side) credit -->
+                    <div class="usercredit" style="height: 100px;width: auto;">
+                        <p class="user_header" style="font-size: 22px;font-weight: 700;">Credit Balance</p>
+                        <div class="userinfo"style="">
+                            <!-- this should show the user's current credit balance -->
+                            <label for="" class="user_body" style="font-size: 20px;font-weight: 500;">$ 0.00</label>
+                            <a href=""><button class="useracc_button">Add Credit</button></a>
+                        </div>
+                    </div>
+                    <!-- right section: (right side) membership -->
+                    <div class="usermembership" style="height: 150px;width: auto;margin-left: 300px;">
+                        <p class="user_header" style="font-size: 22px;font-weight: 700;">Membership</p>
+                        <!-- the date should show the user's start date and end date (from the database maybe?) -->
+                        <p class="user_body" style="font-size: 20px;font-weight: 500;">Started: _01/11/2022_</p>
+                        <div style="display: flex;">    
+                            <p class="user_body" style="font-size: 20px;font-weight: 500;">Ended: _01/11/2022_</p>
+                            <a href=""><button class="useracc_button">Renew Membership</button></a>
+                        </div>
+                    </div>
+                </div>
 
-                <!-- <label for="repeatpswd">Repeat Password: </label> -->
-                <input type="password" placeholder="Repeat Password" name="repeatpswd" id="repeatpswd" required>
-            </div>
+                <!-- right section: (left side) appointment -->
+                <div class="appointment" style="margin-top: 20px;height: 200px;width: auto;">
+                    <p class="user_header" style="font-size: 22px;font-weight: 700;">Upcoming Appointments</p>
+                    <div style="display: flex;">
+                        <!-- appointments should update in real time -->
+                        <p class="user_body" style="font-size: 20px;font-weight: 500;">There are no upcoming appointments.</p>
+                        <a href=""><button class="useracc_button">Make an appointment</button></a>
+                        <!-- <p class="user_body" style="font-size: 20px;font-weight: 500;">_mm_dd_yyyy_ - _reason_</p> -->
+                    </div>
+                </div>
 
-            <label for=""></label>
-            <label for=""></label>
-            <label for=""></label>
-            <label for=""></label>
-            <label for=""></label>
-            <label for=""></label>
-            <p></p>
-            <p></p>
-            <p></p>
-            <p></p>
-            <p></p>
-            <p></p>
-            <p></p>
-            <div class="fau-new-account">
-                <label>Are you an FAU student or employee?</label>
-                <button type="button" class="cancelbtn">FAU Sign Up</button>
-            </div>
-            <div class="registerbuttongroup">
-                <button type="button" class="cancelbtn" href="index.html">Cancel</button>
-                <button type="submit" class="signupbtn">Sign Up</button>
-            </div>
-        </div>   
-    </form>
-  
+                <!-- right section: equipment training and equipment permission -->
+                <div class="section2" style="display: flex;">
+                    <!-- equipment permission (left side) -->
+                    <div class="e_permissions" style="height: 200px;width: 420px;">
+                        <p class="user_header" style="font-size: 22px;font-weight: 700;">Equipment Permissions</p>
+                        <!-- equipment permissions should update in real time, show what permissions the user has -->
+                        <p class="user_body" style="font-size: 20px;font-weight: 500;">No permissions available at this time</p>
+                    </div>
+                    <!-- equipment training (right side) -->
+                    <div class="e_training" style="height: 200px;width: 420px;margin-left: 80px;">
+                        <p class="user_header" style="font-size: 22px;font-weight: 700;">Equipment Training</p>
+                        <!-- equipment training should update in real time, show what training the user has -->
+                        <p class="user_body" style="font-size: 20px;font-weight: 500;">There's no training available at this time</p>
+                    </div>
+                </div>
 
-   
+                <!-- bottom section -->
+                <div class="bottomsection" style="display:flex; height: 300px;">
+                  <!-- bottom: left section (check in history) -->
+                  <div class="checkin_history" style="width: 300px;">
+                    <p class="user_header" style="font-size: 22px;font-weight: 700;">Check-In History</p>
+                    <!-- show the date and time of when the user checks into (lab or equipment; need to clarify) -->
+                    <div style="display: flex; text-align: center;">
+                      <!-- Date -->
+                      <div>
+                        <p class="user_body" style="font-size: 20px;font-weight: 500; border-bottom: 1px solid black;">Date</p>
+                        <p class="user_body" style="font-size: 18px;font-weight: 500;">01/22/2022</p>
+                      </div>
+                      <!-- Time -->
+                      <div style="margin-left: 10%;">
+                        <p class="user_body" style="font-size: 20px;font-weight: 500; border-bottom: 1px solid black;">Time</p>
+                        <p class="user_body" style="font-size: 18px;font-weight: 500;">02:22:55 A.M.</p>
+                      </div>
+                    </div>
+                  </div>
 
+                  <!-- bottom: right section (rental history) -->
+                  <div class="rental_history" style="width: 500px; margin-left: 200px;">
+                    <p class="user_header" style="font-size: 22px;font-weight: 700;">Rental History</p>
+                    <!-- show the date and time of when the user checks into (lab or equipment; need to clarify) -->
+                    <div style="display: flex; text-align: center;">
+                      <!-- Date -->
+                      <div>
+                        <p class="user_body" style="font-size: 20px;font-weight: 500; border-bottom: 1px solid black;">Date</p>
+                        <p class="user_body" style="font-size: 18px;font-weight: 500;">01/22/2022</p>
+                      </div>
+                      <!-- equipment ID -->
+                      <div style="margin-left: 10%;">
+                        <p class="user_body" style="font-size: 20px;font-weight: 500; border-bottom: 1px solid black;">Equipment ID</p>
+                        <p class="user_body" style="font-size: 18px;font-weight: 500;">_123456789_</p>
+                      </div>
+                      <!-- equipment Name -->
+                      <div style="margin-left: 10%;">
+                        <p class="user_body" style="font-size: 20px;font-weight: 500;border-bottom: 1px solid black; ">Equipment Name</p>
+                        <p class="user_body" style="font-size: 18px;font-weight: 500;">_tool 1_</p>
+                      </div>
+                    </div>
+                  </div>
+                    
+                </div>
+              </div>
+            </div>
+        </div>
+    </section>
     
-
-
-
-
-
-
-
-
-
-    <!-- Optional JavaScript; choose one of the two! -->
-    <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-    -->
+    
+    <!-- <script src="js/vendor/jquery-3.1.0.js"></script>
+    <script src="js/vendor/bootstrap.min.js"></script>
+    <script src="js/vendor/aws-cognito-sdk.min.js"></script>
+    <script src="js/vendor/amazon-cognito-identity.min.js"></script>
+    <script src="https://js.arcgis.com/4.3/"></script>
+    <script src="js/config.js"></script>
+    <script src="js/cognito-auth.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/useraccount.js"></script> -->
   </body>
 </html>

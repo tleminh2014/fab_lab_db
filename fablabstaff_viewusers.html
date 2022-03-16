@@ -53,13 +53,12 @@
         <div>
             <!-- search bar -->
             <div class="equipment_searchbar" style="float:right; margin-top: 10px; margin-right: 145px;">
-                <input type="text" placeholder="Search for users by ID #, name, ..." name="search" style="width: 500px; 
+                <input type="text" placeholder="Search for users by RFID" name="search" id="accountInput" onkeyup="accountSearch()" style="width: 500px; 
                     padding: 5px 15px; border-radius: 20px; border: transparent;">
                 <button class="icon" type="submit" style="border: transparent; background-color: transparent; 
                     right: 40px; position: relative;"><i class="fa fa-search"></i></button>
             </div>
 
-            
 
             <!-- user table -->
             <div class="accountTable">
@@ -111,5 +110,6 @@
     <script src="js/cognito-auth.js"></script>
     <script src="js/main.js"></script>
     <script src="js/loadaccountTable.js"></script>
+    <script src="js/accountSearch.js"></script>
   </body>
 </html>

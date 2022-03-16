@@ -6,7 +6,7 @@ body {
 
 /* index.html */
 .box, .signupform, .checkinoptions, .signin1box { /* signin box */
-    width: 50%;
+    width: 80%;
     margin: auto;
     top: 100px;
     height: 50vh;
@@ -22,7 +22,7 @@ body {
     width: 20%;
     padding: 20px 0px;
     border-radius:15px;
-    font-size: 32px;
+    font-size: 36px;
     font-weight: 500;
 }
 .bottom { /* sign up box */

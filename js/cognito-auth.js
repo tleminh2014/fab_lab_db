@@ -189,7 +189,7 @@ var fablab = window.fablab || {};
                 var group = returnData['cognito:groups'][0];
 
                 if (group == 'AdminGroup') {
-                    window.location.href = 'testtable.html';  
+                    window.location.href = 'fablabstaff_user.html';  
                 } else {
                     window.location.href = 'user.html';  
                 }

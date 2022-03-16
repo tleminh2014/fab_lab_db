@@ -44,6 +44,11 @@ var fablab = window.fablab || {};
   var cognitoUser = userPool.getCurrentUser();
   console.log(cognitoUser);
   var username = cognitoUser.username;
+  parseJwt = function(token) {
+    var base64Url = token.split('.')[1];
+    var base64 = base64Url.replace('-', '+').replace('_', '/');
+    return JSON.parse(window.atob(base64));
+    }
 
   $(function onDocReady() {
     username = username.split("-at-").shift();

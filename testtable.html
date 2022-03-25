@@ -96,22 +96,21 @@
     <!-- header -->
     <h1 class="equipment_header" style="text-transform: uppercase; letter-spacing: 5px; text-align: center; width: 50%;
      padding-bottom: 7px; margin: auto;">Equipment</h1>
-
     <div style="position: relative;">
       <!-- search bar -->
-        <div class="equipment_searchbar" style="float:right; margin-top: 15px; position: relative; right: 490px;">
-          <input type="text" placeholder="Search for equipment type ..." name="search" id="equipInput" onkeyup="equipFunction()"
-          style="width: 550px; border-radius: 30px; padding: 10px 0px 10px 40px;">
-        </div>
-
-        <!-- editing the database functionality buttons --> 
-        <div style="position: relative; width: 13%; left: 1330px;">
-          <button onclick="switchButtons('button1','first')" id="button1" class="editdb_button">Edit Database</button>
-          <button onclick="switchButtons('button2','second')" id="button2" class="editdb_button">Update Database</button>
-        </div>
-
-        <!-- FAB LAB STAFF USER: can add equipment to the table -->
-        <div style="border: 1px solid blue; width: 70%; margin: auto; text-align: center; top: 250px;">
+      <div class="equipment_searchbar" style="float:right; margin-top: 15px; position: relative; right: 490px;">
+        <input type="text" placeholder="Search for equipment type ..." name="search" id="equipInput" onkeyup="equipFunction()"
+        style="width: 550px; border-radius: 30px; padding: 10px 0px 10px 40px;">
+      </div>
+      
+      <!-- editing the database functionality buttons --> 
+      <div style="position: relative; width: 13%; left: 1330px;">
+        <button onclick="switchButtons('button1','first')" id="button1" class="editdb_button">Edit Database</button>
+        <button onclick="switchButtons('button2','second')" id="button2" class="editdb_button">Update Database</button>
+      </div>
+      
+      <!-- FAB LAB STAFF USER: can add equipment to the table -->
+      <div style="border: 1px solid blue; width: 70%; margin: auto; text-align: center; top: 250px;">
           <p class="text-center">Add equipment:</p>
           <form>
             <input type="text" id="equipmentid" placeholder="Equipment ID" pattern=".*" required>
@@ -120,7 +119,10 @@
             <button id="submitButton">Submit</button>
           </form>
         </div>
-
+        
+        <h2>Select Customer</h2>
+        <select name="customerName" id="customerName">
+        </select>
         <!-- equipment table -->
         <div class="equipmenttable" style="width: 99%; margin: auto; border-radius: 10px; 
         position: relative; top: 20px; text-align: center; background-color: whitesmoke;">
@@ -135,9 +137,8 @@
                       <th style="width: 10%;">Date Returned</th> -->
                       <th style="width: 20%;">Equipment Type</th>
                       <!-- <th scope="col">Equipment Name</th> --> <!-- do we not need this? -->
-                      <th style="width: 10%;">Quantity</th>
                       <th style="width: 10%;">Available?</th>
-                      <th style="width: 10%;">Rental Price</th>
+                      <!-- <th style="width: 10%;">Rental Price</th> -->
                       <th style="width: 20%;">Training</th>
                       <th style="width: 20%;">Permission</th>
                       <th style="width: 10%;">Checkout</th>

@@ -12,7 +12,7 @@ var fablab = window.fablab || {};
       var group = returnData['cognito:groups'][0];
       if (group !== 'AdminGroup') {
         alert('You do not have access to this page');  
-        window.location.href = 'user.html';  
+        window.history.back();  
       }
     } else {
       window.location.href = '/signin.html';

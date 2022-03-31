@@ -51,8 +51,8 @@
                       <a class="nav-link" href="user.html" style="font-weight:500; color:black;">Home</a>
                     </li>
                     <li class="nav-item">
-                        <!-- added the id signout, check for functionality -->
-                        <a class="nav-link" id="signOut" href="logout.html" style="font-weight:500; color:black;">Logout</a>
+                        <!-- this needs to have the correct link (compare to useraccount.html) -->
+                        <a class="nav-link" href="logout.html" style="font-weight:500; color:black;">Logout</a>
                     </li>
                 </ul>
             </div>
@@ -71,6 +71,8 @@
                 <input type="text" placeholder="Search for equipment type ..." name="search" id="equipInput" onkeyup="equipFunction()"
                 style="width: 550px; border-radius: 30px; padding: 10px 0px 10px 40px;">
             </div>
+
+
 
             <!-- equipment table -->
             <div class="equipmenttable">
@@ -94,6 +96,11 @@
         </div>
     </section>
 
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="popover"]').popover();   
+        });
+    </script>
     <script>
         function equipFunction() {
             // Declare variables

@@ -45,7 +45,7 @@ var fablab = window.fablab || {};
     var base64Url = token.split('.')[1];
     var base64 = base64Url.replace('-', '+').replace('_', '/');
     return JSON.parse(window.atob(base64));
-}
+ }
 
   function requestCheckout(username, equipment_ID) {
     $.ajax({
@@ -88,7 +88,7 @@ var fablab = window.fablab || {};
         success: function(data){
           console.log('REQUEST COMPLETED! ->' + equipment_ID);
           completeRequest(data);
-          // location.reload();
+          location.reload();
         },
         error: function ajaxError(jqXHR, textStatus, errorThrown) {
             console.error('Error requesting ride: ', textStatus, ', Details: ', errorThrown);
@@ -118,7 +118,7 @@ var fablab = window.fablab || {};
         success: function(data){
           console.log('REQUEST COMPLETED! ->' + equipment_ID);
           completeRequest(data);
-          // location.reload();
+          location.reload();
         },
         error: function ajaxError(jqXHR, textStatus, errorThrown) {
             console.error('Error requesting checkoutlog: ', textStatus, ', Details: ', errorThrown);
@@ -167,6 +167,7 @@ var fablab = window.fablab || {};
         // $.each(data, function (equipmentItem) {
           var availability;
           var checkout;
+          var currentUser = equipmentItem.currentUser;
           // var checkoutid = 'checkout' + i;
           // ids.set(checkoutid, checkoutid);
           if (!equipmentItem.in_use) {
@@ -174,16 +175,14 @@ var fablab = window.fablab || {};
             checkout = "<button class='checkout' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"'>Check Out</button>";
           } else {
             availability = "<span style='color:red'>Unavailable</span>";
-            checkout = "<button class='checkin' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"'>Check In</button>";
+            checkout = "<button class='checkin' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"' disabled= 'true'>Check In</button>";
           }
-
-          // console.log(equipmentItem);
+          
           $('#equipTable').append('<tr> <td>' + equipmentItem.equipment_ID + '</td>' + '<td>' + equipmentItem.access_level_req + '</td>' 
             // + '<td>' + equipmentItem.date_maintenance +'</td>'+ '<td>' + equipmentItem.date_rented +'</td>'+ '<td>' + equipmentItem.date_returned 
-            + '</td>'+ '<td>' + equipmentItem.equipment_type + '</td>'+ '<td>' + availability + '</td>'+ '<td>'+ '</td>'+ '<td>'+ '</td>'+ '<td>' + checkout + '</td></tr>'
+            + '</td>'+ '<td>' + equipmentItem.equipment_type + '</td>'+ '<td>' + availability + '</td>'+ '<td>'+ '</td>'+ '<td>'+ '</td>'+ '<td>' + checkout + '<td style="display: none">' + currentUser +'</td></tr>'
           );
-    
-          // i++;
+
         });
       }
     });
@@ -192,30 +191,17 @@ var fablab = window.fablab || {};
       method: 'GET',
       url: _config.api.invokeUrl + '/account',
       success: function(data){
-
-        // var i = '0';
         data.Items.forEach(function(accountItem){
-        // $.each(data, function (accountItem) {
-        //   var availability;
-        //   var checkout;
-          // var checkoutid = 'checkout' + i;
-          // ids.set(checkoutid, checkoutid);
-         var fullname = accountItem.first_name + ' ' + accountItem.last_name;
-
-          // console.log(accountItem);
-          $('#customerName').append('<option value="'+ accountItem.email + '">'+ fullname + '</option>'
-          );
+         var fullname = accountItem.first_name + ' ' + accountItem.last_name;      
+         $('#customerName').append('<option value="'+ accountItem.email +'">'+ fullname + '</option>');
     
-          // i++;
+
         });
       }
     });
       
-    
-    // username = username.split("-at-").shift();
-    // $("#welcomeheader").html('Welcome ' + username);      
+
   });
-  
   
   
   $(document).on('click', '.checkout', function () {

@@ -166,32 +166,32 @@ body {
   border: 1px solid rgb(255, 255, 255); 
   margin-bottom: 12px;
 }
-#equipTable {
+#equipTable, #currentTable {
     border-collapse: collapse; /* Collapse borders */
     width: 100%; /* Full-width */
     border: 1px solid #ddd; /* Add a grey border */
     font-size: 18px; /* Increase font-size */
     
   }
-#equipTable td {
+#equipTable td, #currentTable td{
     padding: 12px 0px;
     background-color:none;
 }
-#equipTable tr {
+#equipTable tr, #currentTable tr{
     border: 1px solid rgb(253, 253, 253);
 }
-#equipTable tr.header, #equipTable tr:hover {
+#equipTable tr.header, #equipTable tr:hover, #currentTable tr.header, #currentTable tr:hover {
     
     background-color: #c2b9b9;
 }
-#equipTable button {
+#equipTable button, #currentTable button {
     padding: 4px 15px;
     border: transparent;
     background-color: rgb(255, 238, 184);
     border-radius: 20px;
     font-weight: 500;
 }
-#equipTable button:hover { background-color: lightgrey; }
+#equipTable button:hover, #currentTable button:hover{ background-color: lightgrey; }
 .clicked{
     position: fixed;
     top: 500px;/*whatever number of pixels you want the div to be from the top of the page*/

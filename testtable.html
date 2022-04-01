@@ -134,9 +134,20 @@
         </div>
         
         <h2>Select Customer</h2>
-        <select name="customerName" id="customerName">
+        <select name="customerName" id="customerName" onchange="customerFilter()">
+          <option>Select</option>
         </select>
+        <!-- checked out table for current customer -->
+        <h3 style="margin-top: 1em;" id="currentCustomer"></h3>
+        <div class="equipmenttable" class="move">
+          <table id="currentTable" class="table table-striped table-hover" style="text-align: center; width: 99%; margin: auto; border-radius: 10px; border: 1px solid black; 
+          position: relative; top: 30px; background-color: whitesmoke;"> <!-- add table-sm to make it more compact -->
+              
+          </table>
+        </div>
+      
         <!-- equipment table -->
+        <h3 style="margin-top: 2.5em;">All Equipment</h3>
         <div class="equipmenttable" class="move">
             <table id="equipTable" class="table table-striped table-hover" style="text-align: center; width: 99%; margin: auto; border-radius: 10px; border: 1px solid black; 
             position: relative; top: 30px; background-color: whitesmoke;"> <!-- add table-sm to make it more compact -->
@@ -152,8 +163,8 @@
                       <!-- <th scope="col">Equipment Name</th> --> <!-- do we not need this? -->
                       <th style="width: 10%;">Available?</th>
                       <!-- <th style="width: 10%;">Rental Price</th> -->
-                      <th style="width: 20%;">Training</th>
-                      <th style="width: 20%;">Permission</th>
+                      <th style="width: 10%;">Training</th>
+                      <th style="width: 10%;">Permission</th>
                       <th style="width: 10%;">Checkout</th>
 
                         <!-- dont delete this yet -->

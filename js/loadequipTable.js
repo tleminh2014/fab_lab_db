@@ -193,7 +193,7 @@ var fablab = window.fablab || {};
       success: function(data){
         data.Items.forEach(function(accountItem){
          var fullname = accountItem.first_name + ' ' + accountItem.last_name;      
-         $('#customerName').append('<option value="'+ accountItem.email +'">'+ fullname + '</option>');
+         $('#customerName').append('<option value="'+ accountItem.email +'" data-val="' + accountItem.equip_active_appts + '">'+ fullname + '</option>');
     
 
         });
@@ -208,12 +208,17 @@ var fablab = window.fablab || {};
     var sel = document.getElementById('customerName');
     // display value property of select list (from selected option)
     var username = sel.value;
+    var limit = $("#customerName option:selected").data("val");
     var equipmentitem = $(this).data('value');
-    console.log('obj: ', equipmentitem);
-    requestCheckout(username, equipmentitem.equipment_ID);
-    requestLog(username, equipmentitem.equipment_ID);
-
-    console.log('equipmentid', equipmentitem.equipment_ID,'checked out for: ', username);
+    if (limit < 4) {
+      console.log('obj: ', equipmentitem);
+      requestCheckout(username, equipmentitem.equipment_ID);
+      requestLog(username, equipmentitem.equipment_ID);
+  
+      console.log('equipmentid', equipmentitem.equipment_ID,'checked out for: ', username);
+    } else {
+      alert('Equipment Limit reached for ' + username);
+    }
 
   })
 

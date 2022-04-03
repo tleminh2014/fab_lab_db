@@ -30,7 +30,7 @@
     .rentunavailable { /* tool is unavailable for rent */
         background-color: red; font-weight: 500; border-radius: 5px; border-color: black;
     }
-    #button1:hover { background-color: lightgrey; }
+    #button1:hover, #submitButton:hover { background-color: lightgrey; }
     #button2:hover { background-color: gold; }
     .rent:hover { background-color: green;}
     .rentunavailable:hover { background-color: firebrick;} /* tool is unavailable for rent :hover */
@@ -43,13 +43,13 @@
     a.nav-link:hover { /* nav. bar links :hover */
           background-color: lightgrey; border-radius: 20px; }
           .clicked{
-    position: fixed;
-    top: 500px;/*whatever number of pixels you want the div to be from the top of the page*/
-  }
-.move {
-    transition: top 3s;
-}
-    
+            position: fixed;
+            top: 500px;/*whatever number of pixels you want the div to be from the top of the page*/
+          }
+    .move {
+        transition: top 3s;
+    }
+    #submitButton:hover { background-color: grey; }
   </style>
 
   <!-- icon library -->
@@ -110,6 +110,7 @@
     <h1 class="equipment_header" style="text-transform: uppercase; letter-spacing: 5px; text-align: center; width: 50%;
      padding-bottom: 7px; margin: auto;">Equipment</h1>
     <div style="position: relative;">
+
       <!-- search bar -->
         <div class="equipment_searchbar" style="float:right; margin-top: 15px; position: relative; right: 490px;">
           <input type="text" placeholder="Search for equipment type ..." name="search" id="equipInput" onkeyup="equipFunction()"
@@ -123,22 +124,30 @@
         </div>
 
         <!-- FAB LAB STAFF USER: can add equipment to the table -->
-        <div style="border: 1px solid blue; width: 70%; margin: auto; text-align: center; top: 100px; position: absolute; " class="hidd">
-          <p class="text-center">Add equipment:</p>
+        <div style="border: 3px solid grey; width: 50%; text-align: center; top: 100px; position: relative; border-radius: 30px;
+         text-transform: uppercase; background-color:#E6EEC5; z-index: 2; top: -30%; left: 50%; 
+         -ms-transform: translate(-50%, 30%); transform: translate(-50%, 30%);" 
+        class="hidd">
+          <p class="text-center" style="font-size: 24px; font-weight: 500;">Add equipment:</p>
           <form>
-            <input type="text" id="equipmentid" placeholder="Equipment ID" pattern=".*" required>
-            <input type="text" id="accesslevel" placeholder="Access Level Required" pattern=".*" required>
-            <input type="text" id="equipmenttype" placeholder="Equipment Type" pattern=".*" required>
-            <button id="submitButton">Submit</button>
+            <input type="text" id="equipmentid" placeholder="Equipment ID" pattern=".*" required style="border: 1px solid grey; border-radius: 15px; padding: 3px 10px;">
+            <input type="text" id="accesslevel" placeholder="Access Level Required" pattern=".*" required style="border: 1px solid grey; border-radius: 15px; padding: 3px 10px;">
+            <input type="text" id="equipmenttype" placeholder="Equipment Type" pattern=".*" required style="border: 1px solid grey; border-radius: 15px; padding: 3px 10px;"><br>
+            <button id="submitButton" style="margin: 10px 0px; padding: 5px 15px; border-radius: 15px; background-color: whitesmoke;
+            font-weight: 500;">Submit</button>
           </form>
         </div>
         
-        <h2>Select Customer</h2>
-        <select name="customerName" id="customerName" onchange="customerFilter()">
-          <option>Select</option>
-        </select>
+        <!-- STAFF user: can use this to select a FAB LAB user to allow that user to check out equipment -->
+        <div style="position:absolute; top: 100px; left: 5px;">
+          <h2>Select Customer</h2>
+          <select name="customerName" id="customerName" onchange="customerFilter()">
+            <option>Select</option>
+          </select>
+        </div>
+
         <!-- checked out table for current customer -->
-        <h3 style="margin-top: 1em;" id="currentCustomer"></h3>
+        <h3 style="margin-top: 5em;" id="currentCustomer"></h3>
         <div class="equipmenttable" class="move">
           <table id="currentTable" class="table table-striped table-hover" style="text-align: center; width: 99%; margin: auto; border-radius: 10px; border: 1px solid black; 
           position: relative; top: 30px; background-color: whitesmoke;"> <!-- add table-sm to make it more compact -->
@@ -147,7 +156,7 @@
         </div>
       
         <!-- equipment table -->
-        <h3 style="margin-top: 2.5em;">All Equipment</h3>
+        <h3 style="margin-top: 1.5em; text-align: center;">All Equipment</h3>
         <div class="equipmenttable" class="move">
             <table id="equipTable" class="table table-striped table-hover" style="text-align: center; width: 99%; margin: auto; border-radius: 10px; border: 1px solid black; 
             position: relative; top: 30px; background-color: whitesmoke;"> <!-- add table-sm to make it more compact -->
@@ -156,9 +165,6 @@
                     <tr class="header">
                       <th style="width: 15%;">Equipment ID #</th>
                       <th style="width: 20%;">Access Level Required</th>
-                      <!-- <th style="width: 10%;">Date Maintenance</th>
-                      <th style="width: 10%;">Date Rented</th>
-                      <th style="width: 10%;">Date Returned</th> -->
                       <th style="width: 20%;">Equipment Type</th>
                       <!-- <th scope="col">Equipment Name</th> --> <!-- do we not need this? -->
                       <th style="width: 10%;">Available?</th>

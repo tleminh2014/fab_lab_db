@@ -40,7 +40,8 @@
         <div>
           <ul class="nav justify-content-end">
             <li class="nav-item">
-              <a class="nav-link" href="logout.html" style="font-weight:500; color:black;">Logout</a>
+              <!-- when user logs out, they will be redirected to the sign in page -->
+              <a class="nav-link" id="signOut" href="signin.html" style="font-weight:500; color:black;">Logout</a>
             </li>
           </ul>
         </div>
@@ -50,18 +51,9 @@
     <!-- user dashboard -->
     <!-- greet user -->
     <!-- the _John_Smith_ should show the user's name or their username (whether it will be email or username) -->
-    <!-- <h1 style="text-align: center; width: auto; margin-top: 50px; font-size: 56px;">Welcome, _John_Smith_!</h1> -->
     <h1 style="text-align: center; width: auto; margin-top: 50px; font-size: 56px;" id="welcomeheader"></h1>
-    <section class="home-sign-up" style="background-color: transparent; color:black;">
-      <div class="row column">
-        
-  
-  
-  
-    
-      </div>
-    </section>
-    <br><br><br><br><br><br><br><br><br>
+    <br><br><br><br>
+
     <!-- features -->
     <section class="userdashboard" style="margin-top: 90px;">
       <div class="userdashboard_buttons" style="text-align: center;margin:auto;">
@@ -71,8 +63,9 @@
         <!-- button 2: equipment table -->
         <a href="equipmenttable.html"><button class="button1">Equipment</button></a>
         
-        <!-- button 3: appointment (needs a page/link) -->
-        <a href="user_appointment.html"><button class="button1">Make Appointment</button></a>
+        <!-- button 3: appointment -->
+        <!-- button is greyed out to indicate feature is unavailable -->
+        <a href="user_appointment.html"><button class="button1" style="background-color: grey;">Make Appointment</button></a>
       </div>
     </section>
 

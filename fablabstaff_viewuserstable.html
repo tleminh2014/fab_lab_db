@@ -10,9 +10,12 @@
 
     <!-- my CSS file -->
     <link rel="stylesheet" href="index.css">
-    <!-- <style>
-       
-    </style> -->
+    <style>
+       a.nav-link:hover { /* nav. bar links :hover */
+          background-color: lightgrey;
+          border-radius: 20px;
+        }
+    </style>
     
     <!-- icon library -->
     <script src="https://kit.fontawesome.com/67c6af2bf9.js" crossorigin="anonymous"></script>
@@ -36,8 +39,8 @@
                       <a class="nav-link" href="fablabstaff_user.html" style="font-weight:500; color:black;">Home</a>
                     </li>
                     <li class="nav-item">
-                        <!-- this needs to have the correct link (compare to useraccount.html) -->
-                        <a class="nav-link" href="logout.html" style="font-weight:500; color:black;">Logout</a>
+                        <!-- when user logs out, they will be redirected to the sign in page -->
+                        <a class="nav-link" id="signOut" href="signin.html" style="font-weight:500; color:black;">Logout</a>
                     </li>
                 </ul>
             </div>
@@ -59,7 +62,6 @@
                     right: 40px; position: relative;"><i class="fa fa-search"></i></button>
             </div>
 
-
             <!-- user table -->
             <div class="accountTable">
                 <table class="table table-striped table-hover" style="width: 99%; margin: auto; border-radius: 10px; 
@@ -76,11 +78,6 @@
                             <th scope="col"># Stations Checked-out</th>
                             <th scope="col">Membership Start Date</th>
                             <th scope="col">Membership End Date</th>
-                            <!-- <th scope="col">Quantity</th> -->
-                            <!-- <th scope="col">Rental Price</th> -->
-                            <!-- <th scope="col">Training</th> -->
-                            <!-- <th scope="col">Permission</th> -->
-                            <!-- <th scope="col">Rent</th> -->
                         </tr>
                     </thead>
                     <tbody id="accountTable">
@@ -91,13 +88,6 @@
             </div>
         </div>
     </section>
-
-    <script>
-        $(document).ready(function(){
-            $('[data-toggle="popover"]').popover();   
-        });
-    </script>
-
 
   
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>

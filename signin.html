@@ -22,6 +22,9 @@
         background-color: lightgrey;
         color: black;
       }
+      .nav-link:hover {
+        background-color: lightgrey; border-radius: 20px; 
+      }
     </style>
     
     <!-- icon library -->
@@ -36,22 +39,30 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
         <a class="navbar-brand" href="index.html">Fab Lab</a>
+        <div>
+          <ul class="nav justify-content-end">
+              <li class="nav-item">
+                  <a class="nav-link" href="checkin.html" style="font-weight:500; color:black;">Check In</a>
+              </li>
+          </ul>
+        </div>
       </div>
     </nav>
         
     <!-- sign in options -->
-    <div class="signinoptionsection" style="width: 50%; margin: auto; margin-top: 30px;">
+    <div class="signinoptionsection" style="width: 70%; margin: auto; margin-top: 30px;">
+      <!-- header -->
       <h1 class="signinheader" style=" text-transform: uppercase; letter-spacing: 5px; text-align: center; width: 50%;
       border-bottom: 3px solid white; padding-bottom: 7px; margin: auto;">Sign In</h1>
       <p class="signin-inst" style="text-align:center; padding-top:15px;font-weight: 500;">Use one of the following options to log in:</p>
 
-      <div class="signinoptions" style="width: 50%; text-align: center; margin: auto; ">
-        <!-- option 1 -->
+      <div class="signinoptions" style="width: 100%; text-align: center; margin: auto;">
+        <!-- option 1: sign in -->
         <div class="option1" style="padding: 20px;">
           <a href="login.html" class="signinopt">1. Sign In</a>
         </div>
 
-        <!-- option 2 -->
+        <!-- option 2: scan rfid device -->
         <div class="option2" style="padding-bottom: 20px; padding-top:5px;">
           <label for="" style="border: transparent; padding: 15px 20px; background-color: whitesmoke; border-radius: 15px; font-size: 20px;
           font-weight: 500;">2. Scan your RFID device</label>
@@ -59,7 +70,7 @@
 
         <!-- sign up redirection -->
         <div class="option3" style="padding: 20px;">
-          <label for="" style="text-align:center; padding-top:15px;font-weight: 500; padding-right: 5px;">Don't have an account?</label>
+          <label for="" style="text-align: center; padding-top:15px;font-weight: 500; padding-right: 5px;">Don't have an account?</label>
           <a href="register.html" class="signinopt1">Sign Up</a>
         </div>
       </div>

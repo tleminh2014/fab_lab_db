@@ -88,7 +88,7 @@ var fablab = window.fablab || {};
         success: function(data){
           console.log('REQUEST COMPLETED! ->' + equipment_ID);
           completeRequest(data);
-          location.reload();
+          // location.reload();
         },
         error: function ajaxError(jqXHR, textStatus, errorThrown) {
             console.error('Error requesting ride: ', textStatus, ', Details: ', errorThrown);
@@ -116,7 +116,7 @@ var fablab = window.fablab || {};
         }),
         contentType: 'application/json',
         success: function(data){
-          console.log('REQUEST COMPLETED! ->' + equipment_ID);
+          console.log('REQUEST COMPLETED! Checked in for->' + equipment_ID);
           completeRequest(data);
           location.reload();
         },
@@ -143,7 +143,7 @@ var fablab = window.fablab || {};
       success: function(data){
         console.log('REQUEST COMPLETED! Log updated for ->' + username);
         completeRequest(data);
-        // location.reload();
+        location.reload();
       },
       error: function ajaxError(jqXHR, textStatus, errorThrown) {
           console.error('Error requesting checkoutlog: ', textStatus, ', Details: ', errorThrown);
@@ -172,15 +172,15 @@ var fablab = window.fablab || {};
           // ids.set(checkoutid, checkoutid);
           if (!equipmentItem.in_use) {
             availability = "<span style='color:green'>Available</span>";
-            checkout = "<button class='checkout' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"'>Check Out</button>";
+            checkout = "<button class='checkout' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"' onchange='appendCheckoutFunction()'>Check Out</button>";
           } else {
             availability = "<span style='color:red'>Unavailable</span>";
-            checkout = "<button class='checkin' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"' disabled= 'true'>Check In</button>";
+            checkout = "<button class='checkin' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"'onchange='appendCheckinFunction()' disabled= 'true'>Check In</button>";
           }
           
           $('#equipTable').append('<tr> <td>' + equipmentItem.equipment_ID + '</td>' + '<td>' + equipmentItem.access_level_req + '</td>' 
             // + '<td>' + equipmentItem.date_maintenance +'</td>'+ '<td>' + equipmentItem.date_rented +'</td>'+ '<td>' + equipmentItem.date_returned 
-            + '</td>'+ '<td>' + equipmentItem.equipment_type + '</td>'+ '<td>' + availability + '</td>'+ '<td>'+ '</td>'+ '<td>'+ '</td>'+ '<td>' + checkout + '<td style="display: none">' + currentUser +'</td></tr>'
+            + '</td>'+ '<td>' + equipmentItem.equipment_type + '</td>'+ '<td>' + availability + '</td>'+ '<td>'+ '</td>'+ '<td>' + checkout + '<td style="display: none">' + currentUser +'</td></tr>'
           );
 
         });

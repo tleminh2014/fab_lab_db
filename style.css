@@ -47,8 +47,11 @@ body {
 .signinbutton:hover, .signupbutton:hover {
     background-color: lightgrey;
 }
+.nav-link:hover {
+    background-color: lightgrey; border-radius: 20px; 
+}
 
-/* createacc.php */
+/* register.html */
 /* - sign up box -> index.html */
 .signupheader, .signinheader, .signin1header { /* sign up header */
     letter-spacing: 5px;
@@ -111,7 +114,7 @@ body {
     font-weight: 500;
 }
 
-/* login.php */
+/* login.html */
 /* .checkinoptions -> index.html 
     - .signinheader, .leadsignup button, .signininst -> createacc.php */
 .leadsignup { /* dont have an account? */
@@ -129,13 +132,10 @@ body {
     background-color: whitesmoke;
 }
 
-/* signin.php */
+/* signin.html */
 /* .signin1box -> index.html
     - .signin1header -> createacc.php 
     - .signin1form -> login.php */
-/* .signin1form {
-    border: 3px solid red;
-} */
 
 .existuser { /* sign in input field */
     /* border: 1px solid purple; */

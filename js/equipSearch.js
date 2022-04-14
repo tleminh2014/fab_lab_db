@@ -73,7 +73,7 @@ function customerFilter() {
     // if any entry have currentuser set to select user [7], move entry to first table, hide in latter table
     for (i = 1; i < tr.length; i++) {
         td = tr[i].getElementsByTagName("td")[6]; // the currentUser value
-        console.log(td);
+        // console.log(td);
         if (td) {
             txtValue = td.textContent || td.innerText; 
             if ( txtValue  == email) {

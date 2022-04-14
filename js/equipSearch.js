@@ -21,7 +21,6 @@ function equipFunction() {
     }
 }
 
-console.log(tr);
 function loadEquipmentTable () {
     $.ajax({
         method: 'GET',
@@ -32,7 +31,7 @@ function loadEquipmentTable () {
     
             var availability;
             var checkout;
-            var currentUser = equipmentItem.currentUser;
+            var currentUser = equipmentItem.current_user;
             
             if (!equipmentItem.in_use) {
               availability = "<span style='color:green'>Available</span>";
@@ -52,7 +51,10 @@ function loadEquipmentTable () {
     });
 
 }
+
+
 function customerFilter() {
+   console.clear();
     loadEquipmentTable();
 
     $("#currentTable").html('');
@@ -71,8 +73,7 @@ function customerFilter() {
     // if any entry have currentuser set to select user [7], move entry to first table, hide in latter table
     for (i = 1; i < tr.length; i++) {
         td = tr[i].getElementsByTagName("td")[6]; // the currentUser value
-        var td0 = tr[i].getElementsByTagName("td")[0]; // the currentUser value
-        // console.log(td0);
+        console.log(td);
         if (td) {
             txtValue = td.textContent || td.innerText; 
             if ( txtValue  == email) {

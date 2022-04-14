@@ -167,7 +167,7 @@ var fablab = window.fablab || {};
         // $.each(data, function (equipmentItem) {
           var availability;
           var checkout;
-          var currentUser = equipmentItem.currentUser;
+          var currentUser = equipmentItem.current_user;
           // var checkoutid = 'checkout' + i;
           // ids.set(checkoutid, checkoutid);
           if (!equipmentItem.in_use) {

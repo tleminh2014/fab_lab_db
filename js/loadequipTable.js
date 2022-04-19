@@ -168,19 +168,28 @@ var fablab = window.fablab || {};
           var availability;
           var checkout;
           var currentUser = equipmentItem.current_user;
+
+          // added by raven 
+          var cancel, edit;
+
           // var checkoutid = 'checkout' + i;
           // ids.set(checkoutid, checkoutid);
           if (!equipmentItem.in_use) {
             availability = "<span style='color:green'>Available</span>";
-            checkout = "<button class='checkout' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"' onchange='appendCheckoutFunction()'>Check Out</button>";
+            checkout = "<button class='checkout sho' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"' onchange='appendCheckoutFunction()'>Check Out</button>";
+            edit = "<button class='hidd' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"' onchange=''>Edit</button>";
+            cancel = "<button class='hidd' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"' onchange=''>Cancel</button>";
           } else {
             availability = "<span style='color:red'>Unavailable</span>";
-            checkout = "<button class='checkin' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"'onchange='appendCheckinFunction()' disabled= 'true'>Check In</button>";
+            checkout = "<button class='checkin sho' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"'onchange='appendCheckinFunction()' disabled= 'true'>Check In</button>";
+            edit = "<button class='hidd' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"' onchange=''>Edit</button>";
+            cancel = "<button class='hidd' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"' onchange=''>Cancel</button>";
           }
           
-          $('#equipTable').append('<tr> <td>' + equipmentItem.equipment_ID + '</td>' + '<td>' + equipmentItem.access_level_req + '</td>' 
+          $('#equipTable').append('<tr> <td contenteditable="true">' + equipmentItem.equipment_ID + '</td>' + '<td contenteditable="true">' + equipmentItem.access_level_req + '</td>' 
             // + '<td>' + equipmentItem.date_maintenance +'</td>'+ '<td>' + equipmentItem.date_rented +'</td>'+ '<td>' + equipmentItem.date_returned 
-            + '</td>'+ '<td>' + equipmentItem.equipment_type + '</td>'+ '<td>' + availability + '</td>'+ '<td>'+ '</td>'+ '<td>' + checkout + '<td style="display: none">' + currentUser +'</td></tr>'
+            + '</td>'+ '<td contenteditable="true">' + equipmentItem.equipment_type + '</td>'+ '<td>' + availability + '</td>'+ '<td contenteditable="true">'+ '</td>'+ '<td>' + checkout + edit + cancel
+            + '<td style="display: none">' + currentUser +'</td></tr>'
           );
 
         });

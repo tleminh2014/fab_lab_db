@@ -126,8 +126,7 @@
         <!-- FAB LAB STAFF USER: can add equipment to the table -->
         <div style="border: 3px solid grey; width: 50%; text-align: center; top: 100px; position: relative; border-radius: 30px;
          text-transform: uppercase; background-color:#E6EEC5; z-index: 2; top: -30%; left: 50%; 
-         -ms-transform: translate(-50%, 30%); transform: translate(-50%, 30%);" 
-        class="hidd">
+         -ms-transform: translate(-50%, 30%); transform: translate(-50%, 30%);" class="hidd">
           <p class="text-center" style="font-size: 24px; font-weight: 500;">Add equipment:</p>
           <form>
             <input type="text" id="equipmentid" placeholder="Equipment ID" pattern=".*" required style="border: 1px solid grey; border-radius: 15px; padding: 3px 10px;">
@@ -146,7 +145,7 @@
           </select>
         </div>
 
-        <!-- checked out table for current customer -->
+        <!-- check out table for current customer -->
         <h3 style="margin-top: 5em;" id="currentCustomer"></h3>
         <div class="equipmenttable" class="move">
           <table id="currentTable" class="table table-striped table-hover" style="text-align: center; width: 99%; margin: auto; border-radius: 10px; border: 1px solid black; 
@@ -156,26 +155,20 @@
         </div>
       
         <!-- equipment table -->
-        <h3 style="margin-top: 1.5em; text-align: center;">All Equipment</h3>
+        <h3 style="margin-top: 1.7em; text-align: center;">All Equipment</h3>
         <div class="equipmenttable" class="move">
             <table id="equipTable" class="table table-striped table-hover" style="text-align: center; width: 99%; margin: auto; border-radius: 10px; border: 1px solid black; 
             position: relative; top: 30px; background-color: whitesmoke;"> <!-- add table-sm to make it more compact -->
                 <thead class="thead-light" >
                     <!-- table header -->
                     <tr class="header">
-                      <th style="width: 15%;">Equipment ID #</th>
-                      <th style="width: 20%;">Access Level Required</th>
-                      <th style="width: 20%;">Equipment Type</th>
-                      <!-- <th scope="col">Equipment Name</th> --> <!-- do we not need this? -->
-                      <th style="width: 10%;">Available?</th>
-                      <!-- <th style="width: 10%;">Rental Price</th> -->
-                      <th style="width: 10%;">Training</th>
-                      <!-- <th style="width: 10%;">Permission</th> -->
-                      <th style="width: 10%;">Checkout</th>
-
-                        <!-- dont delete this yet -->
-                        <!-- <th scope="col" id="first" class="sho">Rent</th> -->
-                        <!-- <th scope="col" id="second" class="hidd">Available for Rent?</th> -->
+                      <th style="width: 10%;">Equipment ID #</th>
+                      <th style="width: 15%;">Access Level Required</th>
+                      <th>Equipment Type</th>
+                      <th style="width: 8%;">Available?</th>
+                      <th style="width: 20%;">Training</th>
+                      <th id="first" class="sho">Checkout</th>
+                      <th id="second" class="hidd">Edit</th>
                     </tr>
                 </thead>
                 <tbody class=" table table-striped" style="text-align: center; justify-content: center; align-items: center; position: relative; "></tbody>

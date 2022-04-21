@@ -50,7 +50,7 @@ var fablab = window.fablab || {};
   
 
 //////////////////
-  
+///////test
 
   function completeRequest(result) {
     console.log('Response received from API: ', result);

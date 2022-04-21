@@ -13,6 +13,7 @@ function equipFunction() {
     if (td) {
         txtValue = td.textContent || td.innerText;
         if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          //then displaying all matching instance of equipment tr
         tr[i].style.display = "";
         } else {
         tr[i].style.display = "none";
@@ -20,8 +21,9 @@ function equipFunction() {
     }
     }
 }
-
-function loadEquipmentTable () {
+ //function to reload the equipment table when the filter needs to be reset or user cancels out of edit mode
+function loadEquipmentTable() {
+    //repulling latest data from the equipment table and recreating the equipment table
     $.ajax({
         method: 'GET',
         url: _config.api.invokeUrl + '/equipment',
@@ -32,26 +34,46 @@ function loadEquipmentTable () {
             var availability;
             var checkout;
             var currentUser = equipmentItem.current_user;
-            
+  
+            // added by raven 
+            var cancel, edit;
+  
+ 
+            //depending on the availibility of the equipment, the tr tag will be displayed differently
             if (!equipmentItem.in_use) {
               availability = "<span style='color:green'>Available</span>";
-              checkout = "<button class='checkout' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"' onchange='appendCheckoutFunction()'>Check Out</button>";
+              checkout = "<button class='checkout sho' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"' onchange='appendCheckoutFunction()'>Check Out</button>";
+              edit = "<button class='hidd' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"' onchange=''>Edit</button>";
+              cancel = "<button class='hidd' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"' onclick='cancelFunction()'>Cancel</button>";
             } else {
               availability = "<span style='color:red'>Unavailable</span>";
-              checkout = "<button class='checkin' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"'onchange='appendCheckinFunction()' disabled= 'true'>Check In</button>";
+              checkout = "<button class='checkin sho' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"'onchange='appendCheckinFunction()' disabled= 'true'>Check In</button>";
+              edit = "<button class='hidd' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"' onchange=''>Edit</button>";
+              cancel = "<button class='hidd' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"' onclick='cancelFunction()'>Cancel</button>";
             }
             
-            $('#equipTable').append('<tr> <td>' + equipmentItem.equipment_ID + '</td>' + '<td>' + equipmentItem.access_level_req + '</td>' 
+            //appending each item to the equipment table
+            $('#equipTable').append('<tr> <td contenteditable="true">' + equipmentItem.equipment_ID + '</td>' + '<td contenteditable="true">' + equipmentItem.access_level_req + '</td>' 
               // + '<td>' + equipmentItem.date_maintenance +'</td>'+ '<td>' + equipmentItem.date_rented +'</td>'+ '<td>' + equipmentItem.date_returned 
-              + '</td>'+ '<td>' + equipmentItem.equipment_type + '</td>'+ '<td>' + availability + '</td>'+ '<td>'+ '</td>'+ '<td>' + checkout + '<td style="display: none">' + currentUser +'</td></tr>'
+              + '</td>'+ '<td contenteditable="true">' + equipmentItem.equipment_type + '</td>'+ '<td>' + availability + '</td>'+ '<td contenteditable="true">'+ '</td>'+ '<td>' + checkout + edit + cancel
+              + '<td style="display: none">' + currentUser +'</td></tr>'
             );
-    
+
           });
         }
-    });
-
+      });
+      
 }
 
+//driver function for when the cancel button is pressed - reloads the equipment table and hides the edit/cancel buttons, resetting the page
+function cancelFunction() {
+    // loadEquipmentTable();
+    // $(".hidd").hide();
+    // $(".sho").show();
+    // $(".edit_db").html('<button onclick="switchButtons('+ "'button1'" + ',' + "'first'" + ')" id="button1" class="editdb_button">Edit Database</button><button onclick="switchButtons('+ "'button2'" + ',' + "'second'" + ')" id="button2" class="editdb_button">Update Database</button>');
+    // above is a more graceful solution that still had bugs, so for now the page will reload after cancelling
+    location.reload();
+}
 
 function customerFilter() {
    console.clear();
@@ -73,7 +95,7 @@ function customerFilter() {
     // if any entry have currentuser set to select user [7], move entry to first table, hide in latter table
     for (i = 1; i < tr.length; i++) {
         td = tr[i].getElementsByTagName("td")[6]; // the currentUser value
-        console.log(td);
+        // console.log(td);
         if (td) {
             txtValue = td.textContent || td.innerText; 
             if ( txtValue  == email) {

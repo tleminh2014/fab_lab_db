@@ -178,12 +178,12 @@ var fablab = window.fablab || {};
             availability = "<span style='color:green'>Available</span>";
             checkout = "<button class='checkout sho' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"' onchange='appendCheckoutFunction()'>Check Out</button>";
             edit = "<button class='hidd' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"' onchange=''>Edit</button>";
-            cancel = "<button class='hidd' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"' onchange=''>Cancel</button>";
+            cancel = "<button class='hidd' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"' onclick='cancelFunction()'>Cancel</button>";
           } else {
             availability = "<span style='color:red'>Unavailable</span>";
             checkout = "<button class='checkin sho' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"'onchange='appendCheckinFunction()' disabled= 'true'>Check In</button>";
             edit = "<button class='hidd' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"' onchange=''>Edit</button>";
-            cancel = "<button class='hidd' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"' onchange=''>Cancel</button>";
+            cancel = "<button class='hidd' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"' onclick='cancelFunction()'>Cancel</button>";
           }
           
           $('#equipTable').append('<tr> <td contenteditable="true">' + equipmentItem.equipment_ID + '</td>' + '<td contenteditable="true">' + equipmentItem.access_level_req + '</td>' 

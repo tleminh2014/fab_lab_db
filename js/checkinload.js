@@ -1,5 +1,7 @@
 /*global fablab _config*/
 
+
+//not currently invoked anywhere - to be used for when a non-member wants to enter the Fab Lab for the first time, fill out the form and later create an account
 var fablab = window.fablab || {};
 
 (function tableScopeWrapper($) {

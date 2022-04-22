@@ -69,15 +69,21 @@ var fablab = window.fablab || {};
         data.Items.forEach(function(stationItem){
             var availability;
 
+             // variables for save button and cancel button when the 'edit database' 
+            //     button is clicked
+            var save = "<button class='hidd' data-dismiss='modal' data-value='"+ JSON.stringify(stationItem) +"' onchange=''>Save</button>";
+            var cancel = "<button class='hidd' data-dismiss='modal' data-value='"+ JSON.stringify(stationItem) +"' onclick='cancelFunction()'>Cancel</button>";
+
+
             if (!stationItem.station_status) {
                 availability = "<span style='color:green'>Available</span>";
               } else {
                 availability = "<span style='color:red'>Unavailable</span>";
               }
           // console.log(stationItem);
-          $('#stationTable').append('<tr> <td>' + stationItem.station_ID + '</td>' + '<td>' + stationItem.table_ID + '</td>' 
-            + '<td>' + stationItem.equipment_ID +'</td>'+ '<td>' + stationItem.station_name +'</td>'+ '<td>' + availability 
-            + '</td></tr>'
+          $('#stationTable').append('<tr> <td contenteditable="true">' + stationItem.station_ID + '</td>' + '<td contenteditable="true">' + stationItem.table_ID + '</td>' 
+            + '<td contenteditable="true">' + stationItem.equipment_ID +'</td>'+ '<td contenteditable="true">' + stationItem.station_name +'</td>'+ '<td>' + availability 
+            + '</td>' + '<td>' + save + cancel + '</td></tr>'
           );
     
           // i++;

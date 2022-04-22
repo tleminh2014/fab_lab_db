@@ -4,6 +4,9 @@
 //not currently invoked anywhere - to be used for when a non-member wants to enter the Fab Lab for the first time, fill out the form and later create an account
 var fablab = window.fablab || {};
 
+
+//Wrapper includes authorization-restriction for fab-lab staff users only
+//this script is currently not in use as check for General Fab lab for non-member's was introduced late in semester
 (function tableScopeWrapper($) {
   var authToken;
   fablab.authToken.then(function setAuthToken(token) {

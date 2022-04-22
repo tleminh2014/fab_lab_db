@@ -54,7 +54,7 @@ $('#second').on('click',function(){
   $.ajax({
     type: 'POST',
     url: _config.api.invokeUrl + '/equipmentupdate',
-    data: JSON.stringify({"access_level_req":$('#access').val()}),
+    data: JSON.stringify({"access_level_req":$('#access').val(), "current_user":$('#access').val(), "equipement_type":$('#access').val(), "in_use":$('#access').val()}),
     contentType: "application/json",
 
     success: function(data){

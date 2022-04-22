@@ -15,6 +15,40 @@
           background-color: lightgrey;
           border-radius: 20px;
         }
+        /*  */
+        .editdb_button { /* CSS: (buttons) "edit database", "update database" */
+            font-weight: 500; margin-top: 10px; padding: 5px 15px; border-radius: 20px; border: 1px solid gray;
+        }
+        #button1 { /* CSS: (button) "edit database" */
+            background-color: whitesmoke; 
+        }
+        #button2 { /* CSS: (button) "update database" */
+            background-color: lightgoldenrodyellow; display: none;
+        }
+        .rent { background-color: lightgreen; font-weight: 500; border-radius: 5px; border-color: black; }
+        .rentunavailable { /* tool is unavailable for rent */
+            background-color: red; font-weight: 500; border-radius: 5px; border-color: black;
+        }
+        #button1:hover, #submitButton:hover { background-color: lightgrey; }
+        #button2:hover { background-color: gold; }
+        .rent:hover { background-color: green;}
+        .rentunavailable:hover { background-color: firebrick;} /* tool is unavailable for rent :hover */
+        #signOut:hover { /* nav. bar links :hover */
+            background-color: lightgrey;
+            border-radius: 20px;
+        }
+        #signOut { background-color: transparent; padding: 8px 15px; border: transparent; }
+        .hidd { display: none; } /* this is to hide elements that will appear when clicking on 'update database' */
+        .hidd { 
+            background-color: lightgoldenrodyellow; font-weight: bold; border-radius: 20px; border:1px solid lightgrey; padding: 3px 10px; margin: 1px; 
+        }
+        a.nav-link:hover { /* nav. bar links :hover */
+            background-color: lightgrey; border-radius: 20px; }
+            
+        /* .move {
+            transition: top 3s;
+        } */
+        #submitButton:hover { background-color: grey; }
     </style>
     
     <!-- icon library -->
@@ -26,6 +60,27 @@
     <!-- scripts for bootstrap popover -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  
+    <!-- jQuery code -->
+    <script>
+        $(document).ready(function(){
+        // when edit database is clicked, the buttons in the rent column will change
+            $("#button1").click(function(){
+                $(".sho").hide();
+                $(".hidd").show();
+            });
+            // same effect for when update database is clicked
+            $("#button2").click(function(){
+                $(".hidd").hide();
+                $(".sho").show();
+            });
+        });
+            // $(document).ready(function(){
+            //     $('.move').click(function(){
+            //     $(this).toggleClass('clicked');
+            // });
+        // });
+    </script>
   </head>
   <body style="background-color: lightblue; ">
 
@@ -54,13 +109,19 @@
          padding-bottom: 7px; margin: auto;">Stations</h1>
 
         <div>
-            <!-- search bar
-            <div class="equipment_searchbar" style="float:right; margin-top: 10px; margin-right: 145px;">
-                <input type="text" placeholder="Search for users by RFID" name="search" id="accountInput" onkeyup="accountSearch()" style="width: 500px; 
+            <!-- search bar -->
+            <!-- <div class="equipment_searchbar" style="float:right; margin-top: 10px; margin-right: 145px;">
+                <input type="text" placeholder="Search for stations" name="search" id="accountInput" onkeyup="accountSearch()" style="width: 500px; 
                     padding: 5px 15px; border-radius: 20px; border: transparent;">
                 <button class="icon" type="submit" style="border: transparent; background-color: transparent; 
                     right: 40px; position: relative;"><i class="fa fa-search"></i></button>
             </div> -->
+
+            <!-- editing the database functionality buttons --> 
+            <div class="edit_db" style="position: relative;  ">
+                <button onclick="switchButtons('button1','first')" id="button1" class="editdb_button">Edit Database</button>
+                <button onclick="switchButtons('button2','second')" id="button2" class="editdb_button">Update Database</button>
+            </div>
 
             <!-- user table -->
             <div class="accountTable">
@@ -75,6 +136,7 @@
                             <th scope="col">Equipment ID</th>
                             <th scope="col">Station Type</th>
                             <th scope="col">Available?</th>
+                            <th scope="col" id="second" class="hidd" style="border:none;">Edit</th>
                         </tr>
                     </thead>
                     <tbody id="stationTable">
@@ -86,6 +148,46 @@
         </div>
     </section>
 
+    <script>
+        // function: switchButtons
+        // - when the fab lab staff user clicks on "edit database", the table will be switched to "editing"
+        //    mode, where the table and its content will be changed, indicating that the table can be edited.
+        //    once the user is done, they will click on "update database" to finalize the changes
+        function switchButtons(buttonId, elementID) {
+          var hideb, showb; // variables for the 2 buttons
+          // if first button is clicked, hide it and show the second button
+          if (buttonId == 'button1') {
+            showb = 'button2';
+            hideb = 'button1';
+          } else { // otherwise, show the first button
+            showb = 'button1';
+            hideb = 'button2';
+          }
+          // then set the display property for the buttons to either show or hide
+          document.getElementById(hideb).style.display = 'none'; //step 2 :additional feature hide button
+          document.getElementById(showb).style.display = 'block'; //step 3:additional feature show button
+      
+          // function call to hide the table contents
+          hideheader(elementID);
+        }
+      
+        // function: hideheader()
+        // similar functionality as the previous function
+        function hideheader(elementID) {
+            var hidec, showc; // variables for the contents
+            // if first button is clicked, hide the original content and show the hidden content
+            if (elementID == 'first') {
+              showc = 'second';
+              hidec = 'first';
+            } else { // otherwise, show the original content
+              showc = 'first';
+              hidec = 'second';
+            }
+            // then set the display property for the content to either show or hide
+            document.getElementById(hidec).style.display = 'none';
+            document.getElementById(showc).style.display = 'block';
+        } 
+    </script>
   
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="js/vendor/jquery-3.1.0.js"></script>

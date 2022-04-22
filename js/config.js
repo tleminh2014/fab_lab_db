@@ -1,3 +1,4 @@
+//global config for cognito and api - used for user authenication via userpool and calling methods
 window._config = {
     cognito: {
         userPoolId: 'us-east-1_D6b2PxCSZ', // e.g. us-east-2_uXboG5pAb

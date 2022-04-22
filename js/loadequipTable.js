@@ -2,13 +2,14 @@
 
 var fablab = window.fablab || {};
 
+//Wrapper includes authorization-restriction for fab-lab staff users only
 (function tableScopeWrapper($) {
   var authToken;
   fablab.authToken.then(function setAuthToken(token) {
+    //auth token generated during user sign-in process
     if (token) {
       authToken = token;
-      returnData = parseJwt(token);
-      // console.log(returnData);
+      returnData = parseJwt(token); //checking token for group value, then authorizing access if in admin group
       var group = returnData['cognito:groups'][0];
       if (group !== 'AdminGroup') {
         alert('You do not have access to this page');  

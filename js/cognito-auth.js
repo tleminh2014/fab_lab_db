@@ -2,9 +2,13 @@
 
 var fablab = window.fablab || {};
 
+
+//Wrapper for user creation via AWSCognito
+
 (function scopeWrapper($) {
     var signinUrl = '/signin.html';
 
+    //Cognito user pool
     var poolData = {
         UserPoolId: _config.cognito.userPoolId,
         ClientId: _config.cognito.userPoolClientId
@@ -28,6 +32,7 @@ var fablab = window.fablab || {};
   
 
     fablab.authToken = new Promise(function fetchCurrentAuthToken(resolve, reject) {
+        //current session user (after login)
         var cognitoUser = userPool.getCurrentUser();
 
         if (cognitoUser) {
@@ -46,10 +51,9 @@ var fablab = window.fablab || {};
     });
 
 
-    /*
-     * Cognito User Pool functions
-     */
+    /* Cognito User Pool functions*/
 
+    //Registration form values passed to signUp Cognito method -> creates new entry in user pool
     function register(occupation, given_name, family_name, email, password, onSuccess, onFailure) {
 
         var dataoccupation = {
@@ -87,10 +91,12 @@ var fablab = window.fablab || {};
         );
     }
 
+
     function completeRequest(result) {
         console.log('Response received from API: ', result);
-      }
+    }
 
+    //cwreated entry in Account table after user submits registration information
     function createaccountEntry(email, first_name, last_name) {
         $.ajax({
             method: 'POST',
@@ -119,6 +125,7 @@ var fablab = window.fablab || {};
         return JSON.parse(window.atob(base64));
     }
 
+    //signin passing login creds to authenticate via Cognito
     function signin(email, password, onSuccess, onFailure) {
         var authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails({
             Username: toUsername(email),
@@ -133,15 +140,8 @@ var fablab = window.fablab || {};
         });
     }
 
-    // function signOut() {
-    //     // userPool.getCurrentUser().signOut();
-    //     const cognitoUser = userPool.getCurrentUser();
-    //     if (cognitoUser !== null) {
-    //         cognitoUser.signOut();
-    //     }
-
-    // };
-
+    //verification code created for new registered user - sends email to passed email
+    // once user enters verification code, they can login using their information
     function verify(email, code, onSuccess, onFailure) {
         createCognitoUser(email).confirmRegistration(code, true, function confirmCallback(err, result) {
             if (!err) {
@@ -152,6 +152,7 @@ var fablab = window.fablab || {};
         });
     }
 
+    //Creating new AWSCognitoIdentity object
     function createCognitoUser(email) {
         return new AmazonCognitoIdentity.CognitoUser({
             Username: toUsername(email),
@@ -160,6 +161,7 @@ var fablab = window.fablab || {};
         });
     }
 
+    //formatting email for Cognito entry
     function toUsername(email) {
         // return email.split("@").shift();
         return email.replace("@", "-at-");
@@ -176,6 +178,7 @@ var fablab = window.fablab || {};
         $('#signOut').click(handleSignout);
     });
 
+    //signin invoked and checks the user's role and redirects to appropriate homepage
     function handleSignin(event) {
         var email = $('#emailInputSignin').val();
         var password = $('#passwordInputSignin').val();
@@ -185,7 +188,6 @@ var fablab = window.fablab || {};
                 var returnData;
                 token = result.getIdToken().getJwtToken();
                 returnData = parseJwt(token);
-                // console.log(returnData);
                 var group = returnData['cognito:groups'][0];
 
                 if (group == 'AdminGroup') {
@@ -200,6 +202,7 @@ var fablab = window.fablab || {};
         );
     }
 
+    //ends current user session
     function handleSignout(){
         var cognitoUser = userPool.getCurrentUser();
 
@@ -209,6 +212,8 @@ var fablab = window.fablab || {};
         }
     }
     
+    //passing all registration form vals to register. Password is valid and confirmed, the user will be redirected to the verification page to input
+    //verification code + account entry will be created with respective information
     function handleRegister(event) {
         var occupation = $('input[name=occupation]:checked').val();
         var given_name = $('#givennameInputRegister').val();
@@ -239,6 +244,7 @@ var fablab = window.fablab || {};
         }
     }
 
+    //after cognito creates a new entry in user pool, generated code will be sent to user's email. If successful, user is redirected to login page
     function handleVerify(event) {
         var email = $('#emailInputVerify').val();
         var code = $('#codeInputVerify').val();

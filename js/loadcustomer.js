@@ -2,6 +2,7 @@
 
 var fablab = window.fablab || {};
 
+
 (function tableScopeWrapper($) {
   var authToken;
   fablab.authToken.then(function setAuthToken(token) {

@@ -50,7 +50,18 @@ var fablab = window.fablab || {};
   
 
 //////////////////
-///////test
+$('#second').on('click',function(){
+  $.ajax({
+    type: 'POST',
+    url: _config.api.invokeUrl + '/equipmentupdate',
+    data: JSON.stringify({"access_level_req":$('#access').val()}),
+    contentType: "application/json",
+
+    success: function(data){
+      location.reload();
+    }
+  })
+})
 
   function completeRequest(result) {
     console.log('Response received from API: ', result);

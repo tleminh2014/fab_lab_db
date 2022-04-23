@@ -69,10 +69,17 @@ var fablab = window.fablab || {};
         data.Items.forEach(function(accountItem){
         var fullname = accountItem.first_name + ' ' + accountItem.last_name;
 
+        // variables for save button and cancel button when the 'edit database' 
+        //     button is clicked
+        var save = "<button class='hidd' data-dismiss='modal' data-value='"+ JSON.stringify(accountItem) +"' onchange=''>Save</button>";
+        var cancel = "<button class='hidd' data-dismiss='modal' data-value='"+ JSON.stringify(accountItem) +"' onclick='cancelFunction()'>Cancel</button>";
+
+
+
           // console.log(accountItem);
-          $('#accountTable').append('<tr> <td>' + accountItem.user_RFID + '</td>' + '<td>' + fullname + '</td>' 
-            + '<td>' + accountItem.email +'</td>'+ '<td>' + accountItem.equip_active_appts +'</td>'+ '<td>' + accountItem.station_active_appts 
-            + '</td>'+ '<td>' + accountItem.membership_start + '</td>'+ '<td>' + accountItem.membership_end  + '</td></tr>'
+          $('#accountTable').append('<tr> <td contenteditable="true">' + accountItem.user_RFID + '</td>' + '<td>' + fullname + '</td>' 
+            + '<td contenteditable="true">' + accountItem.email +'</td>'+ '<td>' + accountItem.equip_active_appts +'</td>'+ '<td>' + accountItem.station_active_appts 
+            + '</td>'+ '<td>' + accountItem.membership_start + '</td>'+ '<td>' + accountItem.membership_end  + '</td>' + '<td>' + save + cancel + '</td></tr>'
           );
     
           // i++;

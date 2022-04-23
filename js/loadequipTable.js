@@ -178,25 +178,25 @@ var fablab = window.fablab || {};
           if (!equipmentItem.in_use) {
             availability = "<span style='color:green'>Available</span>";
             checkout = "<button class='checkout sho' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"' onchange='appendCheckoutFunction()'>Check Out</button>";
-            edit = "<button class='hidd' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"' onchange=''>Edit</button>";
-            cancel = "<button class='hidd' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"' onclick='cancelFunction()'>Cancel</button>";
+            edit = "<button class='edit hidd' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"' onchange=''>Edit</button>";
+            cancel = "<button class='cancel hidd' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"' onclick='cancelFunction()'>Cancel</button>";
           } else {
             availability = "<span style='color:red'>Unavailable</span>";
             checkout = "<button class='checkin sho' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"'onchange='appendCheckinFunction()' disabled= 'true'>Check In</button>";
-            edit = "<button class='hidd' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"' onchange=''>Edit</button>";
-            cancel = "<button class='hidd' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"' onclick='cancelFunction()'>Cancel</button>";
+            edit = "<button class='edit hidd' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"' onchange=''>Edit</button>";
+            cancel = "<button class='cancel hidd' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"' onclick='cancelFunction()'>Cancel</button>";
           }
           
-          $('#equipTable').append('<tr> <td contenteditable="true">' + equipmentItem.equipment_ID + '</td>' + '<td contenteditable="true">' + equipmentItem.access_level_req + '</td>' 
+          $('#equipTable').append('<tr class="tabledata"> <td contenteditable="true" class="equipmentid">' + equipmentItem.equipment_ID + '</td>' + '<td contenteditable="true" class="access">' + equipmentItem.access_level_req + '</td>' 
             // + '<td>' + equipmentItem.date_maintenance +'</td>'+ '<td>' + equipmentItem.date_rented +'</td>'+ '<td>' + equipmentItem.date_returned 
-            + '</td>'+ '<td contenteditable="true">' + equipmentItem.equipment_type + '</td>'+ '<td>' + availability + '</td>'+ '<td contenteditable="true">'+ '</td>'+ '<td>' + checkout + edit + cancel
+            + '</td>'+ '<td contenteditable="true" class="equipmenttype">' + equipmentItem.equipment_type + '</td>'+ '<td>' + availability + '</td>'+ '<td contenteditable="true">'+ '</td>'+ '<td>' + checkout + edit + cancel
             + '<td style="display: none">' + currentUser +'</td></tr>'
           );
 
         });
       }
     });
-
+    
     $.ajax({
       method: 'GET',
       url: _config.api.invokeUrl + '/account',
@@ -209,9 +209,11 @@ var fablab = window.fablab || {};
         });
       }
     });
-      
-
+    
+    
   });
+  
+  
   
   
   $(document).on('click', '.checkout', function () {
@@ -220,6 +222,11 @@ var fablab = window.fablab || {};
     var username = sel.value;
     var limit = $("#customerName option:selected").data("val");
     var equipmentitem = $(this).data('value');
+    equipmentitem.equipment_ID = 1;
+    console.log(equipmentitem);
+    
+    
+    
     if (limit < 4) {
       console.log('obj: ', equipmentitem);
       requestCheckout(username, equipmentitem.equipment_ID);
@@ -230,7 +237,18 @@ var fablab = window.fablab || {};
       alert('Equipment Limit reached for ' + username);
     }
 
-  })
+  });
+  
+  $(document).on('click', '.edit', function () {
+    var parent = $(this).parents('tr');
+    console.log(parent);
+    console.log(parent.children("td.access")[0].innerText);
+    console.log(parent.children("td.equipmenttype")[0].innerText);
+    
+    
+    
+  });
+ 
 
   $(document).on('click', '.checkin', function () {
     var sel = document.getElementById('customerName');

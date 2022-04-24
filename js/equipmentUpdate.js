@@ -52,38 +52,28 @@ var fablab = window.fablab || {};
     //////////////////
     $(document).on('click','.edit', function(){
       var parent = $(this).parents('tr');
-      
      
 
       var access = parent.children("td.access")[0].innerText;
       var eqtype = parent.children("td.equipmenttype")[0].innerText;
+      var current = parent.children("td.currentuser")[0].innerText;
+      //var inuse = parent.children("td.inuse")[0].innerText;
       var eqid = parent.children("td.equipmentid")[0].innerText;
-      var currentuser = parent.children("td.currentuser")[0].innerText;
-      var training_req = parent.children("td.training_req")[0].innerText;
-
 
       $.ajax({
         method: 'POST',
         url: _config.api.invokeUrl + '/equipmentupdate',
-        data: JSON.stringify({
-          "access_level_req": access,
-          "equipment_type": eqtype, 
-          "current_user": currentuser, 
-          "equipment_ID": parseInt(eqid),
-          "training_req": training_req
-        }),
+        data: JSON.stringify({"access_level_req": access, "equipment_type": eqtype, "current_user": current, "in_use": inuse, "equipment_ID": eqid}),
         contentType: "application/json",
         success: function(data){
-          console.log('Successfully editted equipment id ', eqid);
-          completeRequest(data);
-          location.reload();
+          location.reload;
         },
         error: function ajaxError(jqXHR, textStatus, errorThrown) {
           console.error('Error requesting : ', textStatus, ', Details: ', errorThrown);
           console.error('Response: ', jqXHR.responseText);
          
-        }
-      });
+      }
+      })
 
 
 

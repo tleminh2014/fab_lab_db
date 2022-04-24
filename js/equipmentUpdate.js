@@ -52,25 +52,26 @@ var fablab = window.fablab || {};
     //////////////////
     $(document).on('click','.edit', function(){
       var parent = $(this).parents('tr');
-      console.log(parent);
-      console.log(parent.children("td.access")[0].innerText);
-      console.log(parent.children("td.equipmenttype")[0].innerText);
+      
      
 
       var access = parent.children("td.access")[0].innerText;
       var eqtype = parent.children("td.equipmenttype")[0].innerText;
       var eqid = parent.children("td.equipmentid")[0].innerText;
       var currentuser = parent.children("td.currentuser")[0].innerText;
+      var training_req = parent.children("td.training_req")[0].innerText;
 
-      console.log(access);
-      console.log(eqtype);
-      console.log(parseInt(eqid));
-      console.log(currentuser);
 
       $.ajax({
         method: 'POST',
         url: _config.api.invokeUrl + '/equipmentupdate',
-        data: JSON.stringify({"access_level_req": access, "equipment_type": eqtype, "current_user": currentuser, "equipment_ID": parseInt(eqid)}),
+        data: JSON.stringify({
+          "access_level_req": access,
+          "equipment_type": eqtype, 
+          "current_user": currentuser, 
+          "equipment_ID": parseInt(eqid),
+          "training_req": training_req
+        }),
         contentType: "application/json",
         success: function(data){
           console.log('Successfully editted equipment id ', eqid);

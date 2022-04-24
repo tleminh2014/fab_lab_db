@@ -187,9 +187,13 @@ var fablab = window.fablab || {};
             cancel = "<button class='cancel hidd' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"' onclick='cancelFunction()'>Cancel</button>";
           }
           
-          $('#equipTable').append('<tr class="tabledata"> <td contenteditable="true" class="equipmentid">' + equipmentItem.equipment_ID + '</td>' + '<td contenteditable="true" class="access">' + equipmentItem.access_level_req + '</td>' 
+          $('#equipTable').append('<tr class="tabledata"> <td contenteditable="true" class="equipmentid">' + equipmentItem.equipment_ID + '</td>' 
+          + '<td contenteditable="true" class="access">' + equipmentItem.access_level_req + '</td>' 
             // + '<td>' + equipmentItem.date_maintenance +'</td>'+ '<td>' + equipmentItem.date_rented +'</td>'+ '<td>' + equipmentItem.date_returned 
-            + '</td>'+ '<td contenteditable="true" class="equipmenttype">' + equipmentItem.equipment_type + '</td>'+ '<td>' + availability + '</td>'+ '<td contenteditable="true">'+ '</td>'+ '<td>' + checkout + edit + cancel
+            + '<td contenteditable="true" class="equipmenttype">' + equipmentItem.equipment_type + '</td>'
+            + '<td>' + availability + '</td>'
+            + '<td contenteditable="true" class="training_req">' + equipmentItem.training_req + '</td>'
+            + '<td>' + checkout + edit + cancel
             + '<td class="currentuser" style="display: none">' + currentUser +'</td></tr>'
           );
 

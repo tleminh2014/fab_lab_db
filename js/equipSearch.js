@@ -43,22 +43,24 @@ function loadEquipmentTable() {
             if (!equipmentItem.in_use) {
               availability = "<span style='color:green'>Available</span>";
               checkout = "<button class='checkout sho' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"' onchange='appendCheckoutFunction()'>Check Out</button>";
-              edit = "<button class='hidd' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"' onchange=''>Edit</button>";
-              cancel = "<button class='hidd' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"' onclick='cancelFunction()'>Cancel</button>";
+              edit = "<button class='edit hidd' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"' onchange=''>Edit</button>";
+              cancel = "<button class='cancel hidd' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"' onclick='cancelFunction()'>Cancel</button>";
             } else {
               availability = "<span style='color:red'>Unavailable</span>";
               checkout = "<button class='checkin sho' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"'onchange='appendCheckinFunction()' disabled= 'true'>Check In</button>";
-              edit = "<button class='hidd' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"' onchange=''>Edit</button>";
-              cancel = "<button class='hidd' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"' onclick='cancelFunction()'>Cancel</button>";
+              edit = "<button class='edit hidd' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"' onchange=''>Edit</button>";
+              cancel = "<button class='cancel hidd' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"' onclick='cancelFunction()'>Cancel</button>";
             }
             
-            //appending each item to the equipment table
-            $('#equipTable').append('<tr> <td contenteditable="true">' + equipmentItem.equipment_ID + '</td>' + '<td contenteditable="true">' + equipmentItem.access_level_req + '</td>' 
+            $('#equipTable').append('<tr class="tabledata"> <td contenteditable="true" class="equipmentid">' + equipmentItem.equipment_ID + '</td>' 
+            + '<td contenteditable="true" class="access">' + equipmentItem.access_level_req + '</td>' 
               // + '<td>' + equipmentItem.date_maintenance +'</td>'+ '<td>' + equipmentItem.date_rented +'</td>'+ '<td>' + equipmentItem.date_returned 
-              + '</td>'+ '<td contenteditable="true">' + equipmentItem.equipment_type + '</td>'+ '<td>' + availability + '</td>'+ '<td contenteditable="true">'+ '</td>'+ '<td>' + checkout + edit + cancel
-              + '<td style="display: none">' + currentUser +'</td></tr>'
+              + '<td contenteditable="true" class="equipmenttype">' + equipmentItem.equipment_type + '</td>'
+              + '<td>' + availability + '</td>'
+              + '<td contenteditable="true" class="training_req">' + equipmentItem.training_req + '</td>'
+              + '<td>' + checkout + edit + cancel
+              + '<td class="currentuser" style="display: none">' + currentUser +'</td></tr>'
             );
-
           });
         }
       });

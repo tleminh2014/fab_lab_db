@@ -71,19 +71,23 @@ var fablab = window.fablab || {};
 
              // variables for save button and cancel button when the 'edit database' 
             //     button is clicked
-            var save = "<button class='hidd' data-dismiss='modal' data-value='"+ JSON.stringify(stationItem) +"' onchange=''>Save</button>";
-            var cancel = "<button class='hidd' data-dismiss='modal' data-value='"+ JSON.stringify(stationItem) +"' onclick='cancelFunction()'>Cancel</button>";
+            var save = "<button class='edit hidd' data-dismiss='modal' data-value='"+ JSON.stringify(stationItem) +"' onchange=''>Save</button>";
+            var cancel = "<button class='cancel hidd' data-dismiss='modal' data-value='"+ JSON.stringify(stationItem) +"' onclick='cancelFunction()'>Cancel</button>";
 
 
             if (!stationItem.station_status) {
                 availability = "<span style='color:green'>Available</span>";
               } else {
                 availability = "<span style='color:red'>Unavailable</span>";
-              }
+            }
           // console.log(stationItem);
-          $('#stationTable').append('<tr> <td contenteditable="true">' + stationItem.station_ID + '</td>' + '<td contenteditable="true">' + stationItem.table_ID + '</td>' 
-            + '<td contenteditable="true">' + stationItem.equipment_ID +'</td>'+ '<td contenteditable="true">' + stationItem.station_name +'</td>'+ '<td>' + availability 
-            + '</td>' + '<td>' + save + cancel + '</td></tr>'
+          $('#stationTable').append(
+            '<tr> <td contenteditable="true" class="station_ID">' + stationItem.station_ID + '</td>' 
+            + '<td contenteditable="true" class="table_ID">' + stationItem.table_ID + '</td>' 
+            + '<td contenteditable="true" class="equipment_ID">' + stationItem.equipment_ID +'</td>'
+            + '<td contenteditable="true" class="station_name">' + stationItem.station_name +'</td>' 
+            + '<td contenteditable="true" class="station_status">' + stationItem.station_status + '</td>' 
+            + '<td>' + save + cancel + '</td></tr>'
           );
     
           // i++;
@@ -91,6 +95,48 @@ var fablab = window.fablab || {};
       }
     });
       
+
+    $(document).on('click', '.edit', function () {
+      var parent = $(this).parents('tr');
+      
+
+      var station_ID = parent.children("td.station_ID")[0].innerText;//
+      var table_ID = parent.children("td.table_ID")[0].innerText;//
+      var equipment_ID = parent.children("td.equipment_ID")[0].innerText;//
+      var station_name = parent.children("td.station_name")[0].innerText;//
+      var station_status = parent.children("td.station_status")[0].innerText;//
+ 
+
+      
+
+     
+
+      $.ajax({
+        method: 'POST',
+        url: _config.api.invokeUrl + '/stationupdate',
+        data: JSON.stringify({
+          "station_ID": station_ID,
+          "table_ID": table_ID,
+          "equipment_ID": parseInt(equipment_ID),
+          "station_name": station_name,
+          "station_status": station_status
+          }),
+        contentType: "application/json",
+        success: function(data){
+          console.log('Successfully editted stationID ', station_ID);
+          completeRequest(data);
+          location.reload();
+        },
+        error: function ajaxError(jqXHR, textStatus, errorThrown) {
+          console.error('Error requesting : ', textStatus, ', Details: ', errorThrown);
+          console.error('Response: ', jqXHR.responseText);
+         
+        }
+      });
+      
+      
+      
+    });
     
     
      

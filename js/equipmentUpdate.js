@@ -52,15 +52,21 @@ var fablab = window.fablab || {};
     //////////////////
     $(document).on('click','.edit', function(){
       var parent = $(this).parents('tr');
+      console.log(parent);
+      console.log(parent.children("td.access")[0].innerText);
+      console.log(parent.children("td.equipmenttype")[0].innerText);
      
 
       var access = parent.children("td.access")[0].innerText;
-      var eqtype = parent.children("td.equiqmenttype")[0].innerText;
+      var eqtype = parent.children("td.equipmenttype")[0].innerText;
+      var current = parent.children("td.currentuser")[0].innerText;
+      var inuse = parent.children("td.inuse")[0].innerText;
+      var eqid = parent.children("td.equipmentid")[0].innerText;
 
       $.ajax({
         method: 'POST',
         url: _config.api.invokeUrl + '/equipmentupdate',
-        data: JSON.stringify({"access_level_req": access, "equipment_type": eqtype}),
+        data: JSON.stringify({"access_level_req": access, "equipment_type": eqtype, "current_user": current, "in_use": inuse, "equipment_ID": eqid}),
         contentType: "application/json",
         success: function(data){
           location.reload;

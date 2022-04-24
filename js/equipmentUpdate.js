@@ -52,6 +52,9 @@ var fablab = window.fablab || {};
     //////////////////
     $(document).on('click','.edit', function(){
       var parent = $(this).parents('tr');
+      console.log(parent);
+      console.log(parent.children("td.access")[0].innerText);
+      console.log(parent.children("td.equipmenttype")[0].innerText);
      
 
       var access = parent.children("td.access")[0].innerText;

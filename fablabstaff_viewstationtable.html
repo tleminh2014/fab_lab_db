@@ -12,43 +12,22 @@
     <link rel="stylesheet" href="style.css">
     <style>
        a.nav-link:hover { /* nav. bar links :hover */
-          background-color: lightgrey;
-          border-radius: 20px;
-        }
-        /*  */
+          background-color: lightgrey; border-radius: 20px; }
         .editdb_button { /* CSS: (buttons) "edit database", "update database" */
-            font-weight: 500; margin-top: 10px; padding: 5px 15px; border-radius: 20px; border: 1px solid gray;
-        }
+            font-weight: 500; margin-top: 10px; padding: 5px 15px; border-radius: 20px; border: 1px solid gray; }
         #button1 { /* CSS: (button) "edit database" */
-            background-color: whitesmoke; 
-        }
+            background-color: whitesmoke; }
         #button2 { /* CSS: (button) "update database" */
-            background-color: lightgoldenrodyellow; display: none;
-        }
-        .rent { background-color: lightgreen; font-weight: 500; border-radius: 5px; border-color: black; }
-        .rentunavailable { /* tool is unavailable for rent */
-            background-color: red; font-weight: 500; border-radius: 5px; border-color: black;
-        }
-        #button1:hover, #submitButton:hover { background-color: lightgrey; }
+            background-color: lightgoldenrodyellow; display: none; }
+        #button1:hover { background-color: lightgrey; }
         #button2:hover { background-color: gold; }
-        .rent:hover { background-color: green;}
-        .rentunavailable:hover { background-color: firebrick;} /* tool is unavailable for rent :hover */
         #signOut:hover { /* nav. bar links :hover */
             background-color: lightgrey;
-            border-radius: 20px;
-        }
+            border-radius: 20px; }
         #signOut { background-color: transparent; padding: 8px 15px; border: transparent; }
         .hidd { display: none; } /* this is to hide elements that will appear when clicking on 'update database' */
         .hidd { 
-            background-color: lightgoldenrodyellow; font-weight: bold; border-radius: 20px; border:1px solid lightgrey; padding: 3px 10px; margin: 1px; 
-        }
-        a.nav-link:hover { /* nav. bar links :hover */
-            background-color: lightgrey; border-radius: 20px; }
-            
-        /* .move {
-            transition: top 3s;
-        } */
-        #submitButton:hover { background-color: grey; }
+            background-color: lightgoldenrodyellow; font-weight: bold; border-radius: 20px; border:1px solid lightgrey; padding: 3px 10px; margin: 1px; }
     </style>
     
     <!-- icon library -->
@@ -57,9 +36,8 @@
     <!-- title tab -->
     <title>Fab Lab</title>
 
-    <!-- scripts for bootstrap popover -->
+    <!-- scripts for jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   
     <!-- jQuery code -->
     <script>
@@ -75,11 +53,6 @@
                 $(".sho").show();
             });
         });
-            // $(document).ready(function(){
-            //     $('.move').click(function(){
-            //     $(this).toggleClass('clicked');
-            // });
-        // });
     </script>
   </head>
   <body style="background-color: lightblue; ">
@@ -89,8 +62,10 @@
         <div class="container-fluid">
             <a class="navbar-brand" href="index.html">Fab Lab</a>
             <div>
+                <!-- placement of navigation bar links to the right side -->
                 <ul class="nav justify-content-end">
                     <li class="nav-item">
+                        <!-- leads to user dashboard - STAFF -->
                       <a class="nav-link" href="fablabstaff_user.html" style="font-weight:500; color:black;">Home</a>
                     </li>
                     <li class="nav-item">
@@ -170,7 +145,8 @@
         }
       
         // function: hideheader()
-        // similar functionality as the previous function
+        // similar functionality as the previous function but hides / show the content based on what 
+        // button is clicked
         function hideheader(elementID) {
             var hidec, showc; // variables for the contents
             // if first button is clicked, hide the original content and show the hidden content

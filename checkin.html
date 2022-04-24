@@ -44,6 +44,7 @@
       <div class="container-fluid">
         <a class="navbar-brand" href="index.html">Fab Lab</a>
         <div>
+          <!-- links that are on the right side of the navigation bar -->
           <ul class="nav justify-content-end">
               <li class="nav-item">
                   <a class="nav-link" href="signin.html" style="font-weight:500; color:black;">Sign In</a>
@@ -68,7 +69,8 @@
       <p style="font-weight: 600; font-size: 25px;">or</p>
       <p style="font-weight: 600; font-size: 25px;">Fill in the following information to check in:</p>
       
-      <!-- form -->
+      <!-- check in form -->
+      <!-- there is no functionality to this form. it is just an form with a blank action -> action="" -->
       <form action="" style="width: 80%; margin: auto;">
         <div style="width: 50%; margin: auto;">
           <!-- first and last name -->
@@ -76,7 +78,8 @@
             <input type="text" name="first_name" id="" placeholder="First Name" required>
             <input type="text" name="last_name" id="" placeholder="Last Name" required>
           </div>
-          
+          <!-- these are considered optional because there is no decision made about if the user 
+              will use an email or their Fab Lab ID# to check in with 
           <!-- email (optional)-->
           <input type="email" name="email" id="" placeholder="Email" required><br>
           <!-- Fab Lab ID number (optional) -->

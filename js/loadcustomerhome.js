@@ -2,7 +2,7 @@
 
 var fablab = window.fablab || {};
 
-
+//this script is for loading the customer information that was not able to be implemented by the end of the project period
 (function tableScopeWrapper($) {
   var authToken;
   fablab.authToken.then(function setAuthToken(token) {

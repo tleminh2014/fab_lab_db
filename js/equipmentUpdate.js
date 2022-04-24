@@ -63,7 +63,7 @@ var fablab = window.fablab || {};
       $.ajax({
         method: 'POST',
         url: _config.api.invokeUrl + '/equipmentupdate',
-        data: JSON.stringify({"access_level_req": access, "equipment_type": eqtype, "current_user": current, "in_use": inuse, "equipment_ID": eqid}),
+        data: JSON.stringify({"access_level_req": access, "equipment_typee": eqtype, "current_user": current, "in_use": inuse, "equipment_ID": eqid}),
         contentType: "application/json",
         success: function(data){
           location.reload;

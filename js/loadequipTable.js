@@ -190,7 +190,7 @@ var fablab = window.fablab || {};
           $('#equipTable').append('<tr class="tabledata"> <td contenteditable="true" class="equipmentid">' + equipmentItem.equipment_ID + '</td>' + '<td contenteditable="true" class="access">' + equipmentItem.access_level_req + '</td>' 
             // + '<td>' + equipmentItem.date_maintenance +'</td>'+ '<td>' + equipmentItem.date_rented +'</td>'+ '<td>' + equipmentItem.date_returned 
             + '</td>'+ '<td contenteditable="true" class="equipmenttype">' + equipmentItem.equipment_type + '</td>'+ '<td>' + availability + '</td>'+ '<td contenteditable="true">'+ '</td>'+ '<td>' + checkout + edit + cancel
-            + '<td style="display: none">' + currentUser +'</td></tr>'
+            + '<td class="currentuser" style="display: none">' + currentUser +'</td></tr>'
           );
 
         });
@@ -239,15 +239,15 @@ var fablab = window.fablab || {};
 
   });
   
-  $(document).on('click', '.edit', function () {
-    var parent = $(this).parents('tr');
-    console.log(parent);
-    console.log(parent.children("td.access")[0].innerText);
-    console.log(parent.children("td.equipmenttype")[0].innerText);
+  // $(document).on('click', '.edit', function () {
+  //   var parent = $(this).parents('tr');
+  //   console.log(parent);
+  //   console.log(parent.children("td.access")[0].innerText);
+  //   console.log(parent.children("td.equipmenttype")[0].innerText);
     
     
     
-  });
+  // });
  
 
   $(document).on('click', '.checkin', function () {

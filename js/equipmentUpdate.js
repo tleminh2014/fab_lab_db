@@ -50,7 +50,7 @@ var fablab = window.fablab || {};
   
 
     //////////////////
-    $(document).on('click','#editt', function(){
+    $(document).on('click','.edit', function(){
       var parent = $(this).parents('tr');
      
 

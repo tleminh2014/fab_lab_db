@@ -71,20 +71,30 @@ var fablab = window.fablab || {};
 
         // variables for save button and cancel button when the 'edit database' 
         //     button is clicked
-        var save = "<button class='hidd' data-dismiss='modal' data-value='"+ JSON.stringify(accountItem) +"' onchange=''>Save</button>";
-        var cancel = "<button class='hidd' data-dismiss='modal' data-value='"+ JSON.stringify(accountItem) +"' onclick='cancelFunction()'>Cancel</button>";
+        var save = "<button class='edit hidd' data-dismiss='modal' data-value='"+ JSON.stringify(accountItem) +"' onchange=''>Save</button>";
+        var cancel = "<button class='cancel hidd' data-dismiss='modal' data-value='"+ JSON.stringify(accountItem) +"' onclick='cancelFunction()'>Cancel</button>";
 
 
 
           // console.log(accountItem);
-          $('#accountTable').append('<tr> <td contenteditable="true">' + accountItem.user_RFID + '</td>' + '<td>' + fullname + '</td>' 
-            + '<td contenteditable="true">' + accountItem.email +'</td>'+ '<td>' + accountItem.equip_active_appts +'</td>'+ '<td>' + accountItem.station_active_appts 
-            + '</td>'+ '<td>' + accountItem.membership_start + '</td>'+ '<td>' + accountItem.membership_end  + '</td>' + '<td>' + save + cancel + '</td></tr>'
+          $('#accountTable').append('<tr> <td contenteditable="true" class="user_RFID">' + accountItem.user_RFID + '</td>' + '<td contenteditable="true" class="first_name">' + accountItem.first_name + '</td>' + '<td contenteditable="true" class="last_name">' + accountItem.last_name + '</td>' 
+            + '<td contenteditable="true" class="email">' + accountItem.email +'</td>'+ '<td contenteditable="true" class="equip_active_appts">' + accountItem.equip_active_appts +'</td>'+ '<td contenteditable="true" class="station_active_appts">' + accountItem.station_active_appts 
+            + '</td>'+ '<td contenteditable="true" class="membership_start">' + accountItem.membership_start + '</td>'+ '<td contenteditable="true" class="membership_end">' + accountItem.membership_end  + '</td>' + '<td>' + save + cancel + '</td></tr>'
           );
     
           // i++;
         });
       }
+    });
+
+    $(document).on('click', '.edit', function () {
+      var parent = $(this).parents('tr');
+      console.log(parent);
+      console.log(parent.children("td.user_RFID")[0].innerText);
+      console.log(parent.children("td.first_name")[0].innerText);
+      
+      
+      
     });
       
     

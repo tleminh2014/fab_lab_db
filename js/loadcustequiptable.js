@@ -71,9 +71,12 @@ var fablab = window.fablab || {};
             }
     
             // console.log(equipmentItem);
-            $('#custequipmenttable').append('<tr> <td>' + equipmentItem.equipment_ID + '</td>' + '<td>' + equipmentItem.access_level_req + '</td>' 
-              // + '<td>' + equipmentItem.date_maintenance +'</td>'+ '<td>' + equipmentItem.date_rented +'</td>'+ '<td>' + equipmentItem.date_returned 
-              + '</td>'+ '<td>' + equipmentItem.equipment_type + '</td>'+ '<td>' + availability + '</td>'+ '<td>'+ '</td>'+ '<td>'+ '</td></tr>'
+            $('#custequipmenttable').append('<tr> <td>' + equipmentItem.equipment_ID + '</td>' 
+            + '<td>' + equipmentItem.access_level_req + '</td>' 
+            + '<td>' + equipmentItem.equipment_type + '</td>'
+            + '<td>' + availability + '</td>'
+            + '<td>' + equipmentItem.training_req + '</td>'
+            + '</tr>'
             );
       
             // i++;

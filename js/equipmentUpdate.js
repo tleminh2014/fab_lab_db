@@ -55,22 +55,31 @@ var fablab = window.fablab || {};
      
 
       var access = parent.children("td.access")[0].innerText;
-      var eqtype = parent.children("td.equiqmenttype")[0].innerText;
+      var eqtype = parent.children("td.equipmenttype")[0].innerText;
+      var eqid = parent.children("td.equipmentid")[0].innerText;
+      var currentuser = parent.children("td.currentuser")[0].innerText;
+
+      console.log(access);
+      console.log(eqtype);
+      console.log(parseInt(eqid));
+      console.log(currentuser);
 
       $.ajax({
         method: 'POST',
         url: _config.api.invokeUrl + '/equipmentupdate',
-        data: JSON.stringify({"access_level_req": access, "equipment_type": eqtype}),
+        data: JSON.stringify({"access_level_req": access, "equipment_type": eqtype, "current_user": currentuser, "equipment_ID": parseInt(eqid)}),
         contentType: "application/json",
         success: function(data){
+          console.log('Successfully editted equipment id ', eqid);
+          completeRequest(data);
           location.reload;
         },
         error: function ajaxError(jqXHR, textStatus, errorThrown) {
           console.error('Error requesting : ', textStatus, ', Details: ', errorThrown);
           console.error('Response: ', jqXHR.responseText);
          
-      }
-      })
+        }
+      });
 
 
 

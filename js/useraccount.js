@@ -2,6 +2,7 @@
 
 var fablab = window.fablab || {};
 
+//View User Account load-in script (not yet implemented - backlogged for higher prio items)
 (function tableScopeWrapper($) {
   var authToken;
   fablab.authToken.then(function setAuthToken(token) {

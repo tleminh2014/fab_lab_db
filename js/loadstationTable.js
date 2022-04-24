@@ -2,14 +2,14 @@
 
 var fablab = window.fablab || {};
 
+//Wrapper includes authorization-restriction for fab-lab staff users only
 (function tableScopeWrapper($) {
   var authToken;
   fablab.authToken.then(function setAuthToken(token) {
     if (token) {
       authToken = token;
-      returnData = parseJwt(token);
-      // console.log(returnData);
-      var group = returnData['cognito:groups'][0];
+      returnData = parseJwt(token); //auth token generated during user sign-in process
+      var group = returnData['cognito:groups'][0]; //checking token for group value, then authorizing access if in admin group
       if (group !== 'AdminGroup') {
         alert('You do not have access to this page');  
         window.location.href = 'user.html';  
@@ -69,15 +69,21 @@ var fablab = window.fablab || {};
         data.Items.forEach(function(stationItem){
             var availability;
 
+             // variables for save button and cancel button when the 'edit database' 
+            //     button is clicked
+            var save = "<button class='hidd' data-dismiss='modal' data-value='"+ JSON.stringify(stationItem) +"' onchange=''>Save</button>";
+            var cancel = "<button class='hidd' data-dismiss='modal' data-value='"+ JSON.stringify(stationItem) +"' onclick='cancelFunction()'>Cancel</button>";
+
+
             if (!stationItem.station_status) {
                 availability = "<span style='color:green'>Available</span>";
               } else {
                 availability = "<span style='color:red'>Unavailable</span>";
               }
           // console.log(stationItem);
-          $('#stationTable').append('<tr> <td>' + stationItem.station_ID + '</td>' + '<td>' + stationItem.table_ID + '</td>' 
-            + '<td>' + stationItem.equipment_ID +'</td>'+ '<td>' + stationItem.station_name +'</td>'+ '<td>' + availability 
-            + '</td></tr>'
+          $('#stationTable').append('<tr> <td contenteditable="true">' + stationItem.station_ID + '</td>' + '<td contenteditable="true">' + stationItem.table_ID + '</td>' 
+            + '<td contenteditable="true">' + stationItem.equipment_ID +'</td>'+ '<td contenteditable="true">' + stationItem.station_name +'</td>'+ '<td>' + availability 
+            + '</td>' + '<td>' + save + cancel + '</td></tr>'
           );
     
           // i++;

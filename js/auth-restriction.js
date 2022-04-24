@@ -12,7 +12,6 @@ var fablab = window.fablab || {};
     if (token) {
       authToken = token;
       returnData = parseJwt(token);
-      // console.log(returnData);
       var group = returnData['cognito:groups'][0]; // lines to restrict to staff-only
       if (group !== 'AdminGroup') {                 // lines to restrict to staff-only
         alert('You do not have access to this page');  // lines to restrict to staff-only

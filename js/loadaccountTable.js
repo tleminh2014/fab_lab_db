@@ -2,14 +2,14 @@
 
 var fablab = window.fablab || {};
 
+//Wrapper includes authorization-restriction for fab-lab staff users only
 (function tableScopeWrapper($) {
   var authToken;
   fablab.authToken.then(function setAuthToken(token) {
     if (token) {
       authToken = token;
-      returnData = parseJwt(token);
-      // console.log(returnData);
-      var group = returnData['cognito:groups'][0];
+      returnData = parseJwt(token); //auth token generated during user sign-in process
+      var group = returnData['cognito:groups'][0]; //checking token for group value, then authorizing access if in admin group
       if (group !== 'AdminGroup') {
         alert('You do not have access to this page');  
         window.location.href = 'user.html';  
@@ -69,10 +69,17 @@ var fablab = window.fablab || {};
         data.Items.forEach(function(accountItem){
         var fullname = accountItem.first_name + ' ' + accountItem.last_name;
 
+        // variables for save button and cancel button when the 'edit database' 
+        //     button is clicked
+        var save = "<button class='hidd' data-dismiss='modal' data-value='"+ JSON.stringify(accountItem) +"' onchange=''>Save</button>";
+        var cancel = "<button class='hidd' data-dismiss='modal' data-value='"+ JSON.stringify(accountItem) +"' onclick='cancelFunction()'>Cancel</button>";
+
+
+
           // console.log(accountItem);
-          $('#accountTable').append('<tr> <td>' + accountItem.user_RFID + '</td>' + '<td>' + fullname + '</td>' 
-            + '<td>' + accountItem.email +'</td>'+ '<td>' + accountItem.equip_active_appts +'</td>'+ '<td>' + accountItem.station_active_appts 
-            + '</td>'+ '<td>' + accountItem.membership_start + '</td>'+ '<td>' + accountItem.membership_end  + '</td></tr>'
+          $('#accountTable').append('<tr> <td contenteditable="true">' + accountItem.user_RFID + '</td>' + '<td>' + fullname + '</td>' 
+            + '<td contenteditable="true">' + accountItem.email +'</td>'+ '<td>' + accountItem.equip_active_appts +'</td>'+ '<td>' + accountItem.station_active_appts 
+            + '</td>'+ '<td>' + accountItem.membership_start + '</td>'+ '<td>' + accountItem.membership_end  + '</td>' + '<td>' + save + cancel + '</td></tr>'
           );
     
           // i++;

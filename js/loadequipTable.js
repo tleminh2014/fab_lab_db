@@ -39,15 +39,15 @@ var fablab = window.fablab || {};
     
   userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
   var cognitoUser = userPool.getCurrentUser();
-  // console.log(cognitoUser);
-  // var username = cognitoUser.username;
-
+  
+  //function to parse the JWT token to read the groupname of current session user
   parseJwt = function(token) {
     var base64Url = token.split('.')[1];
     var base64 = base64Url.replace('-', '+').replace('_', '/');
     return JSON.parse(window.atob(base64));
  }
 
+  //function checks out the equipment using equipment id and associates the selected username with the equipment's current user
   function requestCheckout(username, equipment_ID) {
     $.ajax({
         method: 'POST',
@@ -73,7 +73,7 @@ var fablab = window.fablab || {};
     });
   }
 
-
+  //function checks in the equipment using equipment id and associates the selected username with the equipment's current user
   function requestCheckin(username, equipment_ID) {
     $.ajax({
         method: 'POST',
@@ -92,9 +92,8 @@ var fablab = window.fablab || {};
           // location.reload();
         },
         error: function ajaxError(jqXHR, textStatus, errorThrown) {
-            console.error('Error requesting ride: ', textStatus, ', Details: ', errorThrown);
+            console.error('Error requesting checkin: ', textStatus, ', Details: ', errorThrown);
             console.error('Response: ', jqXHR.responseText);
-            // alert('An error occured during checkin:\n' + jqXHR.responseText);
         }
     });
   }
@@ -104,6 +103,7 @@ var fablab = window.fablab || {};
     console.log('Response received from API: ', result);
   }
 
+  //function creates a session log of the equipmentID and adds the new log id to the list of items in use by the selected user
   function requestLog(username, equipment_ID) {
       $.ajax({
         method: 'POST',
@@ -129,6 +129,7 @@ var fablab = window.fablab || {};
     });
   }
   
+  //this function updates the log associated with the user and updates the return date in the log
   function requestLogUpdate(username, equipment_ID) {
     $.ajax({
       method: 'POST',
@@ -149,32 +150,29 @@ var fablab = window.fablab || {};
       error: function ajaxError(jqXHR, textStatus, errorThrown) {
           console.error('Error requesting checkoutlog: ', textStatus, ', Details: ', errorThrown);
           console.error('Response: ', jqXHR.responseText);
-          // alert('An error occured during checkout logging:\n' + jqXHR.responseText);
+
       }
   });
 }
 
   
   $(function onDocReady() {
-    // $('#checkout').click(handleCheckout);
+    //reading the data from the equipment table in the db, then looping through items to append attributes to the table 
     $.ajax({
       method: 'GET',
       url: _config.api.invokeUrl + '/equipment',
       success: function(data){
         $('#entries').html('');
 
-        // var i = '0';
+
         data.Items.forEach(function(equipmentItem){
-        // $.each(data, function (equipmentItem) {
           var availability;
           var checkout;
           var currentUser = equipmentItem.current_user;
 
-          // added by raven 
           var cancel, edit;
 
-          // var checkoutid = 'checkout' + i;
-          // ids.set(checkoutid, checkoutid);
+       
           if (!equipmentItem.in_use) {
             availability = "<span style='color:green'>Available</span>";
             checkout = "<button class='checkout sho' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"' onchange='appendCheckoutFunction()'>Check Out</button>";
@@ -187,6 +185,7 @@ var fablab = window.fablab || {};
             cancel = "<button class='cancel hidd' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"' onclick='cancelFunction()'>Cancel</button>";
           }
           
+          //items are separated into their attributes and appended to the table as follows
           $('#equipTable').append('<tr class="tabledata"> <td contenteditable="true" class="equipmentid">' + equipmentItem.equipment_ID + '</td>' 
           + '<td contenteditable="true" class="access">' + equipmentItem.access_level_req + '</td>' 
             // + '<td>' + equipmentItem.date_maintenance +'</td>'+ '<td>' + equipmentItem.date_rented +'</td>'+ '<td>' + equipmentItem.date_returned 
@@ -201,6 +200,7 @@ var fablab = window.fablab || {};
       }
     });
     
+    //the Select customer list is created by reading the account table from db and creating list options
     $.ajax({
       method: 'GET',
       url: _config.api.invokeUrl + '/account',
@@ -219,7 +219,7 @@ var fablab = window.fablab || {};
   
   
   
-  
+  //checkout button event listener
   $(document).on('click', '.checkout', function () {
     var sel = document.getElementById('customerName');
     // display value property of select list (from selected option)
@@ -230,7 +230,7 @@ var fablab = window.fablab || {};
     console.log(equipmentitem);
     
     
-    
+    //if selected user already has 4 items checkedout, then an error will appear
     if (limit < 4) {
       console.log('obj: ', equipmentitem);
       requestCheckout(username, equipmentitem.equipment_ID);
@@ -243,17 +243,8 @@ var fablab = window.fablab || {};
 
   });
   
-  // $(document).on('click', '.edit', function () {
-  //   var parent = $(this).parents('tr');
-  //   console.log(parent);
-  //   console.log(parent.children("td.access")[0].innerText);
-  //   console.log(parent.children("td.equipmenttype")[0].innerText);
-    
-    
-    
-  // });
- 
 
+  //checkin button event listener
   $(document).on('click', '.checkin', function () {
     var sel = document.getElementById('customerName');
     // display value property of select list (from selected option)
@@ -268,7 +259,7 @@ var fablab = window.fablab || {};
   })
 
 
-
+  //adding new equipment to the database
   $('#submitButton').on('click', function(){
     $.ajax({
       method: 'POST',
@@ -281,5 +272,49 @@ var fablab = window.fablab || {};
     });
     return false;
   })
+
+  //when the edit button is clicked on each row, this function will trigger
+  $(document).on('click','.edit', function(){
+    var parent = $(this).parents('tr');
+    
+    
+    //the parent of the button which is the ancestor row is selected
+    //then each specified child, identified by its class is read using the following
+    var access = parent.children("td.access")[0].innerText;
+    var eqtype = parent.children("td.equipmenttype")[0].innerText;
+    var eqid = parent.children("td.equipmentid")[0].innerText;
+    var currentuser = parent.children("td.currentuser")[0].innerText;
+    var training_req = parent.children("td.training_req")[0].innerText;
+
+    //calling the post method with variables
+    $.ajax({
+      method: 'POST',
+      url: _config.api.invokeUrl + '/equipmentupdate',
+      data: JSON.stringify({
+        "access_level_req": access,
+        "equipment_type": eqtype, 
+        "current_user": currentuser, 
+        "equipment_ID": parseInt(eqid), //make sure that datatype matches db schema
+        "training_req": training_req
+      }),
+      contentType: "application/json",
+      success: function(data){
+        console.log('Successfully editted equipment id ', eqid);
+        completeRequest(data);
+        location.reload();
+      },
+      error: function ajaxError(jqXHR, textStatus, errorThrown) {
+        console.error('Error requesting : ', textStatus, ', Details: ', errorThrown);
+        console.error('Response: ', jqXHR.responseText);
+        
+      }
+    });
+
+
+
+  });
+
+
+
 
 }(jQuery));

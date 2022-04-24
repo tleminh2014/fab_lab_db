@@ -16,7 +16,8 @@ exports.handler = function(event, context, callback) {
             access_level_req: event.access_level_req,
             equipment_type: event.equipment_type,
             current_user: '',
-            in_use: false
+            in_use: false,
+            training_req: true
             
         }
         

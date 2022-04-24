@@ -26,7 +26,12 @@ exports.handler = function(event, context, callback) {
             first_name: first_name,
             membership_start: '2/12/2022',
             recent_logid: [],
-            active_appts: '0'
+            active_appts: '0',
+            equip_active_appts: '0',
+            membership_active: true,
+            station_active_appts: '0',
+            Z_number: '',
+            is_eng_student: false
             
         }
         

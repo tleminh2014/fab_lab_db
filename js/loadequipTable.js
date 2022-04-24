@@ -177,7 +177,7 @@ var fablab = window.fablab || {};
           if (!equipmentItem.in_use) {
             availability = "<span style='color:green'>Available</span>";
             checkout = "<button class='checkout sho' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"' onchange='appendCheckoutFunction()'>Check Out</button>";
-            edit = "<button class='hidd' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"' onchange=''>Edit</button>";
+            edit = "<button class='hidd' id='editt' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"' onchange=''>Edit</button>";
             cancel = "<button class='hidd' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"' onclick='cancelFunction()'>Cancel</button>";
           } else {
             availability = "<span style='color:red'>Unavailable</span>";

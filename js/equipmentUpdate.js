@@ -49,19 +49,35 @@ var fablab = window.fablab || {};
 
   
 
-//////////////////
-$('#second').on('click',function(){
-  $.ajax({
-    type: 'POST',
-    url: _config.api.invokeUrl + '/equipmentupdate',
-    data: JSON.stringify({"access_level_req":$('#access').val(), "current_user":$('#access').val(), "equipement_type":$('#access').val(), "in_use":$('#access').val()}),
-    contentType: "application/json",
+    //////////////////
+    $(document).on('click','#editt', function(){
+      var parent = $(this).parents('tr');
+     
 
-    success: function(data){
-      location.reload();
-    }
-  })
-})
+      var access = parent.children("td.access")[0].innerText;
+      var eqtype = parent.children("td.equiqmenttype")[0].innerText;
+
+      $.ajax({
+        method: 'POST',
+        url: _config.api.invokeUrl + '/equipmentupdate',
+        data: JSON.stringify({"access_level_req": access, "equipment_type": eqtype}),
+        contentType: "application/json",
+        success: function(data){
+          location.reload;
+        },
+        error: function ajaxError(jqXHR, textStatus, errorThrown) {
+          console.error('Error requesting : ', textStatus, ', Details: ', errorThrown);
+          console.error('Response: ', jqXHR.responseText);
+         
+      }
+      })
+
+
+
+    });
+
+
+  
 
   function completeRequest(result) {
     console.log('Response received from API: ', result);

@@ -75,8 +75,7 @@ var fablab = window.fablab || {};
         var cancel = "<button class='cancel hidd' data-dismiss='modal' data-value='"+ JSON.stringify(accountItem) +"' onclick='cancelFunction()'>Cancel</button>";
 
 
-
-          // console.log(accountItem);
+          //appending attributes of item to accounttable aas follows
           $('#accountTable').append('<tr> <td contenteditable="true" class="user_RFID">' + accountItem.user_RFID + '</td>'
             + '<td contenteditable="true" class="first_name">' + accountItem.first_name + '</td>'
             + '<td contenteditable="true" class="last_name">' + accountItem.last_name + '</td>' 
@@ -94,15 +93,16 @@ var fablab = window.fablab || {};
             + '<td>' + save + cancel + '</td></tr>'
           );
     
-          // i++;
         });
       }
     });
 
+    //when the edit button is clicked on each row, this function will trigger
     $(document).on('click', '.edit', function () {
       var parent = $(this).parents('tr');
       
-
+      //the parent of the button which is the ancestor row is selected
+      //then each specified child, identified by its class is read using the following
       var first_name = parent.children("td.first_name")[0].innerText;//
       var last_name = parent.children("td.last_name")[0].innerText;//
       var equip_active_appts = parent.children("td.equip_active_appts")[0].innerText;//

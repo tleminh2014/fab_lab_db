@@ -22,6 +22,7 @@ var fablab = window.fablab || {};
       window.location.href = '/signin.html';
   });
 
+  //reading the user pool id from the config file
   var poolData = {
     UserPoolId: _config.cognito.userPoolId,
     ClientId: _config.cognito.userPoolClientId
@@ -45,20 +46,12 @@ var fablab = window.fablab || {};
     var base64Url = token.split('.')[1];
     var base64 = base64Url.replace('-', '+').replace('_', '/');
     return JSON.parse(window.atob(base64));
-    }
+  }
 
-  
-
-
-  
 
   function completeRequest(result) {
     console.log('Response received from API: ', result);
   }
-
-  
-  
-
 
   
   $(function onDocReady() {
@@ -80,8 +73,8 @@ var fablab = window.fablab || {};
               } else {
                 availability = "<span style='color:red'>Unavailable</span>";
             }
-          // console.log(stationItem);
-          $('#stationTable').append(
+
+            $('#stationTable').append(
             '<tr> <td contenteditable="true" class="station_ID">' + stationItem.station_ID + '</td>' 
             + '<td contenteditable="true" class="table_ID">' + stationItem.table_ID + '</td>' 
             + '<td contenteditable="true" class="equipment_ID">' + stationItem.equipment_ID +'</td>'
@@ -90,24 +83,23 @@ var fablab = window.fablab || {};
             + '<td>' + save + cancel + '</td></tr>'
           );
     
-          // i++;
+     
         });
       }
     });
       
-
+    //when the edit button is clicked on each row, this function will trigger
     $(document).on('click', '.edit', function () {
       var parent = $(this).parents('tr');
       
-
+      //the parent of the button which is the ancestor row is selected
+      //then each specified child, identified by its class is read using the following
       var station_ID = parent.children("td.station_ID")[0].innerText;//
       var table_ID = parent.children("td.table_ID")[0].innerText;//
       var equipment_ID = parent.children("td.equipment_ID")[0].innerText;//
       var station_name = parent.children("td.station_name")[0].innerText;//
       var station_status = parent.children("td.station_status")[0].innerText;//
  
-
-      
 
      
 

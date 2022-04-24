@@ -176,12 +176,12 @@ var fablab = window.fablab || {};
           if (!equipmentItem.in_use) {
             availability = "<span style='color:green'>Available</span>";
             checkout = "<button class='checkout sho' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"' onchange='appendCheckoutFunction()'>Check Out</button>";
-            edit = "<button class='edit hidd' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"' onchange=''>Edit</button>";
+            edit = "<button class='edit hidd' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"' onchange=''>Save</button>";
             cancel = "<button class='cancel hidd' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"' onclick='cancelFunction()'>Cancel</button>";
           } else {
             availability = "<span style='color:red'>Unavailable</span>";
             checkout = "<button class='checkin sho' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"'onchange='appendCheckinFunction()' disabled= 'true'>Check In</button>";
-            edit = "<button class='edit hidd' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"' onchange=''>Edit</button>";
+            edit = "<button class='edit hidd' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"' onchange=''>Save</button>";
             cancel = "<button class='cancel hidd' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"' onclick='cancelFunction()'>Cancel</button>";
           }
           

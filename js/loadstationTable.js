@@ -117,7 +117,7 @@ var fablab = window.fablab || {};
         success: function(data){
           console.log('Successfully editted stationID ', station_ID);
           completeRequest(data);
-          location.reload();
+          // location.reload();
         },
         error: function ajaxError(jqXHR, textStatus, errorThrown) {
           console.error('Error requesting : ', textStatus, ', Details: ', errorThrown);

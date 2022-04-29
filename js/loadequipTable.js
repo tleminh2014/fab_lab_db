@@ -226,8 +226,7 @@ var fablab = window.fablab || {};
     var username = sel.value;
     var limit = $("#customerName option:selected").data("val");
     var equipmentitem = $(this).data('value');
-    equipmentitem.equipment_ID = 1;
-    console.log(equipmentitem);
+    
     
     
     //if selected user already has 4 items checkedout, then an error will appear
@@ -301,7 +300,7 @@ var fablab = window.fablab || {};
       success: function(data){
         console.log('Successfully editted equipment id ', eqid);
         completeRequest(data);
-        location.reload();
+        // location.reload();
       },
       error: function ajaxError(jqXHR, textStatus, errorThrown) {
         console.error('Error requesting : ', textStatus, ', Details: ', errorThrown);

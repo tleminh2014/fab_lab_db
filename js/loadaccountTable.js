@@ -143,7 +143,7 @@ var fablab = window.fablab || {};
         success: function(data){
           console.log('Successfully editted rfid ', user_RFID);
           completeRequest(data);
-          location.reload();
+          // location.reload();
         },
         error: function ajaxError(jqXHR, textStatus, errorThrown) {
           console.error('Error requesting : ', textStatus, ', Details: ', errorThrown);

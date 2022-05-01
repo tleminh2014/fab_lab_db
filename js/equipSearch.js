@@ -83,8 +83,8 @@ function customerFilter() {
 
     $("#currentTable").html('');
     var name = $("#customerName option:selected").text();
-    var limit = $("#customerName option:selected").data("val");
-    $("#currentCustomer").html(limit + ' Items checked-out for ' + name);
+    // var limit = $("#customerName option:selected").data("val");
+    $("#currentCustomer").html('Items checked-out for ' + name);
     $("#currentTable").append('<thead class="thead-light" ><tr class="header"><th style="width: 15%;">Equipment ID #</th><th style="width: 20%;">Access Level Required</th><th style="width: 20%;">Equipment Type</th><th style="width: 10%;">Available?</th><th style="width: 10%;">Training</th><th style="width: 10%;">Checkout</th></tr></thead><tbody class=" table table-striped" style="text-align: center; justify-content: center; align-items: center; position: relative; "></tbody>');
 
 

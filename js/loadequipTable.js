@@ -150,6 +150,7 @@ var fablab = window.fablab || {};
       error: function ajaxError(jqXHR, textStatus, errorThrown) {
           console.error('Error requesting checkoutlog: ', textStatus, ', Details: ', errorThrown);
           console.error('Response: ', jqXHR.responseText);
+          location.reload();
 
       }
   });
@@ -175,8 +176,10 @@ var fablab = window.fablab || {};
        
           if (!equipmentItem.in_use) {
             availability = "<span style='color:green'>Available</span>";
-            checkout = "<button class='checkout sho' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"' onchange='appendCheckoutFunction()'>Check Out</button>";
-            edit = "<button class='edit hidd' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"' onchange=''>Save</button>";
+
+            checkout = "<button class='checkout sho' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"' onchange='appendCheckoutFunction()' disabled= 'true'>Check Out</button>";
+            edit = "<button class='edit hidd' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"' onchange=''>Edit</button>";
+
             cancel = "<button class='cancel hidd' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"' onclick='cancelFunction()'>Cancel</button>";
           } else {
             availability = "<span style='color:red'>Unavailable</span>";
@@ -207,7 +210,7 @@ var fablab = window.fablab || {};
       success: function(data){
         data.Items.forEach(function(accountItem){
          var fullname = accountItem.first_name + ' ' + accountItem.last_name;      
-         $('#customerName').append('<option value="'+ accountItem.email +'" data-val="' + accountItem.equip_active_appts + '">'+ fullname + '</option>');
+         $('#customerName').append('<option value="'+ accountItem.email +'" data-val="' + accountItem.equip_active_appts + '" data-val2="' + accountItem.access_level + '">'+ fullname + '</option>');
     
 
         });
@@ -225,19 +228,29 @@ var fablab = window.fablab || {};
     // display value property of select list (from selected option)
     var username = sel.value;
     var limit = $("#customerName option:selected").data("val");
+    var access = $("#customerName option:selected").data("val2");
+    access = parseInt(access);
     var equipmentitem = $(this).data('value');
+    var accessEq = equipmentitem.access_level_req;
+    accessEq = parseInt(accessEq);
     
     
     
-    //if selected user already has 4 items checkedout, then an error will appear
-    if (limit < 4) {
-      console.log('obj: ', equipmentitem);
-      requestCheckout(username, equipmentitem.equipment_ID);
-      requestLog(username, equipmentitem.equipment_ID);
-  
-      console.log('equipmentid', equipmentitem.equipment_ID,'checked out for: ', username);
+    
+    //First, if user meets access level requirements, then check if selected user already has less than 4 items checked out, then checkout
+    if (access >= accessEq) {
+      if (limit < 4) {
+        // console.log('obj: ', equipmentitem);
+        requestCheckout(username, equipmentitem.equipment_ID);
+        requestLog(username, equipmentitem.equipment_ID);
+    
+        console.log('equipmentid', equipmentitem.equipment_ID,'checked out for: ', username);
+      } else {
+        alert('Equipment Limit reached for ' + username);
+      }
+      
     } else {
-      alert('Equipment Limit reached for ' + username);
+      alert('Access level required: ' + accessEq);
     }
 
   });

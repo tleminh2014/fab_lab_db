@@ -100,9 +100,12 @@ var fablab = window.fablab || {};
     //when the edit button is clicked on each row, this function will trigger
     $(document).on('click', '.edit', function () {
       var parent = $(this).parents('tr');
-      
+      var accountitem = $(this).data('value');
       //the parent of the button which is the ancestor row is selected
       //then each specified child, identified by its class is read using the following
+      var old_user_RFID = accountitem.user_RFID;
+      var old_email = accountitem.email;
+      var recent_logid = accountitem.recent_logid;
       var first_name = parent.children("td.first_name")[0].innerText;//
       var last_name = parent.children("td.last_name")[0].innerText;//
       var equip_active_appts = parent.children("td.equip_active_appts")[0].innerText;//
@@ -125,6 +128,8 @@ var fablab = window.fablab || {};
         method: 'POST',
         url: _config.api.invokeUrl + '/accountupdate',
         data: JSON.stringify({
+          "old_user_RFID": old_user_RFID,
+          "old_email": old_email,
           "first_name": first_name,
           "last_name": last_name,
           "equip_active_appts": equip_active_appts,
@@ -137,7 +142,8 @@ var fablab = window.fablab || {};
           "Z_number": Z_number,
           "station_active_appts": station_active_appts,
           "membership_start": membership_start,
-          "is_eng_student": is_eng_student
+          "is_eng_student": is_eng_student,
+          "recent_logid": recent_logid
         }),
         contentType: "application/json",
         success: function(data){

@@ -36,10 +36,13 @@
 
         <!-- registration form -->
         <section class="form-wrap" style="margin-top: 30px;">
+            <!-- header -->
             <h1 class="regist_header" style="letter-spacing: 5px; text-transform: uppercase; border-bottom: 3px solid white; width: 50%; margin: auto;
             padding-bottom: 7px;">Register</h1>
+            <!-- user instructions -->
             <p class="regist_inst" style="text-align:center; padding-top:15px;font-weight: 500;">Please fill in the following fields:</p>
             <form id="registrationForm">
+
                 <!-- first and last name -->
                 <div class="newuser" style="display:flex; width: 80%; margin:auto;">
                     <input type="text" id="givennameInputRegister" placeholder="First Name" required>
@@ -47,6 +50,9 @@
                 </div>
 
                 <!-- radio button input -->
+                <!-- at the time, this was put here because our sponsor wanted to give access to certain 
+                    users who were not apart of FAU, not sure if this is still an requirement. 
+                    * can be removed if not an requirement -->
                 <div class="newuserocc" style=" margin-top: 20px; margin-bottom:10px; display: flex; font-size: 20px; font-weight: 500; justify-content: center; ">
                     <label for="" style="float:left; display:block;">Occupation:</label>
                     <div class="radiooptions" style="margin-left: 20px; margin-right: 10px; vertical-align: center; ">
@@ -66,11 +72,12 @@
                     <input type="password" id="passwordInputRegister" placeholder="Password" pattern=".*" required>
                     <input type="password" id="password2InputRegister" placeholder="Confirm Password" pattern=".*" required>
                 </div>
-
+                
+                <!-- submit button -->
                 <input type="submit" value="Submit" style="margin-top: 15px;">
             </form>
 
-            <!-- log in  -->
+            <!-- log in page redirection -->
             <div class="leadsigninsection" style="text-align: center; margin: 10px 0px;">
                 <label for="" style="font-weight: 500;">Already have an account with us?</label>
                 <a href="signin.html"><button class="loginacc" formaction="signin.html" style="border: transparent; margin-left: 10px;

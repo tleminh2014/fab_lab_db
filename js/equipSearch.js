@@ -1,5 +1,5 @@
 // Declare variables
-var input, filter, table, tr, td, i, txtValue, td0;
+var input, filter, table, tr, td, i, txtValue, txtValue1, td0;
 input = document.getElementById("equipInput");
 filter = input.value.toUpperCase();
 table = document.getElementById("equipTable");

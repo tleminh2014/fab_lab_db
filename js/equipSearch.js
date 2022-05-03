@@ -42,7 +42,7 @@ function loadEquipmentTable() {
             //depending on the availibility of the equipment, the tr tag will be displayed differently
             if (!equipmentItem.in_use) {
               availability = "<span style='color:green'>Available</span>";
-              checkout = "<button class='checkout sho' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"' onchange='appendCheckoutFunction()'>Check Out</button>";
+              checkout = "<button class='checkout sho' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"' onchange='appendCheckoutFunction()' disabled= 'true'>Check Out</button>";
               edit = "<button class='edit hidd' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"' onchange=''>Edit</button>";
               cancel = "<button class='cancel hidd' data-dismiss='modal' data-value='"+ JSON.stringify(equipmentItem) +"' onclick='cancelFunction()'>Cancel</button>";
             } else {
@@ -84,7 +84,7 @@ function customerFilter() {
     $("#currentTable").html('');
     var name = $("#customerName option:selected").text();
     // var limit = $("#customerName option:selected").data("val");
-    $("#currentCustomer").html('Items checked-out for ' + name);
+    $("#currentCustomer").html('Items available and checked-out for ' + name);
     $("#currentTable").append('<thead class="thead-light" ><tr class="header"><th style="width: 15%;">Equipment ID #</th><th style="width: 20%;">Access Level Required</th><th style="width: 20%;">Equipment Type</th><th style="width: 10%;">Available?</th><th style="width: 10%;">Training</th><th style="width: 10%;">Checkout</th></tr></thead><tbody class=" table table-striped" style="text-align: center; justify-content: center; align-items: center; position: relative; "></tbody>');
 
 
@@ -92,15 +92,19 @@ function customerFilter() {
     var sel = document.getElementById('customerName');
     // display value property of select list (from selected option)
     var email = sel.value;
+    var access = $("#customerName option:selected").data("val2");
+
     // current user is defined by their email
     // selected option has value = email
     // if any entry have currentuser set to select user [7], move entry to first table, hide in latter table
     for (i = 1; i < tr.length; i++) {
         td = tr[i].getElementsByTagName("td")[6]; // the currentUser value
-        // console.log(td);
+        td1 = tr[i].getElementsByTagName("td")[1]; // the currentUser value
+        // console.log(td1);
         if (td) {
             txtValue = td.textContent || td.innerText; 
-            if ( txtValue  == email) {
+            txtValue1 = td1.textContent || td1.innerText; 
+            if ( txtValue  == email || txtValue1 <= access) {
                 console.log(td);
                 table = document.getElementById("equipTable");
                 var button = tr[i].getElementsByTagName("button")[0];

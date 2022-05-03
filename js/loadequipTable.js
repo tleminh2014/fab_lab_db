@@ -48,7 +48,7 @@ var fablab = window.fablab || {};
  }
 
   //function checks out the equipment using equipment id and associates the selected username with the equipment's current user
-  function requestCheckout(username, equipment_ID) {
+  function requestCheckout(user_RFID, email, equipment_ID) {
     $.ajax({
         method: 'POST',
         url: _config.api.invokeUrl + '/equipmentcheckout',
@@ -56,14 +56,15 @@ var fablab = window.fablab || {};
             Authorization: authToken
         },
         data: JSON.stringify({
-            username: username,
+            user_RFID: user_RFID,
+            email: email,
             equipment_ID: equipment_ID
         }),
         contentType: 'application/json',
         success: function(data){
           console.log('REQUEST COMPLETED! ->' + equipment_ID);
           completeRequest(data); 
-          // location.reload();
+          
         },
         error: function ajaxError(jqXHR, textStatus, errorThrown) {
             console.error('Error requesting ride: ', textStatus, ', Details: ', errorThrown);
@@ -74,7 +75,7 @@ var fablab = window.fablab || {};
   }
 
   //function checks in the equipment using equipment id and associates the selected username with the equipment's current user
-  function requestCheckin(username, equipment_ID) {
+  function requestCheckin(user_RFID, email, equipment_ID) {
     $.ajax({
         method: 'POST',
         url: _config.api.invokeUrl + '/equipmentcheckin',
@@ -82,14 +83,15 @@ var fablab = window.fablab || {};
             Authorization: authToken
         },
         data: JSON.stringify({
-            username: username,
+            user_RFID: user_RFID,
+            email: email,
             equipment_ID: equipment_ID
         }),
         contentType: 'application/json',
         success: function(data){
           console.log('REQUEST COMPLETED! ->' + equipment_ID);
           completeRequest(data);
-          // location.reload();
+          
         },
         error: function ajaxError(jqXHR, textStatus, errorThrown) {
             console.error('Error requesting checkin: ', textStatus, ', Details: ', errorThrown);
@@ -104,7 +106,7 @@ var fablab = window.fablab || {};
   }
 
   //function creates a session log of the equipmentID and adds the new log id to the list of items in use by the selected user
-  function requestLog(username, equipment_ID) {
+  function requestLog(user_RFID, email, equipment_ID) {
       $.ajax({
         method: 'POST',
         url: _config.api.invokeUrl + '/equipmentcheckout/equipmentlog',
@@ -112,7 +114,8 @@ var fablab = window.fablab || {};
             Authorization: authToken
         },
         data: JSON.stringify({
-            username: username,
+            user_RFID: user_RFID,
+            email: email,
             equipment_ID: equipment_ID
         }),
         contentType: 'application/json',
@@ -130,7 +133,7 @@ var fablab = window.fablab || {};
   }
   
   //this function updates the log associated with the user and updates the return date in the log
-  function requestLogUpdate(username, equipment_ID) {
+  function requestLogUpdate(user_RFID, email, equipment_ID) {
     $.ajax({
       method: 'POST',
       url: _config.api.invokeUrl + '/equipmentcheckin/equipmentlogupdate',
@@ -138,12 +141,13 @@ var fablab = window.fablab || {};
           Authorization: authToken
       },
       data: JSON.stringify({
-          username: username,
+          user_RFID: user_RFID,
+          email: email,
           equipment_ID: equipment_ID
       }),
       contentType: 'application/json',
       success: function(data){
-        console.log('REQUEST COMPLETED! Log updated for ->' + username);
+        console.log('REQUEST COMPLETED! Log updated for ->' + email);
         completeRequest(data);
         location.reload();
       },
@@ -210,7 +214,7 @@ var fablab = window.fablab || {};
       success: function(data){
         data.Items.forEach(function(accountItem){
          var fullname = accountItem.first_name + ' ' + accountItem.last_name;      
-         $('#customerName').append('<option value="'+ accountItem.email +'" data-val="' + accountItem.equip_active_appts + '" data-val2="' + accountItem.access_level + '">'+ fullname + '</option>');
+         $('#customerName').append('<option value="'+ accountItem.email +'" data-val="' + accountItem.equip_active_appts + '" data-val1="' + accountItem.user_RFID + '" data-val2="' + accountItem.access_level + '">'+ fullname + '</option>');
     
 
         });
@@ -226,8 +230,10 @@ var fablab = window.fablab || {};
   $(document).on('click', '.checkout', function () {
     var sel = document.getElementById('customerName');
     // display value property of select list (from selected option)
-    var username = sel.value;
+    var email = sel.value;
     var limit = $("#customerName option:selected").data("val");
+    var user_RFID = $("#customerName option:selected").data("val1");
+    user_RFID = user_RFID.toString();
     var access = $("#customerName option:selected").data("val2");
     access = parseInt(access);
     var equipmentitem = $(this).data('value');
@@ -235,18 +241,18 @@ var fablab = window.fablab || {};
     accessEq = parseInt(accessEq);
     
     
+    console.log(user_RFID, ' ', email, ' ', equipmentitem.equipment_ID)
     
-    
-    //First, if user meets access level requirements, then check if selected user already has less than 4 items checked out, then checkout
+    // First, if user meets access level requirements, then check if selected user already has less than 4 items checked out, then checkout
     if (access >= accessEq) {
       if (limit < 4) {
         // console.log('obj: ', equipmentitem);
-        requestCheckout(username, equipmentitem.equipment_ID);
-        requestLog(username, equipmentitem.equipment_ID);
+        requestCheckout(user_RFID, email, equipmentitem.equipment_ID);
+        requestLog(user_RFID, email, equipmentitem.equipment_ID);
     
-        console.log('equipmentid', equipmentitem.equipment_ID,'checked out for: ', username);
+        console.log('equipmentid', equipmentitem.equipment_ID,'checked out for: ', email);
       } else {
-        alert('Equipment Limit reached for ' + username);
+        alert('Equipment Limit reached for ' + email);
       }
       
     } else {
@@ -260,13 +266,14 @@ var fablab = window.fablab || {};
   $(document).on('click', '.checkin', function () {
     var sel = document.getElementById('customerName');
     // display value property of select list (from selected option)
-    var username = sel.value;
+    var email = sel.value;
+    var user_RFID = $("#customerName option:selected").data("val1");
     var equipmentitem = $(this).data('value');
     console.log('obj: ', equipmentitem);
-    requestCheckin(username, equipmentitem.equipment_ID);
-    requestLogUpdate(username, equipmentitem.equipment_ID);
+    requestCheckin(user_RFID, email, equipmentitem.equipment_ID);
+    requestLogUpdate(user_RFID, email, equipmentitem.equipment_ID);
 
-    console.log('equipmentid checked in: ', equipmentitem.equipment_ID, 'for user: ', username);
+    console.log('equipmentid checked in: ', equipmentitem.equipment_ID, 'for user: ', email);
 
   })
 

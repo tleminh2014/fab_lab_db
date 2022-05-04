@@ -271,7 +271,7 @@ var fablab = window.fablab || {};
     var equipmentitem = $(this).data('value');
     console.log('obj: ', equipmentitem);
     requestCheckin(user_RFID, email, equipmentitem.equipment_ID);
-    requestLogUpdate(user_RFID, email, equipmentitem.equipment_ID);
+    requestLogUpdate(user_RFID.toString(), email, equipmentitem.equipment_ID.toString());
 
     console.log('equipmentid checked in: ', equipmentitem.equipment_ID, 'for user: ', email);
 
